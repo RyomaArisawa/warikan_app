@@ -41,4 +41,9 @@ class SignUpViewModel with ChangeNotifier {
         ? "Password ${ValidationError.blank}"
         : null;
   }
+
+  /// Routing
+  void pushSignIn(BuildContext context) {
+    //Navigator.push(context, route)
+  }
 }

@@ -11,3 +11,8 @@ class ButtonLabel {
   static const String signIn = "Sign In";
   static const String signUp = "Sign Up";
 }
+
+class LinkTexts {
+  static const String askAccount = "Already have account?";
+  static const String signInLink = "Sign In";
+}

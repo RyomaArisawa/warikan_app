@@ -4,11 +4,13 @@ class InputLabel extends StatelessWidget {
   const InputLabel({
     Key? key,
     required this.label,
-    this.color = Colors.white70,
-    this.fontSize = 20,
+    this.color = Colors.white,
+    this.fontSize = 16,
   }) : super(key: key);
 
+  //フォームラベル
   final String label;
+  //ラベルの色
   final Color color;
   final double fontSize;
 

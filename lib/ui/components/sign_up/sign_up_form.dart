@@ -14,29 +14,35 @@ class SignUpForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final _globalKey = GlobalKey<FormState>();
     final vm = context.read<SignUpViewModel>();
-    return Form(
-      key: _globalKey,
-      child: Column(
-        children: [
-          const InputLabel(label: FormLabel.name),
-          InputField(
-            onChanged: vm.inputName,
-            validator: vm.nameValidator,
-          ),
-          const InputLabel(label: FormLabel.email),
-          InputField(
-            onChanged: vm.inputEmail,
-            validator: vm.emailValidator,
-          ),
-          const InputLabel(label: FormLabel.pass),
-          InputField(
-            onChanged: vm.inputPass,
-            validator: vm.passValidator,
-          ),
-          WideButton(
-              text: ButtonLabel.signUp,
-              onPressed: () => {_globalKey.currentState?.validate()})
-        ],
+
+    return SizedBox(
+      height: MediaQuery.of(context).size.height / 2,
+      child: Form(
+        key: _globalKey,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const InputLabel(label: FormLabel.name),
+            InputField(
+              onChanged: vm.inputName,
+              validator: vm.nameValidator,
+            ),
+            const InputLabel(label: FormLabel.email),
+            InputField(
+              onChanged: vm.inputEmail,
+              validator: vm.emailValidator,
+            ),
+            const InputLabel(label: FormLabel.pass),
+            InputField(
+              onChanged: vm.inputPass,
+              validator: vm.passValidator,
+            ),
+            WideButton(
+                text: ButtonLabel.signUp,
+                onPressed: () => {_globalKey.currentState?.validate()})
+          ],
+        ),
       ),
     );
   }
