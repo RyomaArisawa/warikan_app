@@ -21,20 +21,22 @@ class SignUpScreen extends StatelessWidget {
         backgroundColor: CustomColors.darkBlue,
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          children: [
-            const SignUpForm(),
-            const SizedBox(
-              height: 100,
-            ),
-            LinkText(
-              plainText: LinkTexts.askAccount,
-              linkText: LinkTexts.signInLink,
-              onTap: () => vm.pushSignIn(context),
-            ),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            children: [
+              const SignUpForm(),
+              const SizedBox(
+                height: 100,
+              ),
+              LinkText(
+                plainText: LinkTexts.askAccount,
+                linkText: LinkTexts.signInLink,
+                onTap: () => vm.pushSignIn(context),
+              ),
+            ],
+          ),
         ),
       ),
     );
