@@ -41,8 +41,9 @@ class SignUpForm extends StatelessWidget {
                 validator: vm.passValidator,
               ),
               WideButton(
-                  text: ButtonLabel.signUp,
-                  onPressed: () => {_globalKey.currentState?.validate()})
+                text: ButtonLabel.signUp,
+                onPressed: () => vm.executeValidator(context, _globalKey),
+              ),
             ],
           ),
         ),

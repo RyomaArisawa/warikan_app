@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:warikan_app/data/consts/error_messages.dart';
 
+import '../views/screens/home_screen.dart';
+
 class SignUpViewModel with ChangeNotifier {
   /// 入力フォームの状態変数
   String _name = "";
@@ -42,8 +44,20 @@ class SignUpViewModel with ChangeNotifier {
         : null;
   }
 
+  void executeValidator(BuildContext context, GlobalKey<FormState> globalKey) {
+    if (globalKey.currentState!.validate()) {
+      Navigator.pushReplacement(
+        context,
+        HomeScreen.route(),
+      );
+    }
+  }
+
   /// Routing
   void pushSignIn(BuildContext context) {
-    //Navigator.push(context, route)
+    // Navigator.push(
+    //   context,
+    //   HomeScreen.route(),
+    // );
   }
 }
