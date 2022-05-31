@@ -5,7 +5,7 @@ import 'package:warikan_app/ui/views/screens/memo_overview_screen.dart';
 import '../../data/consts/texts.dart';
 import '../views/screens/settings_screen.dart';
 
-class HomeViewModel extends ChangeNotifier {
+class HomeViewModel with ChangeNotifier {
   // ホームで表示する画面
   final screens = const <Widget>[
     CalcOverviewScreen(),

@@ -1,5 +1,5 @@
 ///入力フォームラベル
-class FormLabel {
+class FormLabels {
   static const String name = "Name";
   static const String email = "Email Address";
   static const String pass = "Password";
@@ -9,9 +9,10 @@ class FormLabel {
 }
 
 ///ボタン表示テキスト
-class ButtonLabel {
+class ButtonLabels {
   static const String signIn = "Sign In";
   static const String signUp = "Sign Up";
+  static const String create = "CREATE";
 }
 
 ///リンクテキスト関連
