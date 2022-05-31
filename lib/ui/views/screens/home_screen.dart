@@ -1,11 +1,16 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
 import 'package:warikan_app/data/consts/custom_colors.dart';
 import 'package:warikan_app/data/consts/texts.dart';
 import 'package:warikan_app/ui/viewmodels/home_viewmodel.dart';
+import 'package:warikan_app/ui/views/screens/calc_overview_screen.dart';
+import 'package:warikan_app/ui/views/screens/memo_overview_screen.dart';
+import 'package:warikan_app/ui/views/screens/settings_screen.dart';
 
 class HomeScreen extends StatelessWidget {
+  ///ホーム画面（BottomNavigationBar固定画面）
   const HomeScreen({Key? key}) : super(key: key);
 
   static Route<dynamic> route() {
@@ -18,34 +23,60 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final vm = context.watch<HomeViewModel>();
     return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text(AppBarTitles.home),
-          backgroundColor: CustomColors.darkBlue,
-          centerTitle: true,
-        ),
-        body: vm.screens[vm.currentIndex],
-        bottomNavigationBar: BottomNavigationBar(
-          unselectedItemColor: CustomColors.indigo,
-          selectedItemColor: Colors.white,
+      child: CupertinoTabScaffold(
+        tabBar: CupertinoTabBar(
+          height: 60,
+          activeColor: Colors.white,
+          inactiveColor: CustomColors.indigo,
           backgroundColor: CustomColors.darkBlue,
           currentIndex: vm.currentIndex,
           onTap: vm.setCurrentIndex,
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.calculate_outlined),
-              label: NavigationLabels.calc,
+              label: ScreenLabels.calc,
             ),
             BottomNavigationBarItem(
               icon: Icon(IconlyLight.document),
-              label: NavigationLabels.memo,
+              label: ScreenLabels.memo,
             ),
             BottomNavigationBarItem(
               icon: Icon(IconlyLight.setting),
-              label: NavigationLabels.settings,
+              label: ScreenLabels.settings,
             ),
           ],
         ),
+        tabBuilder: (context, index) {
+          switch (index) {
+            case 0:
+              return CupertinoTabView(
+                builder: (context) {
+                  return const CupertinoPageScaffold(
+                    child: CalcOverviewScreen(),
+                  );
+                },
+              );
+            case 1:
+              return CupertinoTabView(
+                builder: (context) {
+                  return const CupertinoPageScaffold(
+                    child: MemoOverviewScreen(),
+                  );
+                },
+              );
+              break;
+            case 2:
+              return CupertinoTabView(
+                builder: (context) {
+                  return const CupertinoPageScaffold(
+                    child: SettingsScreen(),
+                  );
+                },
+              );
+            default:
+              return const CupertinoTabView();
+          }
+        },
       ),
     );
   }

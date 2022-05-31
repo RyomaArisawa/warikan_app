@@ -22,7 +22,7 @@ class SignUpScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: CustomColors.darkBlue,
       appBar: AppBar(
-        title: const Text(AppBarTitles.signUp),
+        title: const Text(ScreenLabels.signUp),
         backgroundColor: CustomColors.darkBlue,
         centerTitle: true,
       ),
