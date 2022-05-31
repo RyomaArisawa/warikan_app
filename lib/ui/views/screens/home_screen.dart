@@ -10,6 +10,7 @@ import 'package:warikan_app/ui/views/screens/memo_overview_screen.dart';
 import 'package:warikan_app/ui/views/screens/settings_screen.dart';
 
 class HomeScreen extends StatelessWidget {
+  ///ホーム画面（BottomNavigationBar固定画面）
   const HomeScreen({Key? key}) : super(key: key);
 
   static Route<dynamic> route() {
@@ -24,6 +25,7 @@ class HomeScreen extends StatelessWidget {
     return SafeArea(
       child: CupertinoTabScaffold(
         tabBar: CupertinoTabBar(
+          height: 60,
           activeColor: Colors.white,
           inactiveColor: CustomColors.indigo,
           backgroundColor: CustomColors.darkBlue,
@@ -45,7 +47,6 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
         tabBuilder: (context, index) {
-          print(index);
           switch (index) {
             case 0:
               return CupertinoTabView(
@@ -79,40 +80,4 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   final vm = context.watch<HomeViewModel>();
-  //   return SafeArea(
-  //     child: Scaffold(
-  //       appBar: AppBar(
-  //         title: Text(vm.appbarTitles[vm.currentIndex]),
-  //         backgroundColor: CustomColors.darkBlue,
-  //         centerTitle: true,
-  //       ),
-  //       body: vm.screens[vm.currentIndex],
-  //       bottomNavigationBar: BottomNavigationBar(
-  //         unselectedItemColor: CustomColors.indigo,
-  //         selectedItemColor: Colors.white,
-  //         backgroundColor: CustomColors.darkBlue,
-  //         currentIndex: vm.currentIndex,
-  //         onTap: vm.setCurrentIndex,
-  //         items: const [
-  //           BottomNavigationBarItem(
-  //             icon: Icon(Icons.calculate_outlined),
-  //             label: ScreenLabels.calc,
-  //           ),
-  //           BottomNavigationBarItem(
-  //             icon: Icon(IconlyLight.document),
-  //             label: ScreenLabels.memo,
-  //           ),
-  //           BottomNavigationBarItem(
-  //             icon: Icon(IconlyLight.setting),
-  //             label: ScreenLabels.settings,
-  //           ),
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
 }
