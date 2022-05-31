@@ -25,23 +25,23 @@ class SignUpForm extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const InputLabel(label: FormLabel.name),
+              const InputLabel(label: FormLabels.name),
               InputField(
                 onChanged: vm.inputName,
                 validator: vm.nameValidator,
               ),
-              const InputLabel(label: FormLabel.email),
+              const InputLabel(label: FormLabels.email),
               InputField(
                 onChanged: vm.inputEmail,
                 validator: vm.emailValidator,
               ),
-              const InputLabel(label: FormLabel.pass),
+              const InputLabel(label: FormLabels.pass),
               InputField(
                 onChanged: vm.inputPass,
                 validator: vm.passValidator,
               ),
               WideButton(
-                text: ButtonLabel.signUp,
+                text: ButtonLabels.signUp,
                 onPressed: () => vm.executeValidator(context, _globalKey),
               ),
             ],

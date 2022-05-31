@@ -1,12 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:warikan_app/data/consts/custom_colors.dart';
+import 'package:warikan_app/data/consts/texts.dart';
+import 'package:warikan_app/ui/components/calc_overview/calc_list_card.dart';
+import 'package:warikan_app/ui/components/common/body_background.dart';
+import 'package:warikan_app/ui/components/common/bottom_shader.dart';
+import 'package:warikan_app/ui/components/common/cutom_app_bar.dart';
+import 'package:warikan_app/ui/viewmodels/calc_overview_viewmodel.dart';
 
 class CalcOverviewScreen extends StatelessWidget {
+  /// CalcOverview画面
   const CalcOverviewScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text("CalcoverView"),
+    final vm = context.read<CalcOverviewViewModel>();
+    return Scaffold(
+      appBar: const CustomAppBar(
+        title: ScreenLabels.calc,
+      ),
+      body: BodyBackground(
+        child: BottomShader(
+          child: ListView.builder(
+            itemCount: 10,
+            itemBuilder: (context, index) => CalcListCard(
+              onTap: () => vm.pushCalcDetail(context),
+            ),
+          ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: CustomColors.darkBlue,
+        icon: const Icon(Icons.add),
+        label: const Text(ButtonLabels.create),
+        onPressed: () => vm.pushCalcInput(context),
+      ),
     );
   }
 }
