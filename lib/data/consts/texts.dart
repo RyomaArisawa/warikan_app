@@ -1,5 +1,5 @@
 ///入力フォームラベル
-class FormLabel {
+class FormLabels {
   static const String name = "Name";
   static const String email = "Email Address";
   static const String pass = "Password";
@@ -9,9 +9,10 @@ class FormLabel {
 }
 
 ///ボタン表示テキスト
-class ButtonLabel {
+class ButtonLabels {
   static const String signIn = "Sign In";
   static const String signUp = "Sign Up";
+  static const String create = "CREATE";
 }
 
 ///リンクテキスト関連
@@ -20,15 +21,10 @@ class LinkTexts {
   static const String signInLink = "Sign In";
 }
 
-///AppBar表示タイトル
-class AppBarTitles {
+///画面名表示ラベル
+class ScreenLabels {
   static const String signUp = "Sign Up";
-  static const String home = "Warikan";
-}
-
-///Navigationラベル
-class NavigationLabels {
-  static const String memo = "Memo";
   static const String calc = "Calc";
+  static const String memo = "Memo";
   static const String settings = "Settings";
 }
