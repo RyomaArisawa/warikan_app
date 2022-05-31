@@ -2,14 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:warikan_app/ui/views/screens/calc_overview_screen.dart';
 import 'package:warikan_app/ui/views/screens/memo_overview_screen.dart';
 
+import '../../data/consts/texts.dart';
 import '../views/screens/settings_screen.dart';
 
 class HomeViewModel extends ChangeNotifier {
   // ホームで表示する画面
-  final List<Widget> screens = const [
+  final screens = const <Widget>[
     CalcOverviewScreen(),
     MemoOverviewScreen(),
     SettingsScreen(),
+  ];
+
+  final appbarTitles = const <String>[
+    ScreenLabels.calc,
+    ScreenLabels.memo,
+    ScreenLabels.settings,
   ];
 
   // 画面のインデックス番号
