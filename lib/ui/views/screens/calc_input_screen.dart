@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:warikan_app/data/consts/texts.dart';
+import 'package:warikan_app/ui/components/calc_detail/display_total_card.dart';
+import 'package:warikan_app/ui/components/calc_detail/member_input.dart';
 import 'package:warikan_app/ui/components/common/body_background.dart';
+import 'package:warikan_app/ui/components/common/bottom_shader.dart';
 import 'package:warikan_app/ui/components/common/cutom_app_bar.dart';
+import 'package:warikan_app/ui/components/common/wide_button.dart';
+import 'package:warikan_app/ui/viewmodels/calc_input_viewmodel.dart';
 
 class CalcInputScreen extends StatelessWidget {
   const CalcInputScreen({Key? key}) : super(key: key);
@@ -14,13 +20,49 @@ class CalcInputScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final vm = context.watch<CalcInputViewModel>();
+
     return Scaffold(
-      appBar: CustomAppBar(
+      appBar: const CustomAppBar(
         title: ScreenLabels.calc,
       ),
       body: BodyBackground(
         child: Column(
-          children: [],
+          children: [
+            const DisplayTotalCard(),
+            const SizedBox(
+              height: 10,
+            ),
+            Expanded(
+              child: BottomShader(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: vm.members.length,
+                  itemBuilder: (context, index) => MemberInput(
+                    memberIndex: index,
+                  ),
+                ),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                WideButton(
+                  text: ButtonLabels.addMember,
+                  onPressed: vm.addMember,
+                  width: MediaQuery.of(context).size.width / 3,
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+                WideButton(
+                  text: ButtonLabels.save,
+                  onPressed: vm.addMember,
+                  width: MediaQuery.of(context).size.width / 3,
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

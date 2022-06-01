@@ -35,6 +35,9 @@ class WideButton extends StatelessWidget {
           style: TextStyle(color: textColor),
         ),
         style: ElevatedButton.styleFrom(
+          side: const BorderSide(
+            color: Colors.white,
+          ),
           primary: buttonColor,
         ),
       ),
