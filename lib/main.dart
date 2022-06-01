@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:warikan_app/data/providers/provider.dart';
-import 'package:warikan_app/ui/views/screens/sign_up_screen.dart';
+import 'package:warikan_app/ui/views/screens/sign_in_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const SignUpScreen(),
+        home: const SignInScreen(),
       ),
     );
   }

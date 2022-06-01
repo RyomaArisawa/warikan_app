@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:warikan_app/data/consts/error_messages.dart';
+import 'package:warikan_app/ui/views/screens/sign_in_screen.dart';
 
 import '../views/screens/home_screen.dart';
 
@@ -55,9 +56,9 @@ class SignUpViewModel with ChangeNotifier {
 
   /// Routing
   void pushSignIn(BuildContext context) {
-    // Navigator.push(
-    //   context,
-    //   HomeScreen.route(),
-    // );
+    Navigator.pushReplacement(
+      context,
+      SignInScreen.route(),
+    );
   }
 }
