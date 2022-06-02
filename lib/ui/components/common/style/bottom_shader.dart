@@ -17,7 +17,7 @@ class BottomShader extends StatelessWidget {
             Colors.white,
           ],
           stops: [
-            0.85,
+            0.9,
             1.0,
           ],
         ).createShader(rect);
