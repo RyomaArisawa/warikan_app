@@ -3,13 +3,14 @@ import 'package:provider/provider.dart';
 import 'package:warikan_app/data/consts/texts.dart';
 import 'package:warikan_app/ui/components/calc_detail/display_total_card.dart';
 import 'package:warikan_app/ui/components/calc_detail/member_input.dart';
-import 'package:warikan_app/ui/components/common/body_background.dart';
-import 'package:warikan_app/ui/components/common/bottom_shader.dart';
 import 'package:warikan_app/ui/components/common/cutom_app_bar.dart';
+import 'package:warikan_app/ui/components/common/style/body_background.dart';
+import 'package:warikan_app/ui/components/common/style/bottom_shader.dart';
 import 'package:warikan_app/ui/components/common/wide_button.dart';
 import 'package:warikan_app/ui/viewmodels/calc_input_viewmodel.dart';
 
 class CalcInputScreen extends StatelessWidget {
+  ///CalcInput画面
   const CalcInputScreen({Key? key}) : super(key: key);
 
   static Route<dynamic> route() {
@@ -34,12 +35,18 @@ class CalcInputScreen extends StatelessWidget {
               height: 10,
             ),
             Expanded(
-              child: BottomShader(
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: vm.members.length,
-                  itemBuilder: (context, index) => MemberInput(
-                    memberIndex: index,
+              child: Scrollbar(
+                radius: const Radius.circular(20),
+                isAlwaysShown: true,
+                child: BottomShader(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: vm.members.length,
+                    itemBuilder: (context, index) => MemberInput(
+                      //ウィジェットを一意に特定するKey
+                      key: UniqueKey(),
+                      memberIndex: index,
+                    ),
                   ),
                 ),
               ),
@@ -50,6 +57,7 @@ class CalcInputScreen extends StatelessWidget {
                 WideButton(
                   text: ButtonLabels.addMember,
                   onPressed: vm.addMember,
+                  height: 40,
                   width: MediaQuery.of(context).size.width / 3,
                 ),
                 const SizedBox(
@@ -58,6 +66,7 @@ class CalcInputScreen extends StatelessWidget {
                 WideButton(
                   text: ButtonLabels.save,
                   onPressed: vm.addMember,
+                  height: 40,
                   width: MediaQuery.of(context).size.width / 3,
                 ),
               ],

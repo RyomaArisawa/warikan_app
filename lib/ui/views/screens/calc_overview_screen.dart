@@ -3,9 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:warikan_app/data/consts/custom_colors.dart';
 import 'package:warikan_app/data/consts/texts.dart';
 import 'package:warikan_app/ui/components/calc_overview/calc_list_card.dart';
-import 'package:warikan_app/ui/components/common/body_background.dart';
-import 'package:warikan_app/ui/components/common/bottom_shader.dart';
 import 'package:warikan_app/ui/components/common/cutom_app_bar.dart';
+import 'package:warikan_app/ui/components/common/style/body_background.dart';
+import 'package:warikan_app/ui/components/common/style/bottom_shader.dart';
 import 'package:warikan_app/ui/viewmodels/calc_overview_viewmodel.dart';
 
 class CalcOverviewScreen extends StatelessWidget {
@@ -20,11 +20,14 @@ class CalcOverviewScreen extends StatelessWidget {
         title: ScreenLabels.calc,
       ),
       body: BodyBackground(
-        child: BottomShader(
-          child: ListView.builder(
-            itemCount: 10,
-            itemBuilder: (context, index) => CalcListCard(
-              onTap: () => vm.pushCalcDetail(context),
+        child: Scrollbar(
+          radius: const Radius.circular(20),
+          child: BottomShader(
+            child: ListView.builder(
+              itemCount: 10,
+              itemBuilder: (context, index) => CalcListCard(
+                onTap: () => vm.pushCalcDetail(context),
+              ),
             ),
           ),
         ),

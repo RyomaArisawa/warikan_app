@@ -3,9 +3,11 @@ import 'package:warikan_app/data/models/member.dart';
 import 'package:warikan_app/data/models/payment_info.dart';
 
 class CalcInputViewModel with ChangeNotifier {
-  PaymentInfo _paymentInfo = PaymentInfo(title: "", amountOfMoney: "");
-  PaymentInfo get paymentInfo => _paymentInfo;
+  //合計金額
+  int _totalAmount = 0;
+  int get totalAmount => _totalAmount;
 
+  //割り勘対象メンバー
   final List<Member> _members = [
     Member(
       name: "",
@@ -61,14 +63,31 @@ class CalcInputViewModel with ChangeNotifier {
   }
 
   //支払い項目名入力
-  void inputTittle(String title, int memberIndex, int paymentInfoIndex) {
-    _members[memberIndex].paymentInfoList[paymentInfoIndex].title = title;
+  void inputTittle(String title, int memberIndex, int paymentIndex) {
+    _members[memberIndex].paymentInfoList[paymentIndex].title = title;
   }
 
   //金額入力
-  void inputAmount(
-      String amountOfMoney, int memberIndex, int paymentInfoIndex) {
-    _members[memberIndex].paymentInfoList[paymentInfoIndex].amountOfMoney =
+  void inputAmount(String amountOfMoney, int memberIndex, int paymentIndex) {
+    _members[memberIndex].paymentInfoList[paymentIndex].amountOfMoney =
         amountOfMoney;
+  }
+
+  //合計金額
+  void calcTotalAmount() {
+    var total = 0;
+    _members.forEach(
+      (member) {
+        member.paymentInfoList.forEach(
+          (paymentInfo) {
+            if (paymentInfo.amountOfMoney.isNotEmpty) {
+              total = total + int.parse(paymentInfo.amountOfMoney);
+            }
+          },
+        );
+      },
+    );
+    _totalAmount = total;
+    notifyListeners();
   }
 }
