@@ -44,7 +44,8 @@ class MemberInput extends StatelessWidget {
             height: 10,
           ),
           InputField(
-            onChanged: (String name) => vm.inputMemberName(name, memberIndex),
+            onChanged: (String name) => {},
+            //onChanged: (String name) => vm.inputMemberName(name, memberIndex),
             hintText: FormLabels.member,
           ),
           const SizedBox(
@@ -57,7 +58,6 @@ class MemberInput extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: vm.members[memberIndex].paymentInfoList.length,
                 itemBuilder: (context, index) => PaymentInput(
-                  key: UniqueKey(),
                   memberIndex: memberIndex,
                   paymentIndex: index,
                 ),
