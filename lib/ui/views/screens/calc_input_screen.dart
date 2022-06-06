@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:warikan_app/data/consts/texts.dart';
-import 'package:warikan_app/ui/components/calc_detail/display_total_card.dart';
-import 'package:warikan_app/ui/components/calc_detail/member_input.dart';
+import 'package:warikan_app/ui/components/calc_input/calc_total_card.dart';
+import 'package:warikan_app/ui/components/calc_input/member_input.dart';
 import 'package:warikan_app/ui/components/common/cutom_app_bar.dart';
 import 'package:warikan_app/ui/components/common/style/body_background.dart';
 import 'package:warikan_app/ui/components/common/style/bottom_shader.dart';
@@ -30,7 +30,7 @@ class CalcInputScreen extends StatelessWidget {
       body: BodyBackground(
         child: Column(
           children: [
-            const DisplayTotalCard(),
+            const CalcTotalCard(),
             const SizedBox(
               height: 10,
             ),

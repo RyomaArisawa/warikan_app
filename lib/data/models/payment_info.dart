@@ -1,12 +1,18 @@
 class PaymentInfo {
+  //支払い項目名
   String title;
-  String amountOfMoney;
+  //支払い金額
+  int cost;
 
 //<editor-fold desc="Data Methods">
 
+  factory PaymentInfo.init() {
+    return PaymentInfo(title: "", cost: 0);
+  }
+
   PaymentInfo({
     required this.title,
-    required this.amountOfMoney,
+    required this.cost,
   });
 
   @override
@@ -15,43 +21,39 @@ class PaymentInfo {
       (other is PaymentInfo &&
           runtimeType == other.runtimeType &&
           title == other.title &&
-          amountOfMoney == other.amountOfMoney);
+          cost == other.cost);
 
   @override
-  int get hashCode => title.hashCode ^ amountOfMoney.hashCode;
+  int get hashCode => title.hashCode ^ cost.hashCode;
 
   @override
   String toString() {
-    return 'PaymentInfo{' +
-        ' title: $title,' +
-        ' amountOfMoney: $amountOfMoney,' +
-        '}';
+    return 'PaymentInfo{' + ' title: $title,' + ' amountOfMoney: $cost,' + '}';
   }
 
   PaymentInfo copyWith({
     String? title,
-    String? amountOfMoney,
+    int? amountOfMoney,
   }) {
     return PaymentInfo(
       title: title ?? this.title,
-      amountOfMoney: amountOfMoney ?? this.amountOfMoney,
+      cost: amountOfMoney ?? this.cost,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
       'title': this.title,
-      'amountOfMoney': this.amountOfMoney,
+      'amountOfMoney': this.cost,
     };
   }
 
   factory PaymentInfo.fromMap(Map<String, dynamic> map) {
     return PaymentInfo(
       title: map['title'] as String,
-      amountOfMoney: map['amountOfMoney'] as String,
+      cost: map['amountOfMoney'] as int,
     );
   }
 
 //</editor-fold>
-
 }

@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:warikan_app/data/consts/custom_colors.dart';
 import 'package:warikan_app/data/util/formatter.dart';
-import 'package:warikan_app/ui/viewmodels/calc_detail_viewmodel.dart';
+import 'package:warikan_app/ui/viewmodels/calc_input_viewmodel.dart';
 
-class DisplayTotalCard extends StatelessWidget {
-  //支払い合計金額を表示するコンポーネント
-  const DisplayTotalCard({Key? key}) : super(key: key);
+class CalcTotalCard extends StatelessWidget {
+  ///合計金額表示コンポーネント
+  const CalcTotalCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final vm = context.read<CalcDetailViewModel>();
-
+    final vm = context.watch<CalcInputViewModel>();
     return Container(
       height: 40.0,
       decoration: BoxDecoration(
@@ -29,7 +28,7 @@ class DisplayTotalCard extends StatelessWidget {
       ),
       child: Center(
         child: Text(
-          "Total: ￥${Formatter.numberFormatter.format(vm.splitInfo.totalAmount)}",
+          "Total: ￥${Formatter.numberFormatter.format(vm.totalAmount)}",
           style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,

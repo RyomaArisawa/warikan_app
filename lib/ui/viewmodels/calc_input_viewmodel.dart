@@ -9,30 +9,14 @@ class CalcInputViewModel with ChangeNotifier {
 
   //割り勘対象メンバー
   final List<Member> _members = [
-    Member(
-      name: "",
-      paymentInfoList: [
-        PaymentInfo(
-          title: "",
-          amountOfMoney: "",
-        ),
-      ],
-    ),
+    Member.init(),
   ];
   List<Member> get members => _members;
 
   //新規メンバー追加
   void addMember() {
     _members.add(
-      Member(
-        name: "",
-        paymentInfoList: [
-          PaymentInfo(
-            title: "",
-            amountOfMoney: "",
-          ),
-        ],
-      ),
+      Member.init(),
     );
     notifyListeners();
   }
@@ -45,9 +29,9 @@ class CalcInputViewModel with ChangeNotifier {
 
   //新規支払い情報追加
   void addPayment(int memberIndex) {
-    _members[memberIndex]
-        .paymentInfoList
-        .add(PaymentInfo(title: "", amountOfMoney: ""));
+    _members[memberIndex].paymentInfoList.add(
+          PaymentInfo.init(),
+        );
     notifyListeners();
   }
 
@@ -68,9 +52,8 @@ class CalcInputViewModel with ChangeNotifier {
   }
 
   //金額入力
-  void inputAmount(String amountOfMoney, int memberIndex, int paymentIndex) {
-    _members[memberIndex].paymentInfoList[paymentIndex].amountOfMoney =
-        amountOfMoney;
+  void inputAmount(int amountOfMoney, int memberIndex, int paymentIndex) {
+    _members[memberIndex].paymentInfoList[paymentIndex].cost = amountOfMoney;
   }
 
   //合計金額
@@ -80,9 +63,7 @@ class CalcInputViewModel with ChangeNotifier {
       (member) {
         member.paymentInfoList.forEach(
           (paymentInfo) {
-            if (paymentInfo.amountOfMoney.isNotEmpty) {
-              total = total + int.parse(paymentInfo.amountOfMoney);
-            }
+            total = total + paymentInfo.cost;
           },
         );
       },
