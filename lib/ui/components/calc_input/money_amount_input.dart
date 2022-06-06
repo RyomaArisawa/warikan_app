@@ -53,15 +53,16 @@ class PaymentInput extends StatelessWidget {
           //支払い金額
           InputField(
             //スクロールなどでdisposeされても値を保持するために初期値をセット
-            initialValue: vm.members[memberIndex].paymentInfoList[paymentIndex]
-                .amountOfMoney
+            initialValue: vm
+                .members[memberIndex].paymentInfoList[paymentIndex].cost
                 .toString(),
             hintText: FormLabels.amount,
             contentPadding: 0,
             isNumberOnly: true,
             keyboardType: TextInputType.number,
             onChanged: (String amountOfMoney) {
-              vm.inputAmount(amountOfMoney, memberIndex, paymentIndex);
+              vm.inputAmount(
+                  int.parse(amountOfMoney), memberIndex, paymentIndex);
             },
             //合計金額を算出
             onEditingCompleted: vm.calcTotalAmount,

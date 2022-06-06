@@ -38,6 +38,7 @@ dependencies:
   iconly: ^1.0.1
   uuid: ^3.0.6
   intl: ^0.17.0
+  smooth_page_indicator: ^1.0.0+2
 
 dev_dependencies:
   flutter_test:

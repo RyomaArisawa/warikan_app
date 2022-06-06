@@ -19,6 +19,9 @@ class ButtonLabels {
   static const String addMember = "ADD MEMBER";
   static const String addPayment = "ADD PAYMENT";
   static const String save = "SAVE";
+  static const String complete = "COMPLETE";
+  static const String yes = "YES";
+  static const String no = "NO";
 }
 
 ///リンクテキスト関連
@@ -45,4 +48,11 @@ class DisplayTexts {
   static const String signInAppTitle = "Warikan";
   static const String signInDescription =
       "sign up or login to have fun exploring this APP";
+}
+
+///ダイアログ表示テキスト
+class DialogTexts {
+  static const String titleCompleteDialog = "Split Complete";
+  static const String askCompleteDialog =
+      "Are you sure to make this completed?";
 }

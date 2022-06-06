@@ -24,9 +24,9 @@ class CalcOverviewScreen extends StatelessWidget {
           radius: const Radius.circular(20),
           child: BottomShader(
             child: ListView.builder(
-              itemCount: 10,
+              itemCount: vm.splitInfoList.length,
               itemBuilder: (context, index) => CalcListCard(
-                onTap: () => vm.pushCalcDetail(context),
+                onTap: () => vm.pushCalcDetail(context, index),
               ),
             ),
           ),
