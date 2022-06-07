@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:warikan_app/data/consts/custom_colors.dart';
 
-class IndigoListCard extends StatelessWidget {
-  const IndigoListCard({Key? key, required this.child, required this.onTap})
+class CustomListCard extends StatelessWidget {
+  const CustomListCard({Key? key, required this.child, required this.onTap})
       : super(key: key);
 
   final Widget child;
