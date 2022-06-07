@@ -16,12 +16,13 @@ class ButtonLabels {
   static const String signUp = "Sign Up";
   static const String create = "CREATE";
   static const String delete = "DELETE";
-  static const String addMember = "ADD MEMBER";
-  static const String addPayment = "ADD PAYMENT";
-  static const String save = "SAVE";
-  static const String complete = "COMPLETE";
+  static const String addMember = "Add Member";
+  static const String addPayment = "Add Payment";
+  static const String save = "Save";
+  static const String complete = "Complete";
   static const String yes = "YES";
   static const String no = "NO";
+  static const String profile = "Profile";
 }
 
 ///リンクテキスト関連
@@ -41,6 +42,7 @@ class ScreenLabels {
   static const String calc = "Calc";
   static const String memo = "Memo";
   static const String settings = "Settings";
+  static const String profile = "Profile";
 }
 
 ///画面表示テキスト

@@ -9,18 +9,23 @@ class DarkBlueCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.white),
-          borderRadius: BorderRadius.circular(10),
-          color: CustomColors.darkBlue.withOpacity(0.7),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.white),
+        borderRadius: BorderRadius.circular(10),
+        gradient: const LinearGradient(
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
+          colors: [CustomColors.lightBlue, CustomColors.darkBlue],
         ),
-        padding: const EdgeInsets.symmetric(
-          vertical: 10,
-          horizontal: 20,
-        ),
-        margin: const EdgeInsets.only(
-          bottom: 10,
-        ),
-        child: child);
+      ),
+      padding: const EdgeInsets.symmetric(
+        vertical: 10,
+        horizontal: 20,
+      ),
+      margin: const EdgeInsets.only(
+        bottom: 10,
+      ),
+      child: child,
+    );
   }
 }

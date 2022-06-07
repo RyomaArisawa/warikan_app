@@ -64,7 +64,6 @@ class HomeScreen extends StatelessWidget {
                   );
                 },
               );
-              break;
             case 2:
               return CupertinoTabView(
                 builder: (context) {

@@ -13,18 +13,18 @@ class CalcDetailViewModel with ChangeNotifier {
   showCompleteDialog(BuildContext context) {
     showDialog(
       context: context,
-      builder: (_) => AlertDialog(
+      builder: (dialogContext) => AlertDialog(
         title: const Text(DialogTexts.titleCompleteDialog),
         content: const Text(
           DialogTexts.askCompleteDialog,
         ),
         actions: [
           ElevatedButton(
-            onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
+            onPressed: () => Navigator.of(dialogContext).pop(),
             child: const Text(ButtonLabels.yes),
           ),
           ElevatedButton(
-            onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
+            onPressed: () => Navigator.of(dialogContext).pop(),
             child: const Text(ButtonLabels.no),
           )
         ],
