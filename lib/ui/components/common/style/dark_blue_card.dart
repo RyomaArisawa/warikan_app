@@ -12,11 +12,7 @@ class DarkBlueCard extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(color: Colors.white),
         borderRadius: BorderRadius.circular(10),
-        gradient: const LinearGradient(
-          begin: Alignment.topRight,
-          end: Alignment.bottomLeft,
-          colors: [CustomColors.lightBlue, CustomColors.darkBlue],
-        ),
+        color: CustomColors.darkBlue.withOpacity(0.8),
       ),
       padding: const EdgeInsets.symmetric(
         vertical: 10,
