@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:warikan_app/data/consts/custom_colors.dart';
 import 'package:warikan_app/data/consts/texts.dart';
 
 class CustomDialog extends StatelessWidget {
+  ///共通ダイアログコンポーネント
   const CustomDialog(
       {Key? key,
       required this.title,
@@ -24,10 +26,12 @@ class CustomDialog extends StatelessWidget {
         ElevatedButton(
           onPressed: onPressed,
           child: const Text(ButtonLabels.yes),
+          style: ElevatedButton.styleFrom(primary: CustomColors.indigo),
         ),
         ElevatedButton(
           onPressed: () => Navigator.of(context).pop(),
           child: const Text(ButtonLabels.no),
+          style: ElevatedButton.styleFrom(primary: CustomColors.lightBlue),
         )
       ],
     );

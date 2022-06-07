@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class InputLabel extends StatelessWidget {
+  ///共通入力フォームラベルコンポーネント
   const InputLabel({
     Key? key,
     required this.label,

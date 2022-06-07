@@ -51,6 +51,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   WideButton(
                     text: ButtonLabels.save,
+                    height: 40,
                     onPressed: () => vm.showSaveDialog(context),
                   ),
                 ],
