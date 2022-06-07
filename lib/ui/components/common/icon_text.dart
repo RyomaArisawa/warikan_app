@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class IconText extends StatelessWidget {
+  ///共通アイコンテキストコンポーネント
   const IconText(
       {Key? key,
       required this.text,

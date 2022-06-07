@@ -56,16 +56,15 @@ class PaymentInput extends StatelessWidget {
             initialValue: vm
                 .members[memberIndex].paymentInfoList[paymentIndex].cost
                 .toString(),
-            hintText: FormLabels.amount,
+            hintText: FormLabels.cost,
             contentPadding: 0,
             isNumberOnly: true,
             keyboardType: TextInputType.number,
-            onChanged: (String amountOfMoney) {
-              vm.inputAmount(
-                  int.parse(amountOfMoney), memberIndex, paymentIndex);
+            onChanged: (String cost) {
+              vm.inputCost(cost, memberIndex, paymentIndex);
             },
             //合計金額を算出
-            onEditingCompleted: vm.calcTotalAmount,
+            onEditingCompleted: vm.calcTotalCost,
           ),
           const SizedBox(
             height: 10,

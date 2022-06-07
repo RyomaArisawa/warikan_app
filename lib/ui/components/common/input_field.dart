@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class InputField extends StatelessWidget {
+  ///共通入力フォームコンポーネント
   const InputField({
     Key? key,
     required this.onChanged,

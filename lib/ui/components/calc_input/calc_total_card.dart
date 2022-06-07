@@ -28,7 +28,7 @@ class CalcTotalCard extends StatelessWidget {
       ),
       child: Center(
         child: Text(
-          "Total: ￥${Formatter.numberFormatter.format(vm.totalAmount)}",
+          "Total: ￥${Formatter.numberFormatter.format(vm.totalCost)}",
           style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,

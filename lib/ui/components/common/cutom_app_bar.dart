@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:warikan_app/data/consts/custom_colors.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  ///AppBarコンポーネント
+  ///共通AppBarコンポーネント
   const CustomAppBar({
     Key? key,
     required this.title,

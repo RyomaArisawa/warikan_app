@@ -2,18 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:warikan_app/ui/components/common/style/indigo_list_card.dart';
 
-class CalcListCard extends StatelessWidget {
-  ///CalcOverview画面のリストタイルコンポーネント
-  //暫定的コンストラクタ
-  const CalcListCard(
-      {Key? key, this.color = Colors.white70, required this.onTap})
+class MemoListCard extends StatelessWidget {
+  const MemoListCard({Key? key, required this.color, required this.onTap})
       : super(key: key);
 
-  //const CalcListCard({Key? key, required this.amountOfMoney, required this.date, required this.numberOfMembers, this.color = Colors.white70}) : super(key: key);
-
-  // final String amountOfMoney;
-  // final String date;
-  // final int numberOfMembers;
   final Color color;
   final VoidCallback onTap;
 
@@ -36,7 +28,7 @@ class CalcListCard extends StatelessWidget {
           ),
         ),
         title: Text(
-          "cost",
+          "memo",
           style: TextStyle(color: color, fontWeight: FontWeight.bold),
         ),
         subtitle: Row(
@@ -55,7 +47,7 @@ class CalcListCard extends StatelessWidget {
           ],
         ),
         trailing: Icon(
-          IconlyLight.arrow_right_2,
+          IconlyLight.document,
           color: color,
         ),
       ),
