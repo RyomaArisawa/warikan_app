@@ -10,10 +10,9 @@ class SplitInfo {
   //作成日時
   DateTime cratedAt;
   //支払い合計金額
-  int totalAmount;
+  int totalCost;
 
 //<editor-fold desc="Data Methods">
-
   factory SplitInfo.init() {
     return SplitInfo(
       id: Uuid().v4(),
@@ -21,7 +20,7 @@ class SplitInfo {
         Member.init(),
       ],
       cratedAt: DateTime.now(),
-      totalAmount: 0,
+      totalCost: 0,
     );
   }
 
@@ -29,7 +28,7 @@ class SplitInfo {
     required this.id,
     required this.members,
     required this.cratedAt,
-    required this.totalAmount,
+    required this.totalCost,
   });
 
   @override
@@ -40,11 +39,11 @@ class SplitInfo {
           id == other.id &&
           members == other.members &&
           cratedAt == other.cratedAt &&
-          totalAmount == other.totalAmount);
+          totalCost == other.totalCost);
 
   @override
   int get hashCode =>
-      id.hashCode ^ members.hashCode ^ cratedAt.hashCode ^ totalAmount.hashCode;
+      id.hashCode ^ members.hashCode ^ cratedAt.hashCode ^ totalCost.hashCode;
 
   @override
   String toString() {
@@ -52,7 +51,7 @@ class SplitInfo {
         ' id: $id,' +
         ' members: $members,' +
         ' cratedAt: $cratedAt,' +
-        ' totalAmount: $totalAmount,' +
+        ' totalCost: $totalCost,' +
         '}';
   }
 
@@ -60,13 +59,13 @@ class SplitInfo {
     String? id,
     List<Member>? members,
     DateTime? cratedAt,
-    int? totalAmount,
+    int? totalCost,
   }) {
     return SplitInfo(
       id: id ?? this.id,
       members: members ?? this.members,
       cratedAt: cratedAt ?? this.cratedAt,
-      totalAmount: totalAmount ?? this.totalAmount,
+      totalCost: totalCost ?? this.totalCost,
     );
   }
 
@@ -75,7 +74,7 @@ class SplitInfo {
       'id': this.id,
       'members': this.members,
       'cratedAt': this.cratedAt,
-      'totalAmount': this.totalAmount,
+      'totalCost': this.totalCost,
     };
   }
 
@@ -84,7 +83,7 @@ class SplitInfo {
       id: map['id'] as String,
       members: map['members'] as List<Member>,
       cratedAt: map['cratedAt'] as DateTime,
-      totalAmount: map['totalAmount'] as int,
+      totalCost: map['totalCost'] as int,
     );
   }
 

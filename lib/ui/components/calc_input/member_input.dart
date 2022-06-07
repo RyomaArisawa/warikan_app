@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
 import 'package:warikan_app/data/consts/texts.dart';
-import 'package:warikan_app/ui/components/calc_input/money_amount_input.dart';
+import 'package:warikan_app/ui/components/calc_input/payment_input.dart';
 import 'package:warikan_app/ui/components/common/icon_text.dart';
 import 'package:warikan_app/ui/components/common/input_field.dart';
 import 'package:warikan_app/ui/components/common/style/bottom_shader.dart';

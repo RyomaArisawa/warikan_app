@@ -4,8 +4,8 @@ import 'package:warikan_app/data/models/payment_info.dart';
 
 class CalcInputViewModel with ChangeNotifier {
   //合計金額
-  int _totalAmount = 0;
-  int get totalAmount => _totalAmount;
+  int _totalCost = 0;
+  int get totalCost => _totalCost;
 
   //割り勘対象メンバー
   final List<Member> _members = [
@@ -52,12 +52,15 @@ class CalcInputViewModel with ChangeNotifier {
   }
 
   //金額入力
-  void inputAmount(int amountOfMoney, int memberIndex, int paymentIndex) {
-    _members[memberIndex].paymentInfoList[paymentIndex].cost = amountOfMoney;
+  void inputCost(String cost, int memberIndex, int paymentIndex) {
+    if (cost.isNotEmpty) {
+      _members[memberIndex].paymentInfoList[paymentIndex].cost =
+          int.parse(cost);
+    }
   }
 
   //合計金額
-  void calcTotalAmount() {
+  void calcTotalCost() {
     var total = 0;
     _members.forEach(
       (member) {
@@ -68,7 +71,7 @@ class CalcInputViewModel with ChangeNotifier {
         );
       },
     );
-    _totalAmount = total;
+    _totalCost = total;
     notifyListeners();
   }
 }

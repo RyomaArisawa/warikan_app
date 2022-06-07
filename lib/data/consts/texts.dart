@@ -7,7 +7,7 @@ class FormLabels {
   static const String category = "Category";
   static const String content = "Content";
   static const String member = "Member Name";
-  static const String amount = "Amount of Money";
+  static const String cost = "Cost";
 }
 
 ///ボタン表示テキスト
@@ -57,4 +57,7 @@ class DialogTexts {
   static const String titleCompleteDialog = "Split Complete";
   static const String askCompleteDialog =
       "Are you sure to make this completed?";
+  static const String titleProfileDialog = "Save Profile";
+  static const String askProfileDialog =
+      "Are you sure to save your new profile?";
 }

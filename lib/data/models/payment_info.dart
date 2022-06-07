@@ -5,7 +5,6 @@ class PaymentInfo {
   int cost;
 
 //<editor-fold desc="Data Methods">
-
   factory PaymentInfo.init() {
     return PaymentInfo(title: "", cost: 0);
   }
@@ -28,30 +27,30 @@ class PaymentInfo {
 
   @override
   String toString() {
-    return 'PaymentInfo{' + ' title: $title,' + ' amountOfMoney: $cost,' + '}';
+    return 'PaymentInfo{' + ' title: $title,' + ' cost: $cost,' + '}';
   }
 
   PaymentInfo copyWith({
     String? title,
-    int? amountOfMoney,
+    int? cost,
   }) {
     return PaymentInfo(
       title: title ?? this.title,
-      cost: amountOfMoney ?? this.cost,
+      cost: cost ?? this.cost,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
       'title': this.title,
-      'amountOfMoney': this.cost,
+      'cost': this.cost,
     };
   }
 
   factory PaymentInfo.fromMap(Map<String, dynamic> map) {
     return PaymentInfo(
       title: map['title'] as String,
-      cost: map['amountOfMoney'] as int,
+      cost: map['cost'] as int,
     );
   }
 

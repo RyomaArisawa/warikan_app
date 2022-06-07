@@ -36,7 +36,7 @@ class CalcListCard extends StatelessWidget {
           ),
         ),
         title: Text(
-          "amount",
+          "cost",
           style: TextStyle(color: color, fontWeight: FontWeight.bold),
         ),
         subtitle: Row(

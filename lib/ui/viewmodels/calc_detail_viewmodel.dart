@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:warikan_app/data/consts/texts.dart';
 import 'package:warikan_app/data/models/split_info.dart';
+import 'package:warikan_app/ui/components/common/custom_dialog.dart';
 
 class CalcDetailViewModel with ChangeNotifier {
   SplitInfo _splitInfo = SplitInfo.init();
@@ -13,21 +14,10 @@ class CalcDetailViewModel with ChangeNotifier {
   showCompleteDialog(BuildContext context) {
     showDialog(
       context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: const Text(DialogTexts.titleCompleteDialog),
-        content: const Text(
-          DialogTexts.askCompleteDialog,
-        ),
-        actions: [
-          ElevatedButton(
-            onPressed: () => Navigator.of(dialogContext).pop(),
-            child: const Text(ButtonLabels.yes),
-          ),
-          ElevatedButton(
-            onPressed: () => Navigator.of(dialogContext).pop(),
-            child: const Text(ButtonLabels.no),
-          )
-        ],
+      builder: (dialogContext) => CustomDialog(
+        title: DialogTexts.titleCompleteDialog,
+        content: DialogTexts.askCompleteDialog,
+        onPressed: () {},
       ),
     );
   }
