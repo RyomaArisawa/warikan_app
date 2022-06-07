@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:warikan_app/data/consts/custom_colors.dart';
 import 'package:warikan_app/data/consts/texts.dart';
 import 'package:warikan_app/ui/components/calc_overview/calc_list_card.dart';
+import 'package:warikan_app/ui/components/common/custom_floating_action_button.dart';
 import 'package:warikan_app/ui/components/common/cutom_app_bar.dart';
 import 'package:warikan_app/ui/components/common/style/body_background.dart';
 import 'package:warikan_app/ui/components/common/style/bottom_shader.dart';
@@ -32,10 +32,7 @@ class CalcOverviewScreen extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        backgroundColor: CustomColors.darkBlue,
-        icon: const Icon(Icons.add),
-        label: const Text(ButtonLabels.create),
+      floatingActionButton: CustomFloatingActionButton(
         onPressed: () => vm.pushCalcInput(context),
       ),
     );

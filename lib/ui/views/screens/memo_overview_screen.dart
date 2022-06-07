@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:warikan_app/ui/views/screens/memo_detail_screen.dart';
+import 'package:warikan_app/data/consts/texts.dart';
+import 'package:warikan_app/ui/components/common/custom_floating_action_button.dart';
+import 'package:warikan_app/ui/components/common/cutom_app_bar.dart';
 
 class MemoOverviewScreen extends StatelessWidget {
   const MemoOverviewScreen({Key? key}) : super(key: key);
@@ -7,16 +9,12 @@ class MemoOverviewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Container(
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => MemoDetailScreen()));
-            },
-            child: Text("Next"),
-          ),
-        ),
+      appBar: const CustomAppBar(
+        title: ScreenLabels.memo,
+      ),
+      body: Container(),
+      floatingActionButton: CustomFloatingActionButton(
+        onPressed: () {},
       ),
     );
   }
