@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
-import 'package:warikan_app/ui/components/common/style/indigo_list_card.dart';
+import 'package:warikan_app/ui/components/common/custom_list_card.dart';
 
 class CalcListCard extends StatelessWidget {
   ///CalcOverview画面のリストタイルコンポーネント
   //暫定的コンストラクタ
-  const CalcListCard(
-      {Key? key, this.color = Colors.white70, required this.onTap})
+  const CalcListCard({Key? key, this.color = Colors.white, required this.onTap})
       : super(key: key);
 
   //const CalcListCard({Key? key, required this.amountOfMoney, required this.date, required this.numberOfMembers, this.color = Colors.white70}) : super(key: key);
@@ -19,7 +18,7 @@ class CalcListCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IndigoListCard(
+    return CustomListCard(
       onTap: onTap,
       child: ListTile(
         leading: Container(

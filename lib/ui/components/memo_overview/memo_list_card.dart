@@ -1,17 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
-import 'package:warikan_app/ui/components/common/style/indigo_list_card.dart';
+import 'package:provider/provider.dart';
+import 'package:warikan_app/ui/components/common/custom_list_card.dart';
+import 'package:warikan_app/ui/viewmodels/memo_overview_viewmodel.dart';
 
 class MemoListCard extends StatelessWidget {
-  const MemoListCard({Key? key, required this.color, required this.onTap})
-      : super(key: key);
+  ///MemoOverview画面のリストタイルコンポーネント
+  const MemoListCard({
+    Key? key,
+    required this.memoIndex,
+    required this.onTap,
+    this.color = Colors.white,
+  }) : super(key: key);
 
-  final Color color;
+  //メモを特定するインデックス番号
+  final int memoIndex;
   final VoidCallback onTap;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
-    return IndigoListCard(
+    final vm = context.read<MemoOverviewViewModel>();
+    final memo = vm.memoList[memoIndex];
+    return CustomListCard(
       onTap: onTap,
       child: ListTile(
         leading: Container(
@@ -23,31 +34,21 @@ class MemoListCard extends StatelessWidget {
             ),
           ),
           child: Icon(
-            IconlyLight.tick_square,
+            IconlyLight.document,
             color: color,
           ),
         ),
         title: Text(
-          "memo",
+          memo.title,
           style: TextStyle(color: color, fontWeight: FontWeight.bold),
         ),
-        subtitle: Row(
-          children: [
-            Text(
-              "2022/05/31",
-              style: TextStyle(color: color),
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Text(
-              "members",
-              style: TextStyle(color: color),
-            ),
-          ],
+        subtitle: Text(
+          memo.createdAt.toString(),
+          style: TextStyle(color: color),
+          overflow: TextOverflow.fade,
         ),
         trailing: Icon(
-          IconlyLight.document,
+          IconlyLight.arrow_right_2,
           color: color,
         ),
       ),

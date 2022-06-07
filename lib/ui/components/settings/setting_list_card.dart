@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
-import 'package:warikan_app/ui/components/common/style/indigo_list_card.dart';
+import 'package:warikan_app/ui/components/common/custom_list_card.dart';
 
 class SettingListCard extends StatelessWidget {
   const SettingListCard({Key? key, required this.title, required this.onTap})
@@ -11,7 +11,7 @@ class SettingListCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IndigoListCard(
+    return CustomListCard(
       onTap: onTap,
       child: ListTile(
         title: Text(
