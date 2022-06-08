@@ -1,3 +1,4 @@
+import 'package:animated_widgets/animated_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
@@ -20,37 +21,57 @@ class MemoListCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final vm = context.read<MemoOverviewViewModel>();
+    final vm = context.watch<MemoOverviewViewModel>();
     final memo = vm.memoList[memoIndex];
-    return CustomListCard(
-      onTap: onTap,
-      child: ListTile(
-        leading: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-          padding: const EdgeInsets.only(right: 16),
-          decoration: BoxDecoration(
-            border: Border(
-              right: BorderSide(width: 2.0, color: color),
+
+    //長押しの際shakeさせるanimation_widget
+    return ShakeAnimatedWidget(
+      enabled: vm.isLongPressed,
+      duration: const Duration(milliseconds: 250),
+      shakeAngle:
+          memoIndex % 2 == 0 ? Rotation.deg(z: 0.4) : Rotation.deg(z: -0.4),
+      curve: Curves.linear,
+      child: Stack(
+        children: [
+          CustomListCard(
+            onTap: onTap,
+            onLongPress: vm.setLongPressed,
+            child: ListTile(
+              leading: Container(
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+                padding: const EdgeInsets.only(right: 16),
+                decoration: BoxDecoration(
+                  border: Border(
+                    right: BorderSide(width: 2.0, color: color),
+                  ),
+                ),
+                child: Icon(
+                  IconlyLight.document,
+                  color: color,
+                ),
+              ),
+              title: Text(
+                memo.title,
+                style: TextStyle(color: color, fontWeight: FontWeight.bold),
+              ),
+              subtitle: Text(
+                memo.createdAt.toString(),
+                style: TextStyle(color: color),
+                overflow: TextOverflow.fade,
+              ),
+              trailing: Icon(
+                IconlyLight.arrow_right_2,
+                color: color,
+              ),
             ),
           ),
-          child: Icon(
-            IconlyLight.document,
-            color: color,
-          ),
-        ),
-        title: Text(
-          memo.title,
-          style: TextStyle(color: color, fontWeight: FontWeight.bold),
-        ),
-        subtitle: Text(
-          memo.createdAt.toString(),
-          style: TextStyle(color: color),
-          overflow: TextOverflow.fade,
-        ),
-        trailing: Icon(
-          IconlyLight.arrow_right_2,
-          color: color,
-        ),
+          vm.isLongPressed
+              ? const Positioned(
+                  child: Icon(IconlyBold.close_square),
+                )
+              : Container(),
+        ],
       ),
     );
   }

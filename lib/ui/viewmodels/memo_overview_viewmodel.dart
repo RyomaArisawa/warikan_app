@@ -9,8 +9,17 @@ class MemoOverviewViewModel with ChangeNotifier {
     Memo.init(),
     Memo.init(),
     Memo.init(),
+    Memo.init(),
+    Memo.init(),
+    Memo.init(),
+    Memo.init(),
+    Memo.init(),
   ];
+
   List<Memo> get memoList => _memoList;
+
+  bool _isLongPressed = false;
+  bool get isLongPressed => _isLongPressed;
 
   pushMemoInput(BuildContext context) {
     Navigator.push(
@@ -20,4 +29,10 @@ class MemoOverviewViewModel with ChangeNotifier {
   }
 
   pushMemoDetail(BuildContext context, int index) {}
+
+  void setLongPressed() {
+    _isLongPressed = !_isLongPressed;
+    print(_isLongPressed);
+    notifyListeners();
+  }
 }

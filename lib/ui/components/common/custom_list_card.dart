@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:warikan_app/data/consts/custom_colors.dart';
 
 class CustomListCard extends StatelessWidget {
-  const CustomListCard({Key? key, required this.child, required this.onTap})
+  const CustomListCard(
+      {Key? key, required this.child, required this.onTap, this.onLongPress})
       : super(key: key);
 
   final Widget child;
   final VoidCallback onTap;
+  final VoidCallback? onLongPress;
 
   @override
   Widget build(BuildContext context) {
@@ -14,11 +16,12 @@ class CustomListCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
       ),
-      color: CustomColors.indigo.withOpacity(0.8),
+      color: CustomColors.indigo,
       elevation: 12,
       child: InkWell(
         borderRadius: BorderRadius.circular(20),
         onTap: onTap,
+        onLongPress: onLongPress,
         child: child,
       ),
     );
