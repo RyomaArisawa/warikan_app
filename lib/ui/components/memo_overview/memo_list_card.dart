@@ -22,56 +22,63 @@ class MemoListCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vm = context.watch<MemoOverviewViewModel>();
-    final memo = vm.memoList[memoIndex];
+    final visible = vm.memoList[memoIndex]["visible"];
+    final memo = vm.memoList[memoIndex]["memo"];
 
     //長押しの際shakeさせるanimation_widget
-    return ShakeAnimatedWidget(
-      enabled: vm.isLongPressed,
-      duration: const Duration(milliseconds: 250),
-      shakeAngle:
-          memoIndex % 2 == 0 ? Rotation.deg(z: 0.4) : Rotation.deg(z: -0.4),
-      curve: Curves.linear,
-      child: Stack(
-        children: [
-          CustomListCard(
-            onTap: onTap,
-            onLongPress: vm.setLongPressed,
-            child: ListTile(
-              leading: Container(
-                margin:
-                    const EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-                padding: const EdgeInsets.only(right: 16),
-                decoration: BoxDecoration(
-                  border: Border(
-                    right: BorderSide(width: 2.0, color: color),
+    return AnimatedOpacity(
+      opacity: visible ? 1.0 : 0,
+      //300ミリ秒かけてフェードアウトさせる
+      duration: const Duration(milliseconds: 300),
+      child: ShakeAnimatedWidget(
+        enabled: vm.isLongPressed,
+        duration: const Duration(milliseconds: 250),
+        shakeAngle:
+            memoIndex % 2 == 0 ? Rotation.deg(z: 0.4) : Rotation.deg(z: -0.4),
+        curve: Curves.linear,
+        child: Stack(
+          children: [
+            CustomListCard(
+              onTap: onTap,
+              onLongPress: vm.setLongPressed,
+              child: ListTile(
+                leading: Container(
+                  margin: const EdgeInsets.symmetric(
+                      horizontal: 10.0, vertical: 6.0),
+                  padding: const EdgeInsets.only(right: 16),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      right: BorderSide(width: 2.0, color: color),
+                    ),
+                  ),
+                  child: Icon(
+                    IconlyLight.document,
+                    color: color,
                   ),
                 ),
-                child: Icon(
-                  IconlyLight.document,
+                title: Text(
+                  memo.title,
+                  style: TextStyle(color: color, fontWeight: FontWeight.bold),
+                ),
+                subtitle: Text(
+                  memo.createdAt.toString(),
+                  style: TextStyle(color: color),
+                  overflow: TextOverflow.fade,
+                ),
+                trailing: Icon(
+                  IconlyLight.arrow_right_2,
                   color: color,
                 ),
               ),
-              title: Text(
-                memo.title,
-                style: TextStyle(color: color, fontWeight: FontWeight.bold),
-              ),
-              subtitle: Text(
-                memo.createdAt.toString(),
-                style: TextStyle(color: color),
-                overflow: TextOverflow.fade,
-              ),
-              trailing: Icon(
-                IconlyLight.arrow_right_2,
-                color: color,
-              ),
             ),
-          ),
-          vm.isLongPressed
-              ? const Positioned(
-                  child: Icon(IconlyBold.close_square),
-                )
-              : Container(),
-        ],
+            vm.isLongPressed
+                ? GestureDetector(
+                    onTap: () => vm.delete(memoIndex),
+                    child: const Icon(IconlyBold.close_square),
+                  )
+                : Container(),
+          ],
+        ),
       ),
     );
   }
