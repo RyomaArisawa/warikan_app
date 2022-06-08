@@ -2,6 +2,7 @@ import 'package:animated_widgets/animated_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
+import 'package:warikan_app/data/consts/animations.dart';
 import 'package:warikan_app/ui/components/common/custom_list_card.dart';
 import 'package:warikan_app/ui/viewmodels/memo_overview_viewmodel.dart';
 
@@ -29,7 +30,7 @@ class MemoListCard extends StatelessWidget {
     return AnimatedOpacity(
       opacity: visible ? 1.0 : 0,
       //300ミリ秒かけてフェードアウトさせる
-      duration: const Duration(milliseconds: 300),
+      duration: Durations.fadeDuration,
       child: ShakeAnimatedWidget(
         enabled: vm.isLongPressed,
         duration: const Duration(milliseconds: 250),
@@ -73,7 +74,7 @@ class MemoListCard extends StatelessWidget {
             ),
             vm.isLongPressed
                 ? GestureDetector(
-                    onTap: () => vm.delete(memoIndex),
+                    onTap: () => vm.deleteMemo(memoIndex),
                     child: const Icon(IconlyBold.close_square),
                   )
                 : Container(),
