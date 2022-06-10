@@ -32,7 +32,7 @@ class MemoListCard extends StatelessWidget {
       duration: Durations.fadeDuration,
       child: ShakeAnimatedWidget(
         enabled: vm.isLongPressed,
-        duration: const Duration(milliseconds: 250),
+        duration: Durations.shakeDuration,
         shakeAngle:
             memoIndex % 2 == 0 ? Rotation.deg(z: 0.4) : Rotation.deg(z: -0.4),
         curve: Curves.linear,

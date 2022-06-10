@@ -25,7 +25,9 @@ class MemoInputScreen extends StatefulWidget {
 
 class _MemoInputScreenState extends State<MemoInputScreen>
     with SingleTickerProviderStateMixin {
+  //flutter_quillのコントローラー
   late quill.QuillController quillController;
+  //accordionアニメーションのコントローラー
   late AnimationController animationController;
 
   @override
