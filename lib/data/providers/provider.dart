@@ -4,6 +4,7 @@ import 'package:warikan_app/ui/viewmodels/calc_detail_viewmodel.dart';
 import 'package:warikan_app/ui/viewmodels/calc_input_viewmodel.dart';
 import 'package:warikan_app/ui/viewmodels/calc_overview_viewmodel.dart';
 import 'package:warikan_app/ui/viewmodels/home_viewmodel.dart';
+import 'package:warikan_app/ui/viewmodels/memo_input_viewmodel.dart';
 import 'package:warikan_app/ui/viewmodels/memo_overview_viewmodel.dart';
 import 'package:warikan_app/ui/viewmodels/profile_viewmodel.dart';
 import 'package:warikan_app/ui/viewmodels/settings_viewmodel.dart';
@@ -45,5 +46,8 @@ List<SingleChildWidget> viewModels = [
   ),
   ChangeNotifierProvider(
     create: (_) => MemoOverviewViewModel(),
+  ),
+  ChangeNotifierProvider(
+    create: (_) => MemoInputViewModel(),
   ),
 ];

@@ -14,6 +14,7 @@ class InputField extends StatelessWidget {
     this.keyboardType,
     this.isNumberOnly = false,
     this.onEditingCompleted,
+    this.maxLines = 1,
   }) : super(key: key);
 
   //フォーム入力時処理
@@ -34,6 +35,8 @@ class InputField extends StatelessWidget {
   final bool isNumberOnly;
   //編集完了時処理
   final VoidCallback? onEditingCompleted;
+  //最大行数
+  final int? maxLines;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +56,7 @@ class InputField extends StatelessWidget {
         hintText: hintText,
       ),
       validator: validator,
-      maxLines: 1,
+      maxLines: maxLines,
       keyboardType: keyboardType,
       inputFormatters:
           isNumberOnly ? [FilteringTextInputFormatter.digitsOnly] : [],
