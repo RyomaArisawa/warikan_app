@@ -23,7 +23,7 @@ class ButtonLabels {
   static const String yes = "YES";
   static const String no = "NO";
   static const String profile = "Profile";
-  static const String toolbar = "toolbar";
+  static const String toolbar = "Toolbar";
 }
 
 ///リンクテキスト関連

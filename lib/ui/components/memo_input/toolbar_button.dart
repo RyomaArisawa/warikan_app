@@ -17,22 +17,17 @@ class ToolbarButton extends StatelessWidget {
     final vm = context.watch<MemoInputViewModel>();
     return SizedBox(
       height: 30,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text(ButtonLabels.toolbar),
-          IconButton(
-            onPressed: () => vm.showToolbar(animationController),
-            icon: AnimatedRotation(
-              turns: vm.turns,
-              duration: Durations.accordionDuration,
-              child: const Icon(
-                IconlyLight.arrow_down_2,
-                size: 15,
-              ),
-            ),
+      child: IconButton(
+        tooltip: ButtonLabels.toolbar,
+        onPressed: () => vm.showToolbar(animationController),
+        icon: AnimatedRotation(
+          turns: vm.turns,
+          duration: Durations.accordionDuration,
+          child: const Icon(
+            IconlyLight.arrow_down_2,
+            size: 20,
           ),
-        ],
+        ),
       ),
     );
   }

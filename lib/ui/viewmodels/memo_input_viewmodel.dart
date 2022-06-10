@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_quill/flutter_quill.dart';
 
 class MemoInputViewModel with ChangeNotifier {
-  final QuillController _controller = QuillController.basic();
-  QuillController get controller => _controller;
-
   //toolbarが表示されているかを判別する
   bool _isShowToolbar = false;
   bool get isShowToolbar => _isShowToolbar;
