@@ -8,11 +8,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     required this.title,
     this.height = 60,
     this.color = CustomColors.darkBlue,
+    this.actions,
   }) : super(key: key);
 
   final String title;
   final double height;
   final Color color;
+  final List<Widget>? actions;
 
   @override
   Size get preferredSize => Size.fromHeight(height);
@@ -24,6 +26,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         backgroundColor: color,
         centerTitle: true,
         title: Text(title),
+        actions: actions ?? [],
       ),
       preferredSize: Size.fromHeight(height),
     );

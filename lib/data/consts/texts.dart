@@ -14,7 +14,7 @@ class FormLabels {
 class ButtonLabels {
   static const String signIn = "Sign In";
   static const String signUp = "Sign Up";
-  static const String create = "CREATE";
+  static const String create = "Create";
   static const String delete = "DELETE";
   static const String addMember = "Add Member";
   static const String addPayment = "Add Payment";
@@ -23,6 +23,7 @@ class ButtonLabels {
   static const String yes = "YES";
   static const String no = "NO";
   static const String profile = "Profile";
+  static const String toolbar = "Toolbar";
 }
 
 ///リンクテキスト関連

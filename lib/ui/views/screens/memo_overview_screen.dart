@@ -13,7 +13,7 @@ class MemoOverviewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final vm = context.read<MemoOverviewViewModel>();
+    final vm = context.watch<MemoOverviewViewModel>();
 
     return Scaffold(
       appBar: const CustomAppBar(

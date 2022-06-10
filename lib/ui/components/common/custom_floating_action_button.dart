@@ -4,17 +4,23 @@ import 'package:warikan_app/data/consts/texts.dart';
 
 class CustomFloatingActionButton extends StatelessWidget {
   ///共通FloatingActionButtonコンポーネント
-  const CustomFloatingActionButton({Key? key, required this.onPressed})
+  const CustomFloatingActionButton(
+      {Key? key,
+      required this.onPressed,
+      this.iconData = Icons.add,
+      this.buttonLabel = ButtonLabels.create})
       : super(key: key);
 
   final VoidCallback onPressed;
+  final IconData iconData;
+  final String buttonLabel;
 
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton.extended(
       backgroundColor: CustomColors.darkBlue,
-      icon: const Icon(Icons.add),
-      label: const Text(ButtonLabels.create),
+      icon: Icon(iconData),
+      label: Text(buttonLabel.toUpperCase()),
       onPressed: onPressed,
     );
   }

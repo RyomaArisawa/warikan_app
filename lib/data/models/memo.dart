@@ -1,6 +1,7 @@
 import 'package:uuid/uuid.dart';
+import 'package:warikan_app/data/mixins/visible.dart';
 
-class Memo {
+class Memo with Visible {
   //メモID
   String id;
   //ユーザーID
