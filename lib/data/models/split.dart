@@ -2,7 +2,7 @@ import 'package:uuid/uuid.dart';
 
 import 'member.dart';
 
-class SplitInfo {
+class Split {
   //割り勘情報ID
   String id;
   //ユーザID;
@@ -15,8 +15,8 @@ class SplitInfo {
   int totalCost;
 
 //<editor-fold desc="Data Methods">
-  factory SplitInfo.init() {
-    return SplitInfo(
+  factory Split.init() {
+    return Split(
       id: Uuid().v4(),
       uid: "",
       members: [
@@ -27,7 +27,7 @@ class SplitInfo {
     );
   }
 
-  SplitInfo({
+  Split({
     required this.id,
     required this.uid,
     required this.members,
@@ -38,7 +38,7 @@ class SplitInfo {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is SplitInfo &&
+      (other is Split &&
           runtimeType == other.runtimeType &&
           id == other.id &&
           uid == other.uid &&
@@ -56,7 +56,7 @@ class SplitInfo {
 
   @override
   String toString() {
-    return 'SplitInfo{' +
+    return 'Split{' +
         ' id: $id,' +
         ' uid: $uid,' +
         ' members: $members,' +
@@ -65,14 +65,14 @@ class SplitInfo {
         '}';
   }
 
-  SplitInfo copyWith({
+  Split copyWith({
     String? id,
     String? uid,
     List<Member>? members,
     DateTime? cratedAt,
     int? totalCost,
   }) {
-    return SplitInfo(
+    return Split(
       id: id ?? this.id,
       uid: uid ?? this.uid,
       members: members ?? this.members,
@@ -91,8 +91,8 @@ class SplitInfo {
     };
   }
 
-  factory SplitInfo.fromMap(Map<String, dynamic> map) {
-    return SplitInfo(
+  factory Split.fromMap(Map<String, dynamic> map) {
+    return Split(
       id: map['id'] as String,
       uid: map['uid'] as String,
       members: map['members'] as List<Member>,

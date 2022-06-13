@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:warikan_app/data/models/member.dart';
-import 'package:warikan_app/data/models/payment_info.dart';
+import 'package:warikan_app/data/models/payment.dart';
 
 class CalcInputViewModel with ChangeNotifier {
   //合計金額
@@ -29,15 +29,15 @@ class CalcInputViewModel with ChangeNotifier {
 
   //新規支払い情報追加
   void addPayment(int memberIndex) {
-    _members[memberIndex].paymentInfoList.add(
-          PaymentInfo.init(),
+    _members[memberIndex].paymentList.add(
+          Payment.init(),
         );
     notifyListeners();
   }
 
   //支払い情報削除
   void deletePayment(int memberIndex, int paymentIndex) {
-    _members[memberIndex].paymentInfoList.removeAt(paymentIndex);
+    _members[memberIndex].paymentList.removeAt(paymentIndex);
     notifyListeners();
   }
 
@@ -48,14 +48,13 @@ class CalcInputViewModel with ChangeNotifier {
 
   //支払い項目名入力
   void inputTittle(String title, int memberIndex, int paymentIndex) {
-    _members[memberIndex].paymentInfoList[paymentIndex].title = title;
+    _members[memberIndex].paymentList[paymentIndex].title = title;
   }
 
   //金額入力
   void inputCost(String cost, int memberIndex, int paymentIndex) {
     if (cost.isNotEmpty) {
-      _members[memberIndex].paymentInfoList[paymentIndex].cost =
-          int.parse(cost);
+      _members[memberIndex].paymentList[paymentIndex].cost = int.parse(cost);
     }
   }
 
@@ -64,9 +63,9 @@ class CalcInputViewModel with ChangeNotifier {
     var total = 0;
     _members.forEach(
       (member) {
-        member.paymentInfoList.forEach(
-          (paymentInfo) {
-            total = total + paymentInfo.cost;
+        member.paymentList.forEach(
+          (payment) {
+            total = total + payment.cost;
           },
         );
       },

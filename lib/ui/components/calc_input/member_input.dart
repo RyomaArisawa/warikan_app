@@ -47,7 +47,7 @@ class MemberInput extends StatelessWidget {
               height: MediaQuery.of(context).size.height / 3,
               child: ListView.builder(
                 shrinkWrap: true,
-                itemCount: vm.members[memberIndex].paymentInfoList.length,
+                itemCount: vm.members[memberIndex].paymentList.length,
                 itemBuilder: (context, index) => PaymentInput(
                   key: UniqueKey(),
                   memberIndex: memberIndex,

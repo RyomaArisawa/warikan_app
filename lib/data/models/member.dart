@@ -1,4 +1,4 @@
-import 'package:warikan_app/data/models/payment_info.dart';
+import 'package:warikan_app/data/models/payment.dart';
 
 class Member {
   //メンバー名
@@ -6,15 +6,16 @@ class Member {
   //メンバー毎の合計金額
   int costPerMember;
   //支払い情報リスト
-  List<PaymentInfo> paymentInfoList;
+  List<Payment> paymentList;
 
 //<editor-fold desc="Data Methods">
+
   factory Member.init() {
     return Member(
       name: "",
       costPerMember: 0,
-      paymentInfoList: [
-        PaymentInfo.init(),
+      paymentList: [
+        Payment.init(),
       ],
     );
   }
@@ -22,7 +23,7 @@ class Member {
   Member({
     required this.name,
     required this.costPerMember,
-    required this.paymentInfoList,
+    required this.paymentList,
   });
 
   @override
@@ -32,30 +33,30 @@ class Member {
           runtimeType == other.runtimeType &&
           name == other.name &&
           costPerMember == other.costPerMember &&
-          paymentInfoList == other.paymentInfoList);
+          paymentList == other.paymentList);
 
   @override
   int get hashCode =>
-      name.hashCode ^ costPerMember.hashCode ^ paymentInfoList.hashCode;
+      name.hashCode ^ costPerMember.hashCode ^ paymentList.hashCode;
 
   @override
   String toString() {
     return 'Member{' +
         ' name: $name,' +
         ' costPerMember: $costPerMember,' +
-        ' paymentInfoList: $paymentInfoList,' +
+        ' paymentList: $paymentList,' +
         '}';
   }
 
   Member copyWith({
     String? name,
     int? costPerMember,
-    List<PaymentInfo>? paymentInfoList,
+    List<Payment>? paymentList,
   }) {
     return Member(
       name: name ?? this.name,
       costPerMember: costPerMember ?? this.costPerMember,
-      paymentInfoList: paymentInfoList ?? this.paymentInfoList,
+      paymentList: paymentList ?? this.paymentList,
     );
   }
 
@@ -63,7 +64,7 @@ class Member {
     return {
       'name': this.name,
       'costPerMember': this.costPerMember,
-      'paymentInfoList': this.paymentInfoList,
+      'paymentList': this.paymentList,
     };
   }
 
@@ -71,7 +72,7 @@ class Member {
     return Member(
       name: map['name'] as String,
       costPerMember: map['costPerMember'] as int,
-      paymentInfoList: map['paymentInfoList'] as List<PaymentInfo>,
+      paymentList: map['paymentList'] as List<Payment>,
     );
   }
 

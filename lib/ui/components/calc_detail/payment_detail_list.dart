@@ -15,17 +15,17 @@ class PaymentDetailList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vm = context.read<CalcDetailViewModel>();
-    final member = vm.splitInfo.members[memberIndex];
+    final member = vm.split.members[memberIndex];
 
     return SizedBox(
       height: 200,
       child: ListView.builder(
-        itemCount: member.paymentInfoList.length,
+        itemCount: member.paymentList.length,
         itemBuilder: (context, index) => Card(
           child: ListTile(
             title: Text(
-                "￥${Formatter.numberFormatter.format(member.paymentInfoList[index].cost)}"),
-            subtitle: Text(member.paymentInfoList[index].title),
+                "￥${Formatter.numberFormatter.format(member.paymentList[index].cost)}"),
+            subtitle: Text(member.paymentList[index].title),
           ),
         ),
       ),
