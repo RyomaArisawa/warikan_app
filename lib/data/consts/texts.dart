@@ -19,6 +19,7 @@ class ButtonLabels {
   static const String addMember = "Add Member";
   static const String addPayment = "Add Payment";
   static const String save = "Save";
+  static const String edit = "Edit";
   static const String complete = "Complete";
   static const String yes = "YES";
   static const String no = "NO";

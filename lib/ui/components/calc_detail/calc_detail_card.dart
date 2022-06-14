@@ -17,7 +17,7 @@ class CalcDetailCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vm = context.read<CalcDetailViewModel>();
-    final member = vm.splitInfo.members[memberIndex];
+    final member = vm.split.members[memberIndex];
     return DarkBlueCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

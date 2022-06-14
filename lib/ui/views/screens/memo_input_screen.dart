@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
+import 'package:provider/provider.dart';
 import 'package:warikan_app/data/consts/animations.dart';
+import 'package:warikan_app/data/consts/enum.dart';
 import 'package:warikan_app/data/consts/texts.dart';
 import 'package:warikan_app/ui/components/common/custom_floating_action_button.dart';
 import 'package:warikan_app/ui/components/common/cutom_app_bar.dart';
 import 'package:warikan_app/ui/components/common/style/body_background.dart';
 import 'package:warikan_app/ui/components/memo_input/toolbar_button.dart';
+import 'package:warikan_app/ui/viewmodels/memo_input_viewmodel.dart';
 
 class MemoInputScreen extends StatefulWidget {
   /// MemoInput画面
@@ -47,6 +50,7 @@ class _MemoInputScreenState extends State<MemoInputScreen>
 
   @override
   Widget build(BuildContext context) {
+    final vm = context.read<MemoInputViewModel>();
     return Scaffold(
       appBar: const CustomAppBar(
         title: ScreenLabels.memo,
@@ -67,15 +71,18 @@ class _MemoInputScreenState extends State<MemoInputScreen>
                   toolbarIconAlignment: WrapAlignment.start,
                 ),
               ),
-              const TextField(
-                decoration: InputDecoration(
+              TextFormField(
+                initialValue:
+                    vm.inputMode == InputMode.edit ? vm.memo!.title : null,
+                decoration: const InputDecoration(
                   border: InputBorder.none,
                   hintText: FormLabels.title,
                 ),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 28.0,
                   fontWeight: FontWeight.bold,
                 ),
+                onChanged: vm.inputTitle,
               ),
               quill.QuillEditor.basic(
                 controller: quillController,

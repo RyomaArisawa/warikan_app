@@ -44,7 +44,7 @@ class _CalcDetailScreenState extends State<CalcDetailScreen> {
             Expanded(
               child: PageView.builder(
                 controller: controller,
-                itemCount: vm.splitInfo.members.length,
+                itemCount: vm.split.members.length,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 4.0),
@@ -57,7 +57,7 @@ class _CalcDetailScreenState extends State<CalcDetailScreen> {
             ),
             SmoothPageIndicator(
               controller: controller,
-              count: vm.splitInfo.members.length,
+              count: vm.split.members.length,
               effect: const ScrollingDotsEffect(
                 dotHeight: 12,
                 dotWidth: 12,

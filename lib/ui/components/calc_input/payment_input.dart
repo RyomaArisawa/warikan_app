@@ -44,7 +44,7 @@ class PaymentInput extends StatelessWidget {
           InputField(
             //スクロールなどでdisposeされても値を保持するために初期値をセット
             initialValue:
-                vm.members[memberIndex].paymentInfoList[paymentIndex].title,
+                vm.members[memberIndex].paymentList[paymentIndex].title,
             hintText: FormLabels.title,
             contentPadding: 0,
             onChanged: (String title) =>
@@ -53,8 +53,7 @@ class PaymentInput extends StatelessWidget {
           //支払い金額
           InputField(
             //スクロールなどでdisposeされても値を保持するために初期値をセット
-            initialValue: vm
-                .members[memberIndex].paymentInfoList[paymentIndex].cost
+            initialValue: vm.members[memberIndex].paymentList[paymentIndex].cost
                 .toString(),
             hintText: FormLabels.cost,
             contentPadding: 0,

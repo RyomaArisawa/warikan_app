@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:warikan_app/data/consts/texts.dart';
-import 'package:warikan_app/data/models/split_info.dart';
+import 'package:warikan_app/data/models/split.dart';
 import 'package:warikan_app/ui/components/common/custom_dialog.dart';
 
 class CalcDetailViewModel with ChangeNotifier {
-  SplitInfo _splitInfo = SplitInfo.init();
-  SplitInfo get splitInfo => _splitInfo;
+  Split _split = Split.init();
+  Split get split => _split;
 
-  void setSplitInfo(SplitInfo splitInfo) {
-    _splitInfo = splitInfo;
+  void setSplit(Split split) {
+    _split = split;
   }
 
   showCompleteDialog(BuildContext context) {

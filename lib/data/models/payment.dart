@@ -1,15 +1,16 @@
-class PaymentInfo {
+class Payment {
   //支払い項目名
   String title;
   //支払い金額
   int cost;
 
 //<editor-fold desc="Data Methods">
-  factory PaymentInfo.init() {
-    return PaymentInfo(title: "", cost: 0);
+
+  factory Payment.init() {
+    return Payment(title: "", cost: 0);
   }
 
-  PaymentInfo({
+  Payment({
     required this.title,
     required this.cost,
   });
@@ -17,7 +18,7 @@ class PaymentInfo {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is PaymentInfo &&
+      (other is Payment &&
           runtimeType == other.runtimeType &&
           title == other.title &&
           cost == other.cost);
@@ -27,14 +28,14 @@ class PaymentInfo {
 
   @override
   String toString() {
-    return 'PaymentInfo{' + ' title: $title,' + ' cost: $cost,' + '}';
+    return 'Payment{' + ' title: $title,' + ' cost: $cost,' + '}';
   }
 
-  PaymentInfo copyWith({
+  Payment copyWith({
     String? title,
     int? cost,
   }) {
-    return PaymentInfo(
+    return Payment(
       title: title ?? this.title,
       cost: cost ?? this.cost,
     );
@@ -47,8 +48,8 @@ class PaymentInfo {
     };
   }
 
-  factory PaymentInfo.fromMap(Map<String, dynamic> map) {
-    return PaymentInfo(
+  factory Payment.fromMap(Map<String, dynamic> map) {
+    return Payment(
       title: map['title'] as String,
       cost: map['cost'] as int,
     );
