@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:warikan_app/data/consts/animations.dart';
+import 'package:warikan_app/data/consts/enum.dart';
 import 'package:warikan_app/data/models/memo.dart';
+import 'package:warikan_app/ui/viewmodels/memo_detail_viewmodel.dart';
+import 'package:warikan_app/ui/viewmodels/memo_input_viewmodel.dart';
+import 'package:warikan_app/ui/views/screens/memo_detail_screen.dart';
 import 'package:warikan_app/ui/views/screens/memo_input_screen.dart';
 
 class MemoOverviewViewModel with ChangeNotifier {
@@ -22,14 +27,25 @@ class MemoOverviewViewModel with ChangeNotifier {
   bool _isLongPressed = false;
   bool get isLongPressed => _isLongPressed;
 
+  //Memo Input画面へ遷移
   pushMemoInput(BuildContext context) {
+    final vm = context.read<MemoInputViewModel>();
+    //新規作成状態を設定
+    vm.setInputMode(InputMode.create);
     Navigator.push(
       context,
       MemoInputScreen.route(),
     );
   }
 
-  pushMemoDetail(BuildContext context, int index) {}
+  //Memo Detail画面へ遷移
+  pushMemoDetail(BuildContext context, int index) {
+    //MemoDetailViewModelへメモ情報を設定
+    final vm = context.read<MemoDetailViewModel>();
+    vm.setMemo(_memoList[index]);
+    //Memo Detail画面へプッシュ
+    Navigator.push(context, MemoDetailScreen.route());
+  }
 
   //長押しされたかを判定するフラグを設定
   void setLongPressed() {
