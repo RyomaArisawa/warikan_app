@@ -3,18 +3,17 @@ import 'package:warikan_app/data/mixins/visible.dart';
 
 class Memo with Visible {
   //メモID
-  String id;
+  final String id;
   //ユーザーID
-  String uid;
+  final String uid;
   //メモタイトル
-  String title;
+  final String title;
   //メモ内容
-  String content;
+  final String content;
   //作成日時
-  DateTime createdAt;
+  final DateTime createdAt;
 
 //<editor-fold desc="Data Methods">
-
   factory Memo.init() {
     return Memo(
       id: Uuid().v4(),

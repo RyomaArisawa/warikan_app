@@ -1,5 +1,7 @@
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
+import 'package:warikan_app/data/db/user_dao.dart';
+import 'package:warikan_app/data/repositories/auth_repository.dart';
 import 'package:warikan_app/ui/viewmodels/calc_detail_viewmodel.dart';
 import 'package:warikan_app/ui/viewmodels/calc_input_viewmodel.dart';
 import 'package:warikan_app/ui/viewmodels/calc_overview_viewmodel.dart';
@@ -18,14 +20,28 @@ List<SingleChildWidget> globalProviders = [
   ...viewModels,
 ];
 
-List<SingleChildWidget> independentModels = [];
-List<SingleChildWidget> dependentModels = [];
+List<SingleChildWidget> independentModels = [
+  Provider(
+    create: (context) => UserDao(),
+  ),
+];
+List<SingleChildWidget> dependentModels = [
+  Provider(
+    create: (context) => AuthRepository(
+      userDao: context.read<UserDao>(),
+    ),
+  ),
+];
 List<SingleChildWidget> viewModels = [
   ChangeNotifierProvider(
-    create: (_) => SignUpViewModel(),
+    create: (context) => SignUpViewModel(
+      authRepository: context.read<AuthRepository>(),
+    ),
   ),
   ChangeNotifierProvider(
-    create: (_) => SignInViewModel(),
+    create: (context) => SignInViewModel(
+      authRepository: context.read<AuthRepository>(),
+    ),
   ),
   ChangeNotifierProvider(
     create: (_) => HomeViewModel(),

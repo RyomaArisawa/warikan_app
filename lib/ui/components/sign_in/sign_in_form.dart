@@ -36,7 +36,7 @@ class SignInForm extends StatelessWidget {
               ),
               WideButton(
                 text: ButtonLabels.signIn,
-                onPressed: () => vm.executeValidator(context, _globalKey),
+                onPressed: () => vm.signIn(context, _globalKey),
               ),
             ],
           ),

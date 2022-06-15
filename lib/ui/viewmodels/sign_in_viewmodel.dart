@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:warikan_app/data/consts/error_messages.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:warikan_app/data/consts/animations.dart';
+import 'package:warikan_app/data/repositories/auth_repository.dart';
+import 'package:warikan_app/data/util/validator.dart';
+import 'package:warikan_app/ui/components/common/custom_toast.dart';
 import 'package:warikan_app/ui/views/screens/home_screen.dart';
 import 'package:warikan_app/ui/views/screens/sign_up_screen.dart';
 
 class SignInViewModel with ChangeNotifier {
-  String _email = "";
-  String _pass = "";
+  SignInViewModel({required this.authRepository});
+  final AuthRepository authRepository;
 
+  String _email = "";
   String get email => _email;
 
+  String _pass = "";
   String get pass => _pass;
 
   void inputEmail(String email) {
@@ -20,22 +26,35 @@ class SignInViewModel with ChangeNotifier {
   }
 
   String? emailValidator(String? email) {
-    return email == null || email.isEmpty
-        ? "Email Address ${ValidationError.blank}"
-        : null;
+    return Validator.emailValidator(email);
   }
 
   String? passValidator(String? pass) {
-    return pass == null || pass.isEmpty
-        ? "Password ${ValidationError.blank}"
-        : null;
+    return Validator.passValidator(pass);
   }
 
-  void executeValidator(BuildContext context, GlobalKey<FormState> globalKey) {
-    if (globalKey.currentState!.validate()) {
-      Navigator.pushReplacement(
-        context,
-        HomeScreen.route(),
+  void signIn(BuildContext context, GlobalKey<FormState> globalKey) async {
+    try {
+      //バリデーションの実行
+      if (globalKey.currentState!.validate()) {
+        //サインインの実行
+        await authRepository.signIn(email, pass);
+
+        //Home画面へ遷移
+        Navigator.pushReplacement(
+          context,
+          HomeScreen.route(),
+        );
+      }
+    } on String catch (errorMsg) {
+      //サインインが失敗した場合Toastで通知
+      final fToast = FToast();
+      fToast.init(context);
+
+      fToast.showToast(
+        child: CustomToast(msg: errorMsg),
+        toastDuration: Durations.toastDuration,
+        gravity: ToastGravity.BOTTOM,
       );
     }
   }
