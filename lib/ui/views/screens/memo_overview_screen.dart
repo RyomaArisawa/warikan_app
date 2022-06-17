@@ -11,9 +11,17 @@ import 'package:warikan_app/ui/viewmodels/memo_overview_viewmodel.dart';
 class MemoOverviewScreen extends StatelessWidget {
   const MemoOverviewScreen({Key? key}) : super(key: key);
 
+  static Route<dynamic> route() {
+    return MaterialPageRoute<dynamic>(
+      builder: (_) => const MemoOverviewScreen(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final vm = context.watch<MemoOverviewViewModel>();
+    //ユーザーに紐づくメモの一覧を取得
+    Future(() => vm.getMemoByUserId());
 
     return Scaffold(
       appBar: const CustomAppBar(

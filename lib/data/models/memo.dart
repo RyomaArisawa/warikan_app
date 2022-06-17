@@ -84,7 +84,7 @@ class Memo with Visible {
       'uid': this.uid,
       'title': this.title,
       'content': this.content,
-      'createdAt': this.createdAt,
+      'createdAt': this.createdAt.toIso8601String(),
     };
   }
 
@@ -94,7 +94,7 @@ class Memo with Visible {
       uid: map['uid'] as String,
       title: map['title'] as String,
       content: map['content'] as String,
-      createdAt: map['createdAt'] as DateTime,
+      createdAt: DateTime.parse(map['createdAt'] as String),
     );
   }
 

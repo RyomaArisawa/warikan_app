@@ -50,7 +50,9 @@ class _MemoInputScreenState extends State<MemoInputScreen>
 
   @override
   Widget build(BuildContext context) {
+    final _globalKey = GlobalKey<FormState>();
     final vm = context.read<MemoInputViewModel>();
+
     return Scaffold(
       appBar: const CustomAppBar(
         title: ScreenLabels.memo,
@@ -71,18 +73,22 @@ class _MemoInputScreenState extends State<MemoInputScreen>
                   toolbarIconAlignment: WrapAlignment.start,
                 ),
               ),
-              TextFormField(
-                initialValue:
-                    vm.inputMode == InputMode.edit ? vm.memo!.title : null,
-                decoration: const InputDecoration(
-                  border: InputBorder.none,
-                  hintText: FormLabels.title,
+              Form(
+                key: _globalKey,
+                child: TextFormField(
+                  initialValue:
+                      vm.inputMode == InputMode.edit ? vm.memo!.title : null,
+                  decoration: const InputDecoration(
+                    border: InputBorder.none,
+                    hintText: FormLabels.title,
+                  ),
+                  style: const TextStyle(
+                    fontSize: 28.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  onChanged: vm.inputTitle,
+                  validator: vm.titleValidator,
                 ),
-                style: const TextStyle(
-                  fontSize: 28.0,
-                  fontWeight: FontWeight.bold,
-                ),
-                onChanged: vm.inputTitle,
               ),
               quill.QuillEditor.basic(
                 controller: quillController,
@@ -95,7 +101,7 @@ class _MemoInputScreenState extends State<MemoInputScreen>
       floatingActionButton: CustomFloatingActionButton(
         iconData: Icons.check,
         buttonLabel: ButtonLabels.save,
-        onPressed: () {},
+        onPressed: () => vm.saveMemo(context, _globalKey, quillController),
       ),
     );
   }

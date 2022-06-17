@@ -14,11 +14,12 @@ class SignUpViewModel with ChangeNotifier {
 
   /// 入力フォームの状態変数
   String _name = "";
-  String _email = "";
-  String _pass = "";
-
   String get name => _name;
+
+  String _email = "";
   String get email => _email;
+
+  String _pass = "";
   String get pass => _pass;
 
   void inputName(String name) {

@@ -1,8 +1,22 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_quill/src/widgets/controller.dart';
 import 'package:warikan_app/data/consts/enum.dart';
 import 'package:warikan_app/data/models/memo.dart';
+import 'package:warikan_app/data/repositories/auth_repository.dart';
+import 'package:warikan_app/data/repositories/memo_repository.dart';
+import 'package:warikan_app/data/util/validator.dart';
+import 'package:warikan_app/ui/views/screens/memo_overview_screen.dart';
 
 class MemoInputViewModel with ChangeNotifier {
+  MemoInputViewModel({
+    required this.authRepository,
+    required this.memoRepository,
+  });
+  AuthRepository authRepository;
+  MemoRepository memoRepository;
+
   //新規作成 OR 編集
   InputMode _inputMode = InputMode.create;
   InputMode get inputMode => _inputMode;
@@ -54,5 +68,36 @@ class MemoInputViewModel with ChangeNotifier {
   //画面遷移時に新規作成か編集かの状態を設定
   void setInputMode(InputMode inputMode) {
     _inputMode = inputMode;
+  }
+
+  //メモを保存
+  void saveMemo(BuildContext context, GlobalKey<FormState> globalKey,
+      QuillController quillController) async {
+    if (globalKey.currentState!.validate()) {
+      //Flutter Quillの情報をStringに変換
+      final content = jsonEncode(quillController.document.toDelta().toJson());
+
+      if (_inputMode == InputMode.create) {
+        //新規登録の場合DBに追加
+        await memoRepository.insertMemo(
+          title: _title,
+          content: content,
+          user: authRepository.currentUser!,
+        );
+      } else {
+        //編集の場合アップデート
+        await memoRepository.updateMemo(
+            title: _title, content: content, memo: _memo!);
+      }
+      Navigator.pushAndRemoveUntil(
+        context,
+        MemoOverviewScreen.route(),
+        (_) => false,
+      );
+    }
+  }
+
+  String? titleValidator(String? title) {
+    return Validator.titleValidator(title);
   }
 }
