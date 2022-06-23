@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
 import 'package:provider/provider.dart';
@@ -30,11 +32,26 @@ class _MemoInputScreenState extends State<MemoInputScreen>
   late quill.QuillController quillController;
   //accordionアニメーションのコントローラー
   late AnimationController animationController;
+  //viewmodel
+  late MemoInputViewModel vm;
 
   @override
   void initState() {
     super.initState();
-    quillController = quill.QuillController.basic();
+    vm = context.read<MemoInputViewModel>();
+
+    //新規作成の場合は通常のコントローラー
+    //編集の場合はメモの内容を初期値としてコントローラーに設定
+    quillController = vm.inputMode == InputMode.create
+        ? quill.QuillController.basic()
+        : quill.QuillController(
+            document: quill.Document.fromJson(
+              jsonDecode(vm.memo!.content),
+            ),
+            selection: const TextSelection.collapsed(offset: 0),
+          );
+
+    //アニメーションコントローラーを初期化
     animationController = AnimationController(
       vsync: this,
       duration: Durations.accordionDuration,
@@ -51,7 +68,6 @@ class _MemoInputScreenState extends State<MemoInputScreen>
   @override
   Widget build(BuildContext context) {
     final _globalKey = GlobalKey<FormState>();
-    final vm = context.read<MemoInputViewModel>();
 
     return Scaffold(
       appBar: const CustomAppBar(

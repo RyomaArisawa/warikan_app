@@ -37,6 +37,21 @@ class MemoInputViewModel with ChangeNotifier {
   double _turns = 0.0;
   double get turns => _turns;
 
+  //タイトル入力
+  void inputTitle(String title) {
+    _title = title;
+  }
+
+  //編集画面の時に編集対象のメモ情報を設定
+  void setMemo(Memo memo) {
+    _memo = memo;
+  }
+
+  //画面遷移時に新規作成か編集かの状態を設定
+  void setInputMode(InputMode inputMode) {
+    _inputMode = inputMode;
+  }
+
   //toolbarの表示・非表示を切り替え
   void showToolbar(AnimationController animationController) {
     _isShowToolbar = !_isShowToolbar;
@@ -53,21 +68,6 @@ class MemoInputViewModel with ChangeNotifier {
       _turns -= 0.5;
     }
     notifyListeners();
-  }
-
-  //タイトル入力
-  void inputTitle(String title) {
-    _title = title;
-  }
-
-  //編集画面の時に編集対象のメモ情報を設定
-  void setMemo(Memo memo) {
-    _memo = memo;
-  }
-
-  //画面遷移時に新規作成か編集かの状態を設定
-  void setInputMode(InputMode inputMode) {
-    _inputMode = inputMode;
   }
 
   //メモを保存
@@ -89,6 +89,10 @@ class MemoInputViewModel with ChangeNotifier {
         await memoRepository.updateMemo(
             title: _title, content: content, memo: _memo!);
       }
+
+      _stateClear();
+
+      //MemoOverview画面へ遷移（過去スタックした画面を破棄）
       Navigator.pushAndRemoveUntil(
         context,
         MemoOverviewScreen.route(),
@@ -97,7 +101,16 @@ class MemoInputViewModel with ChangeNotifier {
     }
   }
 
+  /// validator
   String? titleValidator(String? title) {
     return Validator.titleValidator(title);
+  }
+
+  //状態変数を初期化
+  void _stateClear() {
+    _memo = null;
+    _title = "";
+    _isShowToolbar = false;
+    _turns = 0.0;
   }
 }

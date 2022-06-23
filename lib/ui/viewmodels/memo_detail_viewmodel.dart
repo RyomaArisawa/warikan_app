@@ -6,7 +6,7 @@ import 'package:warikan_app/ui/viewmodels/memo_input_viewmodel.dart';
 import 'package:warikan_app/ui/views/screens/memo_input_screen.dart';
 
 class MemoDetailViewModel with ChangeNotifier {
-  Memo _memo = Memo.init();
+  late Memo _memo;
   Memo get memo => _memo;
 
   //MemoDetail画面遷移時にメモ情報を設定
