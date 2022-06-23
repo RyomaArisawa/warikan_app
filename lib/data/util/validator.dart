@@ -56,4 +56,10 @@ class Validator {
     //メールアドレスが有効
     return null;
   }
+
+  static String? titleValidator(String? title) {
+    return title == null || title.isEmpty
+        ? "Title ${ValidationError.blank}"
+        : null;
+  }
 }

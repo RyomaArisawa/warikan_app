@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
 import 'package:provider/provider.dart';
@@ -30,11 +32,26 @@ class _MemoInputScreenState extends State<MemoInputScreen>
   late quill.QuillController quillController;
   //accordionアニメーションのコントローラー
   late AnimationController animationController;
+  //viewmodel
+  late MemoInputViewModel vm;
 
   @override
   void initState() {
     super.initState();
-    quillController = quill.QuillController.basic();
+    vm = context.read<MemoInputViewModel>();
+
+    //新規作成の場合は通常のコントローラー
+    //編集の場合はメモの内容を初期値としてコントローラーに設定
+    quillController = vm.inputMode == InputMode.create
+        ? quill.QuillController.basic()
+        : quill.QuillController(
+            document: quill.Document.fromJson(
+              jsonDecode(vm.memo!.content),
+            ),
+            selection: const TextSelection.collapsed(offset: 0),
+          );
+
+    //アニメーションコントローラーを初期化
     animationController = AnimationController(
       vsync: this,
       duration: Durations.accordionDuration,
@@ -50,7 +67,8 @@ class _MemoInputScreenState extends State<MemoInputScreen>
 
   @override
   Widget build(BuildContext context) {
-    final vm = context.read<MemoInputViewModel>();
+    final _globalKey = GlobalKey<FormState>();
+
     return Scaffold(
       appBar: const CustomAppBar(
         title: ScreenLabels.memo,
@@ -71,18 +89,22 @@ class _MemoInputScreenState extends State<MemoInputScreen>
                   toolbarIconAlignment: WrapAlignment.start,
                 ),
               ),
-              TextFormField(
-                initialValue:
-                    vm.inputMode == InputMode.edit ? vm.memo!.title : null,
-                decoration: const InputDecoration(
-                  border: InputBorder.none,
-                  hintText: FormLabels.title,
+              Form(
+                key: _globalKey,
+                child: TextFormField(
+                  initialValue:
+                      vm.inputMode == InputMode.edit ? vm.memo!.title : null,
+                  decoration: const InputDecoration(
+                    border: InputBorder.none,
+                    hintText: FormLabels.title,
+                  ),
+                  style: const TextStyle(
+                    fontSize: 28.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  onChanged: vm.inputTitle,
+                  validator: vm.titleValidator,
                 ),
-                style: const TextStyle(
-                  fontSize: 28.0,
-                  fontWeight: FontWeight.bold,
-                ),
-                onChanged: vm.inputTitle,
               ),
               quill.QuillEditor.basic(
                 controller: quillController,
@@ -95,7 +117,7 @@ class _MemoInputScreenState extends State<MemoInputScreen>
       floatingActionButton: CustomFloatingActionButton(
         iconData: Icons.check,
         buttonLabel: ButtonLabels.save,
-        onPressed: () {},
+        onPressed: () => vm.saveMemo(context, _globalKey, quillController),
       ),
     );
   }

@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_quill/flutter_quill.dart' as quill;
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
 import 'package:warikan_app/data/consts/texts.dart';
@@ -7,7 +10,7 @@ import 'package:warikan_app/ui/components/common/cutom_app_bar.dart';
 import 'package:warikan_app/ui/components/common/style/body_background.dart';
 import 'package:warikan_app/ui/viewmodels/memo_detail_viewmodel.dart';
 
-class MemoDetailScreen extends StatelessWidget {
+class MemoDetailScreen extends StatefulWidget {
   /// Memo Detail画面
   const MemoDetailScreen({Key? key}) : super(key: key);
 
@@ -18,8 +21,28 @@ class MemoDetailScreen extends StatelessWidget {
   }
 
   @override
+  State<MemoDetailScreen> createState() => _MemoDetailScreenState();
+}
+
+class _MemoDetailScreenState extends State<MemoDetailScreen> {
+  late final quill.QuillController quillController;
+  late final MemoDetailViewModel vm;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    vm = context.read<MemoDetailViewModel>();
+    quillController = quill.QuillController(
+      document: quill.Document.fromJson(
+        jsonDecode(vm.memo.content),
+      ),
+      selection: const TextSelection.collapsed(offset: 0),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final vm = context.read<MemoDetailViewModel>();
     return Scaffold(
       appBar: const CustomAppBar(
         title: ScreenLabels.memo,
@@ -34,7 +57,8 @@ class MemoDetailScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 fontSize: 28,
               ),
-            )
+            ),
+            quill.QuillEditor.basic(controller: quillController, readOnly: true)
           ],
         ),
       ),

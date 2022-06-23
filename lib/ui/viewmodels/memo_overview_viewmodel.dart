@@ -3,29 +3,30 @@ import 'package:provider/provider.dart';
 import 'package:warikan_app/data/consts/animations.dart';
 import 'package:warikan_app/data/consts/enum.dart';
 import 'package:warikan_app/data/models/memo.dart';
+import 'package:warikan_app/data/repositories/auth_repository.dart';
+import 'package:warikan_app/data/repositories/memo_repository.dart';
 import 'package:warikan_app/ui/viewmodels/memo_detail_viewmodel.dart';
 import 'package:warikan_app/ui/viewmodels/memo_input_viewmodel.dart';
 import 'package:warikan_app/ui/views/screens/memo_detail_screen.dart';
 import 'package:warikan_app/ui/views/screens/memo_input_screen.dart';
 
 class MemoOverviewViewModel with ChangeNotifier {
-  List<Memo> _memoList = [
-    Memo.init(),
-    Memo.init(),
-    Memo.init(),
-    Memo.init(),
-    Memo.init(),
-    Memo.init(),
-    Memo.init(),
-    Memo.init(),
-    Memo.init(),
-    Memo.init(),
-  ];
+  MemoOverviewViewModel(
+      {required this.authRepository, required this.memoRepository});
+  final AuthRepository authRepository;
+  final MemoRepository memoRepository;
 
+  List<Memo> _memoList = [];
   List<Memo> get memoList => _memoList;
 
   bool _isLongPressed = false;
   bool get isLongPressed => _isLongPressed;
+
+  Future<void> getMemoByUserId() async {
+    _memoList =
+        await memoRepository.getMemoByUserId(authRepository.currentUser!.id);
+    notifyListeners();
+  }
 
   //Memo Input画面へ遷移
   pushMemoInput(BuildContext context) {

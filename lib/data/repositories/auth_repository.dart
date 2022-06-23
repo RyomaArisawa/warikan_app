@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart' as firebase;
-import 'package:warikan_app/data/consts/error_messages.dart';
 import 'package:warikan_app/data/db/user_dao.dart';
 import 'package:warikan_app/data/models/user.dart';
+import 'package:warikan_app/data/util/messenger.dart';
 
 class AuthRepository {
   AuthRepository({required this.userDao});
@@ -10,6 +10,7 @@ class AuthRepository {
   //現在のユーザー
   User? currentUser;
 
+  //サインイン
   Future<void> signIn(String email, String password) async {
     try {
       //サインインを実行
@@ -24,18 +25,11 @@ class AuthRepository {
         currentUser = await userDao.getUserById(userCredential.user!.uid);
       }
     } catch (error) {
-      String errorMsg;
-      if (error.toString().contains("wrong-password")) {
-        errorMsg = AuthError.wrongPass;
-      } else if (error.toString().contains("user-not-found")) {
-        errorMsg = AuthError.notFound;
-      } else {
-        errorMsg = AuthError.other;
-      }
-      throw errorMsg;
+      throw Messenger.authErrorMsg(error.toString());
     }
   }
 
+  //サインアップ
   Future<void> signUp(String name, String email, String password) async {
     try {
       //サインアップ実行
@@ -60,13 +54,7 @@ class AuthRepository {
       //ログイン中ユーザーを設定
       currentUser = user;
     } catch (error) {
-      String errorMsg;
-      if (error.toString().contains("email-already-in-use")) {
-        errorMsg = AuthError.alreadyUsed;
-      } else {
-        errorMsg = AuthError.other;
-      }
-      throw errorMsg;
+      throw Messenger.authErrorMsg(error.toString());
     }
   }
 }
