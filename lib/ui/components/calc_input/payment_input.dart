@@ -26,7 +26,7 @@ class PaymentInput extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(color: Colors.white),
         borderRadius: BorderRadius.circular(10),
-        color: CustomColors.lightBlue,
+        color: CustomColors.lightBlue.withOpacity(0.3),
       ),
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       margin: const EdgeInsets.only(bottom: 10),

@@ -44,7 +44,7 @@ class MemberInput extends StatelessWidget {
           ),
           BottomShader(
             child: SizedBox(
-              height: MediaQuery.of(context).size.height / 3,
+              height: MediaQuery.of(context).size.height / 2.3,
               child: ListView.builder(
                 shrinkWrap: true,
                 itemCount: vm.members[memberIndex].paymentList.length,
@@ -63,7 +63,7 @@ class MemberInput extends StatelessWidget {
             text: ButtonLabels.addPayment,
             onPressed: () => vm.addPayment(memberIndex),
             height: 30,
-            width: 200,
+            width: 140,
           ),
         ],
       ),
