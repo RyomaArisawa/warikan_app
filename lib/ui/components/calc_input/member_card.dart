@@ -31,10 +31,11 @@ class MemberCard extends StatelessWidget {
                   child: Text(
                     vm.members[memberIndex].name,
                     style: const TextStyle(
-                      fontSize: 16,
+                      fontSize: 18,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
                 IconText(

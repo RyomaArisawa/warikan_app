@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:warikan_app/data/consts/custom_colors.dart';
+import 'package:warikan_app/ui/components/common/custom_button.dart';
 import 'package:warikan_app/ui/viewmodels/calc_input_viewmodel.dart';
 
 class MemberNameButtons extends StatelessWidget {
@@ -24,27 +24,19 @@ class MemberNameButtons extends StatelessWidget {
               child: ButtonBar(
                 buttonPadding: const EdgeInsets.only(left: 6),
                 children: vm.members
-                    .map(
-                      (member) => ElevatedButton(
-                        onPressed: () {
-                          vm.members.asMap().forEach((index, e) {
-                            if (e.name == member.name) {
-                              _buildAnimateToPage(index);
-                              return;
-                            }
-                          });
-                        },
-                        child: Text(
-                          member.name,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        style: ElevatedButton.styleFrom(
-                            side: const BorderSide(color: Colors.white),
-                            primary: CustomColors
-                                .indigo //CustomColors.darkBlue.withOpacity(0.8),
-                            ),
-                      ),
-                    )
+                    .map((member) => CustomButton(
+                          width: 100,
+                          height: 40,
+                          text: member.name,
+                          onPressed: () {
+                            vm.members.asMap().forEach((index, e) {
+                              if (e.name == member.name) {
+                                _buildAnimateToPage(index);
+                                return;
+                              }
+                            });
+                          },
+                        ))
                     .toList(),
               ),
             ),

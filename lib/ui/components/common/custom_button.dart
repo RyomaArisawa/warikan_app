@@ -47,6 +47,7 @@ class CustomButton extends StatelessWidget {
             : Text(
                 text,
                 style: TextStyle(color: textColor),
+                overflow: TextOverflow.ellipsis,
               ),
         style: ElevatedButton.styleFrom(
           side: const BorderSide(

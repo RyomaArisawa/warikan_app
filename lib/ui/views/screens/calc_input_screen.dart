@@ -39,7 +39,13 @@ class _CalcInputScreenState extends State<CalcInputScreen> {
         child: Column(
           children: [
             const MemberNameInput(),
+            const SizedBox(
+              height: 10,
+            ),
             MemberNameButtons(controller: controller),
+            const SizedBox(
+              height: 10,
+            ),
             Expanded(
               child: PageView.builder(
                 controller: controller,
