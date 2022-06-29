@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../../data/consts/custom_colors.dart';
 
-class WideButton extends StatelessWidget {
+class CustomButton extends StatelessWidget {
   /// 共通ボタンコンポーネント
-  const WideButton({
+  const CustomButton({
     Key? key,
     required this.text,
     required this.onPressed,
@@ -12,16 +12,17 @@ class WideButton extends StatelessWidget {
     this.buttonColor = CustomColors.indigo,
     this.width = double.infinity,
     this.height = 60,
+    this.iconData,
   }) : super(key: key);
 
   //ボタン押下時処理
   final VoidCallback onPressed;
-  //
   final String text;
   final Color textColor;
   final Color buttonColor;
   final double width;
   final double height;
+  final IconData? iconData;
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +31,23 @@ class WideButton extends StatelessWidget {
       height: height,
       child: ElevatedButton(
         onPressed: onPressed,
-        child: Text(
-          text,
-          style: TextStyle(color: textColor),
-        ),
+        child: (iconData != null)
+            ? Row(
+                children: [
+                  Icon(iconData),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    text,
+                    style: TextStyle(color: textColor),
+                  ),
+                ],
+              )
+            : Text(
+                text,
+                style: TextStyle(color: textColor),
+              ),
         style: ElevatedButton.styleFrom(
           side: const BorderSide(
             color: Colors.white,

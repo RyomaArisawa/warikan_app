@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:warikan_app/data/consts/texts.dart';
+import 'package:warikan_app/ui/components/common/custom_button.dart';
 import 'package:warikan_app/ui/components/common/input_field.dart';
 import 'package:warikan_app/ui/components/common/input_label.dart';
-import 'package:warikan_app/ui/components/common/wide_button.dart';
 import 'package:warikan_app/ui/viewmodels/sign_up_viewmodel.dart';
 
 class SignUpForm extends StatelessWidget {
@@ -27,20 +27,23 @@ class SignUpForm extends StatelessWidget {
             children: [
               const InputLabel(label: FormLabels.name),
               InputField(
+                height: 80,
                 onChanged: vm.inputName,
                 validator: vm.nameValidator,
               ),
               const InputLabel(label: FormLabels.email),
               InputField(
+                height: 80,
                 onChanged: vm.inputEmail,
                 validator: vm.emailValidator,
               ),
               const InputLabel(label: FormLabels.pass),
               InputField(
+                height: 80,
                 onChanged: vm.inputPass,
                 validator: vm.passValidator,
               ),
-              WideButton(
+              CustomButton(
                 text: ButtonLabels.signUp,
                 onPressed: () => vm.signUp(context, _globalKey),
               ),

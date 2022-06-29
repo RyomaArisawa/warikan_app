@@ -5,9 +5,9 @@ import 'package:warikan_app/data/consts/custom_colors.dart';
 import 'package:warikan_app/data/consts/texts.dart';
 import 'package:warikan_app/ui/components/calc_detail/calc_detail_card.dart';
 import 'package:warikan_app/ui/components/calc_detail/display_total_card.dart';
+import 'package:warikan_app/ui/components/common/custom_button.dart';
 import 'package:warikan_app/ui/components/common/cutom_app_bar.dart';
 import 'package:warikan_app/ui/components/common/style/body_background.dart';
-import 'package:warikan_app/ui/components/common/wide_button.dart';
 import 'package:warikan_app/ui/viewmodels/calc_detail_viewmodel.dart';
 
 class CalcDetailScreen extends StatefulWidget {
@@ -68,10 +68,11 @@ class _CalcDetailScreenState extends State<CalcDetailScreen> {
             const SizedBox(
               height: 10,
             ),
-            WideButton(
-                height: 40,
-                text: ButtonLabels.complete,
-                onPressed: () => vm.showCompleteDialog(context)),
+            CustomButton(
+              height: 40,
+              text: ButtonLabels.complete,
+              onPressed: () => vm.showCompleteDialog(context),
+            ),
           ],
         ),
       ),

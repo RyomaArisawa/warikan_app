@@ -7,9 +7,9 @@ import 'package:warikan_app/ui/components/common/icon_text.dart';
 import 'package:warikan_app/ui/components/common/input_field.dart';
 import 'package:warikan_app/ui/viewmodels/calc_input_viewmodel.dart';
 
-class PaymentInput extends StatelessWidget {
-  /// 金額情報入力コンポーネント
-  const PaymentInput(
+class PaymentCard extends StatelessWidget {
+  /// 金額情報入力カードコンポーネント
+  const PaymentCard(
       {Key? key, required this.memberIndex, required this.paymentIndex})
       : super(key: key);
 
@@ -44,11 +44,11 @@ class PaymentInput extends StatelessWidget {
           InputField(
             //スクロールなどでdisposeされても値を保持するために初期値をセット
             initialValue:
-                vm.members[memberIndex].paymentList[paymentIndex].title,
-            hintText: FormLabels.title,
+                vm.members[memberIndex].paymentList[paymentIndex].item,
+            hintText: FormLabels.item,
             contentPadding: 0,
-            onChanged: (String title) =>
-                vm.inputTittle(title, memberIndex, paymentIndex),
+            onChanged: (String item) =>
+                vm.inputPaymentItem(item, memberIndex, paymentIndex),
           ),
           //支払い金額
           InputField(
@@ -62,8 +62,6 @@ class PaymentInput extends StatelessWidget {
             onChanged: (String cost) {
               vm.inputCost(cost, memberIndex, paymentIndex);
             },
-            //合計金額を算出
-            onEditingCompleted: vm.calcTotalCost,
           ),
           const SizedBox(
             height: 10,

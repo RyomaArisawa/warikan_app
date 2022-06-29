@@ -64,7 +64,7 @@ class ProfileViewModel with ChangeNotifier {
       context: context,
       builder: (_) => CustomDialog(
         title: DialogTexts.titleProfileDialog,
-        content: DialogTexts.askProfileDialog,
+        content: const Text(DialogTexts.askProfileDialog),
         onPressed: () {},
       ),
     );

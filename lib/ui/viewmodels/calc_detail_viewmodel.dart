@@ -16,7 +16,7 @@ class CalcDetailViewModel with ChangeNotifier {
       context: context,
       builder: (dialogContext) => CustomDialog(
         title: DialogTexts.titleCompleteDialog,
-        content: DialogTexts.askCompleteDialog,
+        content: const Text(DialogTexts.askCompleteDialog),
         onPressed: () {},
       ),
     );

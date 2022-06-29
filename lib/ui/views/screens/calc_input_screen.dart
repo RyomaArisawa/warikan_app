@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:warikan_app/data/consts/custom_colors.dart';
 import 'package:warikan_app/data/consts/texts.dart';
-import 'package:warikan_app/data/models/member.dart';
+import 'package:warikan_app/ui/components/calc_input/member_card.dart';
 import 'package:warikan_app/ui/components/calc_input/member_name_buttons.dart';
-import 'package:warikan_app/ui/components/calc_input/calc_total_card.dart';
-import 'package:warikan_app/ui/components/calc_input/member_input.dart';
 import 'package:warikan_app/ui/components/common/custom_floating_action_button.dart';
 import 'package:warikan_app/ui/components/common/cutom_app_bar.dart';
 import 'package:warikan_app/ui/components/common/style/body_background.dart';
-import 'package:warikan_app/ui/components/common/style/bottom_shader.dart';
-import 'package:warikan_app/ui/components/common/wide_button.dart';
 import 'package:warikan_app/ui/viewmodels/calc_input_viewmodel.dart';
+
+import '../../components/calc_input/member_name_input.dart';
 
 class CalcInputScreen extends StatefulWidget {
   ///CalcInput画面
@@ -42,7 +38,7 @@ class _CalcInputScreenState extends State<CalcInputScreen> {
       body: BodyBackground(
         child: Column(
           children: [
-            const CalcTotalCard(),
+            const MemberNameInput(),
             MemberNameButtons(controller: controller),
             Expanded(
               child: PageView.builder(
@@ -50,7 +46,7 @@ class _CalcInputScreenState extends State<CalcInputScreen> {
                 itemCount: vm.members.length,
                 itemBuilder: (context, index) {
                   return SingleChildScrollView(
-                      child: MemberInput(key: UniqueKey(), memberIndex: index));
+                      child: MemberCard(key: UniqueKey(), memberIndex: index));
                 },
               ),
             ),
@@ -60,7 +56,7 @@ class _CalcInputScreenState extends State<CalcInputScreen> {
       floatingActionButton: CustomFloatingActionButton(
         iconData: Icons.check,
         buttonLabel: ButtonLabels.save,
-        onPressed: () {},
+        onPressed: () => vm.showSaveDialog(context),
       ),
     );
   }

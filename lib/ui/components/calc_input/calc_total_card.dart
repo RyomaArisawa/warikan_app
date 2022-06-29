@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:warikan_app/data/consts/custom_colors.dart';
-import 'package:warikan_app/data/util/formatter.dart';
 import 'package:warikan_app/ui/viewmodels/calc_input_viewmodel.dart';
 
 class CalcTotalCard extends StatelessWidget {
@@ -28,7 +27,8 @@ class CalcTotalCard extends StatelessWidget {
       ),
       child: Center(
         child: Text(
-          "Total: ￥${Formatter.numberFormatter.format(vm.totalCost)}",
+          "",
+          //"Total: ￥${Formatter.numberFormatter.format(vm.totalCost)}",
           style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,

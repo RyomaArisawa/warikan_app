@@ -4,10 +4,12 @@ class FormLabels {
   static const String email = "Email Address";
   static const String pass = "Password";
   static const String title = "Title";
+  static const String item = "Payment Item";
   static const String category = "Category";
   static const String content = "Content";
   static const String member = "Member Name";
   static const String cost = "Cost";
+  static const String splitTitle = "Please input title of split";
 }
 
 ///ボタン表示テキスト
@@ -16,7 +18,7 @@ class ButtonLabels {
   static const String signUp = "Sign Up";
   static const String create = "Create";
   static const String delete = "DELETE";
-  static const String addMember = "Add Member";
+  static const String add = "Add";
   static const String addPayment = "Add Payment";
   static const String save = "Save";
   static const String edit = "Edit";
@@ -25,6 +27,7 @@ class ButtonLabels {
   static const String no = "NO";
   static const String profile = "Profile";
   static const String toolbar = "Toolbar";
+  static const String cancel = "Cancel";
 }
 
 ///リンクテキスト関連
@@ -62,4 +65,5 @@ class DialogTexts {
   static const String titleProfileDialog = "Save Profile";
   static const String askProfileDialog =
       "Are you sure to save your new profile?";
+  static const String titleCalcSaveDialog = "Save Split";
 }

@@ -25,7 +25,7 @@ class PaymentDetailList extends StatelessWidget {
           child: ListTile(
             title: Text(
                 "￥${Formatter.numberFormatter.format(member.paymentList[index].cost)}"),
-            subtitle: Text(member.paymentList[index].title),
+            subtitle: Text(member.paymentList[index].item),
           ),
         ),
       ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:warikan_app/data/consts/texts.dart';
+import 'package:warikan_app/ui/components/common/custom_button.dart';
 import 'package:warikan_app/ui/components/common/cutom_app_bar.dart';
 import 'package:warikan_app/ui/components/common/style/body_background.dart';
-import 'package:warikan_app/ui/components/common/wide_button.dart';
 import 'package:warikan_app/ui/components/profile/profile_form.dart';
 import 'package:warikan_app/ui/components/profile/profile_image.dart';
 import 'package:warikan_app/ui/viewmodels/profile_viewmodel.dart';
@@ -49,7 +49,7 @@ class ProfileScreen extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  WideButton(
+                  CustomButton(
                     text: ButtonLabels.save,
                     height: 40,
                     onPressed: () => vm.showSaveDialog(context),
