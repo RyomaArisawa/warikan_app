@@ -24,19 +24,21 @@ class MemberNameButtons extends StatelessWidget {
               child: ButtonBar(
                 buttonPadding: const EdgeInsets.only(left: 6),
                 children: vm.members
-                    .map((member) => CustomButton(
-                          width: 100,
-                          height: 40,
-                          text: member.name,
-                          onPressed: () {
-                            vm.members.asMap().forEach((index, e) {
-                              if (e.name == member.name) {
-                                _buildAnimateToPage(index);
-                                return;
-                              }
-                            });
-                          },
-                        ))
+                    .map(
+                      (member) => CustomButton(
+                        width: 100,
+                        height: 40,
+                        text: member.name,
+                        onPressed: () {
+                          vm.members.asMap().forEach((index, e) {
+                            if (e.name == member.name) {
+                              vm.scrollPage(index, controller);
+                              return;
+                            }
+                          });
+                        },
+                      ),
+                    )
                     .toList(),
               ),
             ),
@@ -45,7 +47,4 @@ class MemberNameButtons extends StatelessWidget {
       ],
     );
   }
-
-  _buildAnimateToPage(int index) => controller.animateToPage(index,
-      duration: const Duration(milliseconds: 400), curve: Curves.fastOutSlowIn);
 }

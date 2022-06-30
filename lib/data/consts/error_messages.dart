@@ -1,8 +1,8 @@
 class ValidationError {
-  static const String blank = " can't be blank";
-  static const String invalid = " is not valid";
-  static const String short = " should be more than 6 characters";
-  static const String onlyHalfWidth = " should be only half-width characters";
+  static const String blank = "should not be blank";
+  static const String invalid = "is not valid";
+  static const String short = "should be more than 6 characters";
+  static const String onlyHalfWidth = "should be only half-width characters";
   static const String memberExist = "This member has already existed ";
 }
 

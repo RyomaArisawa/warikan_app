@@ -3,6 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:warikan_app/data/consts/error_messages.dart';
 import 'package:warikan_app/data/models/member.dart';
 import 'package:warikan_app/data/models/payment.dart';
+import 'package:warikan_app/data/util/validator.dart';
 
 import '../../data/consts/animations.dart';
 import '../../data/consts/texts.dart';
@@ -96,21 +97,35 @@ class CalcInputViewModel with ChangeNotifier {
     _title = title;
   }
 
+  ///ページスクロール処理
+  void scrollPage(int index, PageController controller) {
+    controller.animateToPage(index,
+        duration: const Duration(milliseconds: 400),
+        curve: Curves.fastOutSlowIn);
+  }
+
   ///保存ダイアログ表示
   showSaveDialog(BuildContext context) {
+    final _globalKey = GlobalKey<FormState>();
     showDialog(
       context: context,
       builder: (dialogContext) => CustomDialog(
         title: DialogTexts.titleCompleteDialog,
-        content: TextField(
-          decoration: const InputDecoration(
-            hintText: FormLabels.splitTitle,
+        content: Form(
+          key: _globalKey,
+          child: TextFormField(
+            decoration: const InputDecoration(
+              hintText: FormLabels.splitTitle,
+            ),
+            onChanged: inputTitle,
+            validator: Validator.titleValidator,
           ),
-          onChanged: inputTitle,
         ),
         primaryText: ButtonLabels.save,
         secondaryText: ButtonLabels.cancel,
-        onPressed: () {},
+        onPressed: () {
+          _globalKey.currentState!.validate();
+        },
       ),
     );
   }
