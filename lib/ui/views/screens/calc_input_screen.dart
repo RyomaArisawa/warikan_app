@@ -59,10 +59,13 @@ class _CalcInputScreenState extends State<CalcInputScreen> {
           ],
         ),
       ),
-      floatingActionButton: CustomFloatingActionButton(
-        iconData: Icons.check,
-        buttonLabel: ButtonLabels.save,
-        onPressed: () => vm.showSaveDialog(context),
+      floatingActionButton: Visibility(
+        visible: vm.members.isNotEmpty,
+        child: CustomFloatingActionButton(
+          iconData: Icons.check,
+          buttonLabel: ButtonLabels.save,
+          onPressed: () => vm.showSaveDialog(context),
+        ),
       ),
     );
   }
