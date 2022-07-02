@@ -15,6 +15,7 @@ class InputField extends StatelessWidget {
     this.isNumberOnly = false,
     this.onEditingCompleted,
     this.maxLines = 1,
+    this.height = 50,
   }) : super(key: key);
 
   //フォーム入力時処理
@@ -37,29 +38,34 @@ class InputField extends StatelessWidget {
   final VoidCallback? onEditingCompleted;
   //最大行数
   final int? maxLines;
+  //高さ
+  final double height;
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      initialValue: initialValue,
-      onChanged: onChanged,
-      onEditingComplete: onEditingCompleted,
-      decoration: InputDecoration(
-        contentPadding: contentPadding != null
-            ? EdgeInsets.symmetric(vertical: contentPadding!, horizontal: 10)
-            : null,
-        fillColor: color,
-        filled: true,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+    return SizedBox(
+      height: height,
+      child: TextFormField(
+        initialValue: initialValue,
+        onChanged: onChanged,
+        onEditingComplete: onEditingCompleted,
+        decoration: InputDecoration(
+          contentPadding: contentPadding != null
+              ? EdgeInsets.symmetric(vertical: contentPadding!, horizontal: 10)
+              : null,
+          fillColor: color,
+          filled: true,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          hintText: hintText,
         ),
-        hintText: hintText,
+        validator: validator,
+        maxLines: maxLines,
+        keyboardType: keyboardType,
+        inputFormatters:
+            isNumberOnly ? [FilteringTextInputFormatter.digitsOnly] : [],
       ),
-      validator: validator,
-      maxLines: maxLines,
-      keyboardType: keyboardType,
-      inputFormatters:
-          isNumberOnly ? [FilteringTextInputFormatter.digitsOnly] : [],
     );
   }
 }

@@ -4,33 +4,35 @@ import 'package:warikan_app/data/consts/texts.dart';
 
 class CustomDialog extends StatelessWidget {
   ///共通ダイアログコンポーネント
-  const CustomDialog(
-      {Key? key,
-      required this.title,
-      required this.content,
-      required this.onPressed})
-      : super(key: key);
+  const CustomDialog({
+    Key? key,
+    required this.title,
+    required this.content,
+    required this.onPressed,
+    this.primaryText = ButtonLabels.yes,
+    this.secondaryText = ButtonLabels.no,
+  }) : super(key: key);
 
   final String title;
-  final String content;
+  final Widget content;
   final VoidCallback onPressed;
+  final String primaryText;
+  final String secondaryText;
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(title),
-      content: Text(
-        content,
-      ),
+      content: content,
       actions: [
         ElevatedButton(
           onPressed: onPressed,
-          child: const Text(ButtonLabels.yes),
+          child: Text(primaryText),
           style: ElevatedButton.styleFrom(primary: CustomColors.indigo),
         ),
         ElevatedButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text(ButtonLabels.no),
+          child: Text(secondaryText),
           style: ElevatedButton.styleFrom(primary: CustomColors.lightBlue),
         )
       ],
