@@ -35,14 +35,14 @@ class MemoRepository {
   }
 
   Future<List<Memo>> getMemoByUserId(String uid) async {
-    final memoList = <Memo>[];
+    final memos = <Memo>[];
 
     final queryData = await memoDao.getMemoByUserId(uid);
     //DBから取得した情報をMemoクラスへ変換
     queryData.forEach((data) {
-      memoList.add(Memo.fromMap(data.data()));
+      memos.add(Memo.fromMap(data.data()));
     });
 
-    return memoList;
+    return memos;
   }
 }

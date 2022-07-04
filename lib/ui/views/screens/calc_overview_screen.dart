@@ -21,6 +21,9 @@ class CalcOverviewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vm = context.read<CalcOverviewViewModel>();
+    //ユーザーに紐づく割り勘情報の一覧を取得
+    Future(() => vm.getSplitsByUserId());
+
     return Scaffold(
       appBar: const CustomAppBar(
         title: ScreenLabels.calc,
@@ -29,11 +32,16 @@ class CalcOverviewScreen extends StatelessWidget {
         child: Scrollbar(
           radius: const Radius.circular(20),
           child: BottomShader(
-            child: ListView.builder(
-              itemCount: vm.splitList.length,
-              itemBuilder: (context, index) => CalcListCard(
-                onTap: () => vm.pushCalcDetail(context, index),
-              ),
+            child: Consumer<CalcOverviewViewModel>(
+              builder: (context, vm, _) {
+                return ListView.builder(
+                  itemCount: vm.splits.length,
+                  itemBuilder: (context, index) => CalcListCard(
+                    split: vm.splits[index],
+                    onTap: () => vm.pushCalcDetail(context, index),
+                  ),
+                );
+              },
             ),
           ),
         ),

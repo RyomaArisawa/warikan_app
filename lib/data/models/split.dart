@@ -12,7 +12,7 @@ class Split {
   //メンバーリスト
   List<Member> members;
   //作成日時
-  DateTime cratedAt;
+  DateTime createdAt;
   //支払い合計金額
   int totalCost;
   //精算済みフラグ
@@ -27,7 +27,7 @@ class Split {
       members: [
         Member.init(),
       ],
-      cratedAt: DateTime.now(),
+      createdAt: DateTime.now(),
       totalCost: 0,
       isSettled: false,
     );
@@ -38,7 +38,7 @@ class Split {
     required this.uid,
     required this.title,
     required this.members,
-    required this.cratedAt,
+    required this.createdAt,
     required this.totalCost,
     required this.isSettled,
   });
@@ -52,7 +52,7 @@ class Split {
           uid == other.uid &&
           title == other.title &&
           members == other.members &&
-          cratedAt == other.cratedAt &&
+          createdAt == other.createdAt &&
           totalCost == other.totalCost &&
           isSettled == other.isSettled);
 
@@ -62,7 +62,7 @@ class Split {
       uid.hashCode ^
       title.hashCode ^
       members.hashCode ^
-      cratedAt.hashCode ^
+      createdAt.hashCode ^
       totalCost.hashCode ^
       isSettled.hashCode;
 
@@ -73,7 +73,7 @@ class Split {
         ' uid: $uid,' +
         ' title: $title,' +
         ' members: $members,' +
-        ' cratedAt: $cratedAt,' +
+        ' createdAt: $createdAt,' +
         ' totalCost: $totalCost,' +
         ' isSettled: $isSettled,' +
         '}';
@@ -84,7 +84,7 @@ class Split {
     String? uid,
     String? title,
     List<Member>? members,
-    DateTime? cratedAt,
+    DateTime? createdAt,
     int? totalCost,
     bool? isSettled,
   }) {
@@ -93,7 +93,7 @@ class Split {
       uid: uid ?? this.uid,
       title: title ?? this.title,
       members: members ?? this.members,
-      cratedAt: cratedAt ?? this.cratedAt,
+      createdAt: createdAt ?? this.createdAt,
       totalCost: totalCost ?? this.totalCost,
       isSettled: isSettled ?? this.isSettled,
     );
@@ -104,7 +104,7 @@ class Split {
       'id': this.id,
       'uid': this.uid,
       'title': this.title,
-      'cratedAt': this.cratedAt,
+      'createdAt': this.createdAt.toIso8601String(),
       'totalCost': this.totalCost,
       'isSettled': this.isSettled,
     };
@@ -116,7 +116,7 @@ class Split {
       uid: map['uid'] as String,
       title: map['title'] as String,
       members: map['members'] as List<Member>,
-      cratedAt: map['cratedAt'] as DateTime,
+      createdAt: DateTime.parse(map['createdAt'] as String),
       totalCost: map['totalCost'] as int,
       isSettled: map['isSettled'] as bool,
     );

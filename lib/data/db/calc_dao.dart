@@ -23,7 +23,7 @@ class CalcDao {
       //メンバー情報登録
       batch.set(membersRef, member.toMap());
 
-      for (var payment in member.paymentList) {
+      for (var payment in member.payments) {
         //支払い情報への参照(membersのサブコレクション)
         var paymentRef = _db
             .collection("splits")
@@ -39,5 +39,34 @@ class CalcDao {
 
     //一連のデータ登録処理をコミット
     await batch.commit();
+  }
+
+  ///割り勘情報取得
+  Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>> getSplitsByUserId(
+      String uid) async {
+    final query =
+        await _db.collection("splits").where("uid", isEqualTo: uid).get();
+    return query.docs;
+  }
+
+  ///メンバー取得
+  Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>> getMembersByUserId(
+      String uid, String splitId) async {
+    final query =
+        await _db.collection("splits").doc(splitId).collection("members").get();
+    return query.docs;
+  }
+
+  ///支払い情報取得
+  Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>> getPaymentsByUserId(
+      String uid, String splitId, String memberId) async {
+    final query = await _db
+        .collection("splits")
+        .doc(splitId)
+        .collection("members")
+        .doc(memberId)
+        .collection("payments")
+        .get();
+    return query.docs;
   }
 }

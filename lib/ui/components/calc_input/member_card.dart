@@ -54,7 +54,7 @@ class MemberCard extends StatelessWidget {
                   height: MediaQuery.of(context).size.height / 2.3,
                   child: ListView.builder(
                     shrinkWrap: true,
-                    itemCount: vm.members[memberIndex].paymentList.length,
+                    itemCount: vm.members[memberIndex].payments.length,
                     itemBuilder: (context, index) => PaymentCard(
                       key: UniqueKey(),
                       memberIndex: memberIndex,

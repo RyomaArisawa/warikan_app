@@ -69,7 +69,10 @@ List<SingleChildWidget> viewModels = [
     create: (_) => HomeViewModel(),
   ),
   ChangeNotifierProvider(
-    create: (_) => CalcOverviewViewModel(),
+    create: (context) => CalcOverviewViewModel(
+      authRepository: context.read<AuthRepository>(),
+      calcRepository: context.read<CalcRepository>(),
+    ),
   ),
   ChangeNotifierProvider(
     create: (context) => CalcInputViewModel(

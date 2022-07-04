@@ -62,7 +62,7 @@ class CalcInputViewModel with ChangeNotifier {
     }
 
     _members.add(
-      Member(memberId: Uuid().v4(), name: _memberName, paymentList: []),
+      Member(memberId: Uuid().v4(), name: _memberName, payments: []),
     );
 
     //メンバー名初期化
@@ -79,7 +79,7 @@ class CalcInputViewModel with ChangeNotifier {
 
   ///新規支払い情報追加
   void addPayment(int memberIndex) {
-    _members[memberIndex].paymentList.add(
+    _members[memberIndex].payments.add(
           Payment.init(),
         );
     notifyListeners();
@@ -87,19 +87,19 @@ class CalcInputViewModel with ChangeNotifier {
 
   ///支払い情報削除
   void deletePayment(int memberIndex, int paymentIndex) {
-    _members[memberIndex].paymentList.removeAt(paymentIndex);
+    _members[memberIndex].payments.removeAt(paymentIndex);
     notifyListeners();
   }
 
   ///支払い項目名入力
   void inputPaymentItem(String item, int memberIndex, int paymentIndex) {
-    _members[memberIndex].paymentList[paymentIndex].item = item;
+    _members[memberIndex].payments[paymentIndex].item = item;
   }
 
   ///金額入力
   void inputCost(String cost, int memberIndex, int paymentIndex) {
     if (cost.isNotEmpty) {
-      _members[memberIndex].paymentList[paymentIndex].cost = int.parse(cost);
+      _members[memberIndex].payments[paymentIndex].cost = int.parse(cost);
     }
   }
 
@@ -154,8 +154,11 @@ class CalcInputViewModel with ChangeNotifier {
     );
   }
 
+  ///割り勘情報登録
   Future<void> insertSplit() async {
     await calcRepository.insertSplit(
         title: title, members: members, uid: authRepository.currentUser!.id);
   }
+
+  ///
 }

@@ -20,12 +20,11 @@ class PaymentDetailList extends StatelessWidget {
     return SizedBox(
       height: 200,
       child: ListView.builder(
-        itemCount: member.paymentList.length,
+        itemCount: member.payments.length,
         itemBuilder: (context, index) => Card(
           child: ListTile(
-            title: Text(
-                "￥${Formatter.numberFormatter.format(member.paymentList[index].cost)}"),
-            subtitle: Text(member.paymentList[index].item),
+            title: Text(Formatter.formatCost(member.payments[index].cost)),
+            subtitle: Text(member.payments[index].item),
           ),
         ),
       ),

@@ -7,14 +7,14 @@ class Member {
   //メンバー名
   final String name;
   //支払い情報リスト
-  List<Payment> paymentList;
+  List<Payment> payments;
 
 //<editor-fold desc="Data Methods">
   factory Member.init() {
     return Member(
       memberId: Uuid().v4(),
       name: "",
-      paymentList: [
+      payments: [
         Payment.init(),
       ],
     );
@@ -23,7 +23,7 @@ class Member {
   Member({
     required this.memberId,
     required this.name,
-    required this.paymentList,
+    required this.payments,
   });
 
   @override
@@ -33,29 +33,29 @@ class Member {
           runtimeType == other.runtimeType &&
           memberId == other.memberId &&
           name == other.name &&
-          paymentList == other.paymentList);
+          payments == other.payments);
 
   @override
-  int get hashCode => memberId.hashCode ^ name.hashCode ^ paymentList.hashCode;
+  int get hashCode => memberId.hashCode ^ name.hashCode ^ payments.hashCode;
 
   @override
   String toString() {
     return 'Member{' +
         ' memberId: $memberId,' +
         ' name: $name,' +
-        ' paymentList: $paymentList,' +
+        ' payments: $payments,' +
         '}';
   }
 
   Member copyWith({
     String? memberId,
     String? name,
-    List<Payment>? paymentList,
+    List<Payment>? payments,
   }) {
     return Member(
       memberId: memberId ?? this.memberId,
       name: name ?? this.name,
-      paymentList: paymentList ?? this.paymentList,
+      payments: payments ?? this.payments,
     );
   }
 
@@ -70,7 +70,7 @@ class Member {
     return Member(
       memberId: map['memberId'] as String,
       name: map['name'] as String,
-      paymentList: map['paymentList'] as List<Payment>,
+      payments: map['payments'] as List<Payment>,
     );
   }
 

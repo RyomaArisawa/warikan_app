@@ -29,7 +29,7 @@ class DisplayTotalCard extends StatelessWidget {
       ),
       child: Center(
         child: Text(
-          "Total: ￥${Formatter.numberFormatter.format(vm.split.totalCost)}",
+          "Total: ${Formatter.formatCost(vm.split.totalCost)}",
           style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
