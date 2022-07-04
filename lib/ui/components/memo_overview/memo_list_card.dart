@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
 import 'package:warikan_app/data/consts/animations.dart';
+import 'package:warikan_app/data/util/formatter.dart';
 import 'package:warikan_app/ui/components/common/custom_list_card.dart';
 import 'package:warikan_app/ui/viewmodels/memo_overview_viewmodel.dart';
 
@@ -23,7 +24,7 @@ class MemoListCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vm = context.watch<MemoOverviewViewModel>();
-    final memo = vm.memoList[memoIndex];
+    final memo = vm.memos[memoIndex];
 
     //長押しの際shakeさせるanimation_widget
     return AnimatedOpacity(
@@ -61,7 +62,7 @@ class MemoListCard extends StatelessWidget {
                   style: TextStyle(color: color, fontWeight: FontWeight.bold),
                 ),
                 subtitle: Text(
-                  memo.createdAt.toString(),
+                  Formatter.formatDate(memo.createdAt),
                   style: TextStyle(color: color),
                   overflow: TextOverflow.fade,
                 ),

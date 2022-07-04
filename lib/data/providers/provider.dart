@@ -1,8 +1,10 @@
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
+import 'package:warikan_app/data/db/calc_dao.dart';
 import 'package:warikan_app/data/db/memo_dao.dart';
 import 'package:warikan_app/data/db/user_dao.dart';
 import 'package:warikan_app/data/repositories/auth_repository.dart';
+import 'package:warikan_app/data/repositories/calc_repository.dart';
 import 'package:warikan_app/data/repositories/memo_repository.dart';
 import 'package:warikan_app/ui/viewmodels/calc_detail_viewmodel.dart';
 import 'package:warikan_app/ui/viewmodels/calc_input_viewmodel.dart';
@@ -29,6 +31,9 @@ List<SingleChildWidget> independentModels = [
   Provider(
     create: (context) => MemoDao(),
   ),
+  Provider(
+    create: (context) => CalcDao(),
+  ),
 ];
 
 List<SingleChildWidget> dependentModels = [
@@ -40,6 +45,11 @@ List<SingleChildWidget> dependentModels = [
   Provider(
     create: (context) => MemoRepository(
       memoDao: context.read<MemoDao>(),
+    ),
+  ),
+  Provider(
+    create: (context) => CalcRepository(
+      calcDao: context.read<CalcDao>(),
     ),
   )
 ];
@@ -59,10 +69,16 @@ List<SingleChildWidget> viewModels = [
     create: (_) => HomeViewModel(),
   ),
   ChangeNotifierProvider(
-    create: (_) => CalcOverviewViewModel(),
+    create: (context) => CalcOverviewViewModel(
+      authRepository: context.read<AuthRepository>(),
+      calcRepository: context.read<CalcRepository>(),
+    ),
   ),
   ChangeNotifierProvider(
-    create: (_) => CalcInputViewModel(),
+    create: (context) => CalcInputViewModel(
+      authRepository: context.read<AuthRepository>(),
+      calcRepository: context.read<CalcRepository>(),
+    ),
   ),
   ChangeNotifierProvider(
     create: (_) => CalcDetailViewModel(),

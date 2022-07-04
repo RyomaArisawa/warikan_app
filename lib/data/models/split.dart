@@ -1,38 +1,47 @@
 import 'package:uuid/uuid.dart';
+import 'package:warikan_app/data/mixins/visible.dart';
 
 import 'member.dart';
 
-class Split {
+class Split with Visible {
   //割り勘情報ID
-  String id;
+  final String id;
   //ユーザID;
-  String uid;
+  final String uid;
+  //タイトル
+  String title;
   //メンバーリスト
   List<Member> members;
   //作成日時
-  DateTime cratedAt;
+  DateTime createdAt;
   //支払い合計金額
   int totalCost;
+  //精算済みフラグ
+  bool isSettled;
 
 //<editor-fold desc="Data Methods">
   factory Split.init() {
     return Split(
       id: Uuid().v4(),
       uid: "",
+      title: "",
       members: [
         Member.init(),
       ],
-      cratedAt: DateTime.now(),
+      createdAt: DateTime.now(),
       totalCost: 0,
+      isSettled: false,
     );
   }
 
   Split({
     required this.id,
     required this.uid,
+    required this.title,
     required this.members,
-    required this.cratedAt,
+    required this.createdAt,
     required this.totalCost,
+    required this.isSettled,
   });
 
   @override
@@ -42,42 +51,52 @@ class Split {
           runtimeType == other.runtimeType &&
           id == other.id &&
           uid == other.uid &&
+          title == other.title &&
           members == other.members &&
-          cratedAt == other.cratedAt &&
-          totalCost == other.totalCost);
+          createdAt == other.createdAt &&
+          totalCost == other.totalCost &&
+          isSettled == other.isSettled);
 
   @override
   int get hashCode =>
       id.hashCode ^
       uid.hashCode ^
+      title.hashCode ^
       members.hashCode ^
-      cratedAt.hashCode ^
-      totalCost.hashCode;
+      createdAt.hashCode ^
+      totalCost.hashCode ^
+      isSettled.hashCode;
 
   @override
   String toString() {
     return 'Split{' +
         ' id: $id,' +
         ' uid: $uid,' +
+        ' title: $title,' +
         ' members: $members,' +
-        ' cratedAt: $cratedAt,' +
+        ' createdAt: $createdAt,' +
         ' totalCost: $totalCost,' +
+        ' isSettled: $isSettled,' +
         '}';
   }
 
   Split copyWith({
     String? id,
     String? uid,
+    String? title,
     List<Member>? members,
-    DateTime? cratedAt,
+    DateTime? createdAt,
     int? totalCost,
+    bool? isSettled,
   }) {
     return Split(
       id: id ?? this.id,
       uid: uid ?? this.uid,
+      title: title ?? this.title,
       members: members ?? this.members,
-      cratedAt: cratedAt ?? this.cratedAt,
+      createdAt: createdAt ?? this.createdAt,
       totalCost: totalCost ?? this.totalCost,
+      isSettled: isSettled ?? this.isSettled,
     );
   }
 
@@ -85,9 +104,10 @@ class Split {
     return {
       'id': this.id,
       'uid': this.uid,
-      'members': this.members,
-      'cratedAt': this.cratedAt,
+      'title': this.title,
+      'createdAt': this.createdAt.toIso8601String(),
       'totalCost': this.totalCost,
+      'isSettled': this.isSettled,
     };
   }
 
@@ -95,9 +115,11 @@ class Split {
     return Split(
       id: map['id'] as String,
       uid: map['uid'] as String,
+      title: map['title'] as String,
       members: map['members'] as List<Member>,
-      cratedAt: map['cratedAt'] as DateTime,
+      createdAt: DateTime.parse(map['createdAt'] as String),
       totalCost: map['totalCost'] as int,
+      isSettled: map['isSettled'] as bool,
     );
   }
 

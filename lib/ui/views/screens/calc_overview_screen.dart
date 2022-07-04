@@ -12,9 +12,18 @@ class CalcOverviewScreen extends StatelessWidget {
   /// CalcOverview画面
   const CalcOverviewScreen({Key? key}) : super(key: key);
 
+  static Route<dynamic> route() {
+    return MaterialPageRoute<dynamic>(
+      builder: (_) => const CalcOverviewScreen(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final vm = context.read<CalcOverviewViewModel>();
+    //ユーザーに紐づく割り勘情報の一覧を取得
+    Future(() => vm.getSplitsByUserId());
+
     return Scaffold(
       appBar: const CustomAppBar(
         title: ScreenLabels.calc,
@@ -23,11 +32,16 @@ class CalcOverviewScreen extends StatelessWidget {
         child: Scrollbar(
           radius: const Radius.circular(20),
           child: BottomShader(
-            child: ListView.builder(
-              itemCount: vm.splitList.length,
-              itemBuilder: (context, index) => CalcListCard(
-                onTap: () => vm.pushCalcDetail(context, index),
-              ),
+            child: Consumer<CalcOverviewViewModel>(
+              builder: (context, vm, _) {
+                return ListView.builder(
+                  itemCount: vm.splits.length,
+                  itemBuilder: (context, index) => CalcListCard(
+                    splitIndex: index,
+                    onTap: () => vm.pushCalcDetail(context, index),
+                  ),
+                );
+              },
             ),
           ),
         ),

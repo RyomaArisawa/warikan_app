@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:warikan_app/data/util/formatter.dart';
 import 'package:warikan_app/ui/components/calc_detail/payment_detail_list.dart';
 import 'package:warikan_app/ui/components/common/style/dark_blue_card.dart';
 import 'package:warikan_app/ui/viewmodels/calc_detail_viewmodel.dart';
@@ -25,10 +24,6 @@ class CalcDetailCard extends StatelessWidget {
         children: [
           Text(
             "Name: ${member.name}",
-            style: const TextStyle(color: Colors.white, fontSize: 20),
-          ),
-          Text(
-            "Payment: ${Formatter.numberFormatter.format(member.costPerMember)}",
             style: const TextStyle(color: Colors.white, fontSize: 20),
           ),
           PaymentDetailList(

@@ -1,16 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:uuid/uuid.dart';
 import 'package:warikan_app/data/consts/error_messages.dart';
 import 'package:warikan_app/data/models/member.dart';
 import 'package:warikan_app/data/models/payment.dart';
+import 'package:warikan_app/data/repositories/auth_repository.dart';
+import 'package:warikan_app/data/repositories/calc_repository.dart';
 import 'package:warikan_app/data/util/validator.dart';
 
 import '../../data/consts/animations.dart';
 import '../../data/consts/texts.dart';
 import '../components/common/custom_dialog.dart';
 import '../components/common/custom_toast.dart';
+import '../views/screens/calc_overview_screen.dart';
 
 class CalcInputViewModel with ChangeNotifier {
+  CalcInputViewModel({
+    required this.authRepository,
+    required this.calcRepository,
+  });
+  AuthRepository authRepository;
+  CalcRepository calcRepository;
+
   ///タイトル
   String _title = "";
   String get title => _title;
@@ -51,7 +62,7 @@ class CalcInputViewModel with ChangeNotifier {
     }
 
     _members.add(
-      Member(name: _memberName, costPerMember: 0, paymentList: []),
+      Member(memberId: Uuid().v4(), name: _memberName, payments: []),
     );
 
     //メンバー名初期化
@@ -68,7 +79,7 @@ class CalcInputViewModel with ChangeNotifier {
 
   ///新規支払い情報追加
   void addPayment(int memberIndex) {
-    _members[memberIndex].paymentList.add(
+    _members[memberIndex].payments.add(
           Payment.init(),
         );
     notifyListeners();
@@ -76,19 +87,19 @@ class CalcInputViewModel with ChangeNotifier {
 
   ///支払い情報削除
   void deletePayment(int memberIndex, int paymentIndex) {
-    _members[memberIndex].paymentList.removeAt(paymentIndex);
+    _members[memberIndex].payments.removeAt(paymentIndex);
     notifyListeners();
   }
 
   ///支払い項目名入力
   void inputPaymentItem(String item, int memberIndex, int paymentIndex) {
-    _members[memberIndex].paymentList[paymentIndex].item = item;
+    _members[memberIndex].payments[paymentIndex].item = item;
   }
 
   ///金額入力
   void inputCost(String cost, int memberIndex, int paymentIndex) {
     if (cost.isNotEmpty) {
-      _members[memberIndex].paymentList[paymentIndex].cost = int.parse(cost);
+      _members[memberIndex].payments[paymentIndex].cost = int.parse(cost);
     }
   }
 
@@ -123,10 +134,31 @@ class CalcInputViewModel with ChangeNotifier {
         ),
         primaryText: ButtonLabels.save,
         secondaryText: ButtonLabels.cancel,
-        onPressed: () {
-          _globalKey.currentState!.validate();
+        onPressed: () async {
+          if (_globalKey.currentState!.validate()) {
+            //割り勘情報登録
+            await insertSplit();
+
+            //ダイアログを閉じる
+            Navigator.pop(dialogContext);
+
+            //一覧画面へ遷移
+            Navigator.pushAndRemoveUntil(
+              context,
+              CalcOverviewScreen.route(),
+              (_) => false,
+            );
+          }
         },
       ),
     );
   }
+
+  ///割り勘情報登録
+  Future<void> insertSplit() async {
+    await calcRepository.insertSplit(
+        title: title, members: members, uid: authRepository.currentUser!.id);
+  }
+
+  ///
 }
