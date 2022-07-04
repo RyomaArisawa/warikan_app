@@ -12,6 +12,12 @@ class CalcOverviewScreen extends StatelessWidget {
   /// CalcOverview画面
   const CalcOverviewScreen({Key? key}) : super(key: key);
 
+  static Route<dynamic> route() {
+    return MaterialPageRoute<dynamic>(
+      builder: (_) => const CalcOverviewScreen(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final vm = context.read<CalcOverviewViewModel>();
