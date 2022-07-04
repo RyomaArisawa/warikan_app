@@ -41,16 +41,22 @@ class CalcRepository {
 
   ///割り勘情報
   Future<List<Split>> getSplitsByUserId(String uid) async {
-    /*割り勘情報ループ処理*/
+    /*
+    割り勘情報ループ処理
+    */
     final splits = <Split>[];
     final splitData = await calcDao.getSplitsByUserId(uid);
     for (var splitDatum in splitData) {
-      /*メンバー勘情報ループ処理*/
+      /*
+      メンバー勘情報ループ処理
+      */
       final members = <Member>[];
       final memberData =
           await calcDao.getMembersByUserId(uid, splitDatum.data()["id"]);
       for (var memberDatum in memberData) {
-        /*支払い勘情報ループ処理*/
+        /*
+        支払い勘情報ループ処理
+        */
         final payments = <Payment>[];
         final paymentData = await calcDao.getPaymentsByUserId(
             uid, splitDatum.data()["id"], memberDatum.data()["memberId"]);
