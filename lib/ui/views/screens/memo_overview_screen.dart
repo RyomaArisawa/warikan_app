@@ -19,7 +19,7 @@ class MemoOverviewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final vm = context.watch<MemoOverviewViewModel>();
+    final vm = context.read<MemoOverviewViewModel>();
     //ユーザーに紐づくメモの一覧を取得
     Future(() => vm.getMemoByUserId());
 
@@ -31,12 +31,16 @@ class MemoOverviewScreen extends StatelessWidget {
         child: Scrollbar(
           radius: const Radius.circular(20),
           child: BottomShader(
-            child: ListView.builder(
-              itemCount: vm.memoList.length,
-              itemBuilder: (context, index) => MemoListCard(
-                memoIndex: index,
-                onTap: () => vm.pushMemoDetail(context, index),
-              ),
+            child: Consumer<MemoOverviewViewModel>(
+              builder: (context, vm, _) {
+                return ListView.builder(
+                  itemCount: vm.memos.length,
+                  itemBuilder: (context, index) => MemoListCard(
+                    memoIndex: index,
+                    onTap: () => vm.pushMemoDetail(context, index),
+                  ),
+                );
+              },
             ),
           ),
         ),

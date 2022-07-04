@@ -1,8 +1,9 @@
 import 'package:uuid/uuid.dart';
+import 'package:warikan_app/data/mixins/visible.dart';
 
 import 'member.dart';
 
-class Split {
+class Split with Visible {
   //割り勘情報ID
   final String id;
   //ユーザID;

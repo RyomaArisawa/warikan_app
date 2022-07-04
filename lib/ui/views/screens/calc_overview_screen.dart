@@ -37,7 +37,7 @@ class CalcOverviewScreen extends StatelessWidget {
                 return ListView.builder(
                   itemCount: vm.splits.length,
                   itemBuilder: (context, index) => CalcListCard(
-                    split: vm.splits[index],
+                    splitIndex: index,
                     onTap: () => vm.pushCalcDetail(context, index),
                   ),
                 );

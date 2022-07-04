@@ -24,7 +24,7 @@ class MemoListCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vm = context.watch<MemoOverviewViewModel>();
-    final memo = vm.memoList[memoIndex];
+    final memo = vm.memos[memoIndex];
 
     //長押しの際shakeさせるanimation_widget
     return AnimatedOpacity(

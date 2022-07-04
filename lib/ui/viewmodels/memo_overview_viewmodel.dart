@@ -16,19 +16,20 @@ class MemoOverviewViewModel with ChangeNotifier {
   final AuthRepository authRepository;
   final MemoRepository memoRepository;
 
-  List<Memo> _memoList = [];
-  List<Memo> get memoList => _memoList;
+  List<Memo> _memos = [];
+  List<Memo> get memos => _memos;
 
   bool _isLongPressed = false;
   bool get isLongPressed => _isLongPressed;
 
+  ///メモ情報取得
   Future<void> getMemoByUserId() async {
-    _memoList =
+    _memos =
         await memoRepository.getMemoByUserId(authRepository.currentUser!.id);
     notifyListeners();
   }
 
-  //Memo Input画面へ遷移
+  ///Memo Input画面へ遷移
   pushMemoInput(BuildContext context) {
     final vm = context.read<MemoInputViewModel>();
     //新規作成状態を設定
@@ -39,25 +40,25 @@ class MemoOverviewViewModel with ChangeNotifier {
     );
   }
 
-  //Memo Detail画面へ遷移
+  ///Memo Detail画面へ遷移
   pushMemoDetail(BuildContext context, int index) {
     //MemoDetailViewModelへメモ情報を設定
     final vm = context.read<MemoDetailViewModel>();
-    vm.setMemo(_memoList[index]);
+    vm.setMemo(_memos[index]);
     //Memo Detail画面へプッシュ
     Navigator.push(context, MemoDetailScreen.route());
   }
 
-  //長押しされたかを判定するフラグを設定
+  ///長押しされたかを判定するフラグを設定
   void setLongPressed() {
     _isLongPressed = !_isLongPressed;
     notifyListeners();
   }
 
-  //メモを削除
+  ///メモ削除
   void deleteMemo(int memoIndex) async {
     //画面からフェードアウトさせる
-    _memoList[memoIndex].visible = false;
+    _memos[memoIndex].visible = false;
     notifyListeners();
 
     //フェードアウトするまで処理を300ミリ秒待たせる
@@ -66,7 +67,7 @@ class MemoOverviewViewModel with ChangeNotifier {
     );
 
     //リストからデータを削除し、再描画
-    _memoList.removeAt(memoIndex);
+    _memos.removeAt(memoIndex);
     notifyListeners();
   }
 }
