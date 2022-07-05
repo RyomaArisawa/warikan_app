@@ -29,6 +29,9 @@ class CalcOverviewViewModel with ChangeNotifier {
 
   ///割り勘情報削除
   void deleteSplit(int splitIndex) async {
+    //DBから削除
+    calcRepository.deleteSplit(_splits[splitIndex]);
+
     //画面からフェードアウトさせる
     _splits[splitIndex].visible = false;
     notifyListeners();
@@ -40,6 +43,12 @@ class CalcOverviewViewModel with ChangeNotifier {
 
     //リストからデータを削除し、再描画
     _splits.removeAt(splitIndex);
+
+    //割り勘情報が全て削除された場合長押し状態をOFFにする
+    if (_splits.isEmpty) {
+      _isLongPressed = false;
+    }
+
     notifyListeners();
   }
 

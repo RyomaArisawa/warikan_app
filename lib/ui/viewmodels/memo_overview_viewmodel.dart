@@ -57,6 +57,9 @@ class MemoOverviewViewModel with ChangeNotifier {
 
   ///メモ削除
   void deleteMemo(int memoIndex) async {
+    //DBからメモ情報削除
+    memoRepository.deleteMemo(_memos[memoIndex]);
+
     //画面からフェードアウトさせる
     _memos[memoIndex].visible = false;
     notifyListeners();
@@ -68,6 +71,9 @@ class MemoOverviewViewModel with ChangeNotifier {
 
     //リストからデータを削除し、再描画
     _memos.removeAt(memoIndex);
+    if (_memos.isEmpty) {
+      _isLongPressed = false;
+    }
     notifyListeners();
   }
 }

@@ -16,15 +16,11 @@ class CalcRepository {
   }) async {
     //合計金額算出
     var totalCost = 0;
-    members.forEach(
-      (member) {
-        member.payments.forEach(
-          (payment) {
-            totalCost = totalCost + payment.cost;
-          },
-        );
-      },
-    );
+    for (var member in members) {
+      for (var payment in member.payments) {
+        totalCost = totalCost + payment.cost;
+      }
+    }
 
     final split = Split(
       id: Uuid().v4(),
@@ -39,7 +35,7 @@ class CalcRepository {
     await calcDao.insertSplit(split);
   }
 
-  ///割り勘情報
+  ///割り勘情報取得
   Future<List<Split>> getSplitsByUserId(String uid) async {
     /*
     割り勘情報ループ処理
@@ -93,5 +89,9 @@ class CalcRepository {
       splits.add(split);
     }
     return splits;
+  }
+
+  Future<void> deleteSplit(Split split) async {
+    await calcDao.deleteSplit(split);
   }
 }

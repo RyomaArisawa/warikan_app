@@ -9,23 +9,23 @@ class CalcDao {
     //Firestoreバッチ処理のインスタンス作成
     var batch = _db.batch();
     //splitへの参照
-    var splitRef = _db.collection("splits").doc(split.id);
+    final splitRef = _db.collection("splits").doc(split.id);
     //割り勘情報登録
     batch.set(splitRef, split.toMap());
 
     for (var member in split.members) {
       //メンバーへの参照(splitsのサブコレクション)
-      var membersRef = _db
+      final memberRef = _db
           .collection("splits")
           .doc(split.id)
           .collection("members")
           .doc(member.memberId);
       //メンバー情報登録
-      batch.set(membersRef, member.toMap());
+      batch.set(memberRef, member.toMap());
 
       for (var payment in member.payments) {
         //支払い情報への参照(membersのサブコレクション)
-        var paymentRef = _db
+        final paymentRef = _db
             .collection("splits")
             .doc(split.id)
             .collection("members")
@@ -68,5 +68,44 @@ class CalcDao {
         .collection("payments")
         .get();
     return query.docs;
+  }
+
+  ///割り勘情報削除
+  Future<void> deleteSplit(Split split) async {
+    //Firestoreバッチ処理のインスタンス作成
+    var batch = _db.batch();
+    /*
+    割り勘情報削除
+    */
+    final splitRef = _db.collection("splits").doc(split.id);
+    batch.delete(splitRef);
+    /*
+    メンバー情報削除
+    */
+    for (var member in split.members) {
+      final memberRef = _db
+          .collection("splits")
+          .doc(split.id)
+          .collection("members")
+          .doc(member.memberId);
+      batch.delete(memberRef);
+      /*
+      支払い情報削除
+      */
+      for (var payment in member.payments) {
+        //splitへの参照
+        final paymentRef = _db
+            .collection("splits")
+            .doc(split.id)
+            .collection("members")
+            .doc(member.memberId)
+            .collection("payments")
+            .doc(payment.paymentId);
+        batch.delete(paymentRef);
+      }
+    }
+
+    //一連のデータ削除処理をコミット
+    await batch.commit();
   }
 }
