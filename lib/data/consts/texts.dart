@@ -34,9 +34,9 @@ class ButtonLabels {
 class LinkTexts {
   static const String askAccount = "Already have account?";
   static const String signInLink = "Sign In";
-  static const String forgetPass = "Forget password?";
+  static const String forgetPass = "Forgot password?";
   static const String resetPassLink = "Reset here";
-  static const String createAccount = "Do you want to create an account?";
+  static const String createAccount = "Do you want to create a new account?";
   static const String signUpLink = "Sign Up";
 }
 
@@ -52,16 +52,15 @@ class ScreenLabels {
 
 ///画面表示テキスト
 class DisplayTexts {
-  static const String signInAppTitle = "Warikan";
+  static const String signInAppTitle = "Split";
   static const String signInDescription =
-      "sign up or login to have fun exploring this APP";
+      "Please sign up or login to enjoy Split";
 }
 
 ///ダイアログ表示テキスト
 class DialogTexts {
   static const String titleCompleteDialog = "Split Complete";
-  static const String askCompleteDialog =
-      "Are you sure to make this completed?";
+  static const String askCompleteDialog = "Are you sure to make it completed?";
   static const String titleProfileDialog = "Save Profile";
   static const String askProfileDialog =
       "Are you sure to save your new profile?";

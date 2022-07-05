@@ -7,6 +7,7 @@ class MemoRepository {
   MemoRepository({required this.memoDao});
   MemoDao memoDao;
 
+  ///メモ情報登録
   Future<void> insertMemo(
       {required String title,
       required String content,
@@ -23,6 +24,7 @@ class MemoRepository {
     await memoDao.insertMemo(memo);
   }
 
+  ///メモ情報更新
   Future<void> updateMemo({
     required String title,
     required String content,
@@ -34,15 +36,20 @@ class MemoRepository {
     await memoDao.updateMemo(updatedMemo);
   }
 
+  ///メモ情報取得
   Future<List<Memo>> getMemoByUserId(String uid) async {
     final memos = <Memo>[];
 
     final queryData = await memoDao.getMemoByUserId(uid);
     //DBから取得した情報をMemoクラスへ変換
-    queryData.forEach((data) {
+    for (var data in queryData) {
       memos.add(Memo.fromMap(data.data()));
-    });
+    }
 
     return memos;
+  }
+
+  Future<void> deleteMemo(Memo memo) async {
+    await memoDao.deleteMemo(memo);
   }
 }
