@@ -22,7 +22,7 @@ class ButtonLabels {
   static const String addPayment = "Add Payment";
   static const String save = "Save";
   static const String edit = "Edit";
-  static const String complete = "Complete";
+  static const String settle = "Settle";
   static const String yes = "YES";
   static const String no = "NO";
   static const String profile = "Profile";
@@ -59,8 +59,9 @@ class DisplayTexts {
 
 ///ダイアログ表示テキスト
 class DialogTexts {
-  static const String titleCompleteDialog = "Split Complete";
-  static const String askCompleteDialog = "Are you sure to make it completed?";
+  static const String titleSaveDialog = "Save Split";
+  static const String titleSettleDialog = "Settle Split";
+  static const String askSettleDialog = "Are you sure to settle the split?";
   static const String titleProfileDialog = "Save Profile";
   static const String askProfileDialog =
       "Are you sure to save your new profile?";

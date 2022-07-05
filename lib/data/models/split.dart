@@ -9,15 +9,15 @@ class Split with Visible {
   //ユーザID;
   final String uid;
   //タイトル
-  String title;
+  final String title;
   //メンバーリスト
-  List<Member> members;
+  final List<Member> members;
   //作成日時
-  DateTime createdAt;
+  final DateTime createdAt;
   //支払い合計金額
-  int totalCost;
+  final int totalCost;
   //精算済みフラグ
-  bool isSettled;
+  final bool isSettled;
 
 //<editor-fold desc="Data Methods">
   factory Split.init() {

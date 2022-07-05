@@ -5,6 +5,7 @@ import 'package:warikan_app/data/models/split.dart';
 import 'package:warikan_app/data/repositories/auth_repository.dart';
 import 'package:warikan_app/data/repositories/calc_repository.dart';
 import 'package:warikan_app/ui/viewmodels/calc_detail_viewmodel.dart';
+import 'package:warikan_app/ui/viewmodels/calc_input_viewmodel.dart';
 import 'package:warikan_app/ui/views/screens/calc_detail_screen.dart';
 import 'package:warikan_app/ui/views/screens/calc_input_screen.dart';
 
@@ -71,6 +72,10 @@ class CalcOverviewViewModel with ChangeNotifier {
 
   ///CalcInput画面へ遷移
   void pushCalcInput(BuildContext context) {
+    final vm = context.read<CalcInputViewModel>();
+    //画面遷移時にState初期化
+    vm.stateClear();
+
     Navigator.push(
       context,
       CalcInputScreen.route(),

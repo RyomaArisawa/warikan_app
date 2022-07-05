@@ -47,15 +47,14 @@ class CalcRepository {
       メンバー勘情報ループ処理
       */
       final members = <Member>[];
-      final memberData =
-          await calcDao.getMembersByUserId(uid, splitDatum.data()["id"]);
+      final memberData = await calcDao.getMembers(splitDatum.data()["id"]);
       for (var memberDatum in memberData) {
         /*
         支払い勘情報ループ処理
         */
         final payments = <Payment>[];
-        final paymentData = await calcDao.getPaymentsByUserId(
-            uid, splitDatum.data()["id"], memberDatum.data()["memberId"]);
+        final paymentData = await calcDao.getPayments(
+            splitDatum.data()["id"], memberDatum.data()["memberId"]);
         for (var paymentDatum in paymentData) {
           //DBから取得した情報をmemberクラスへ変換
           final payment = Payment(
@@ -91,7 +90,27 @@ class CalcRepository {
     return splits;
   }
 
+  ///割り勘情報削除
   Future<void> deleteSplit(Split split) async {
     await calcDao.deleteSplit(split);
+  }
+
+  Future<void> updateSplit({
+    required Split split,
+    required String title,
+    required List<Member> members,
+    required String uid,
+  }) async {
+    //合計金額算出
+    var totalCost = 0;
+    for (var member in members) {
+      for (var payment in member.payments) {
+        totalCost = totalCost + payment.cost;
+      }
+    }
+  }
+
+  Future<void> settleSplit(Split split) async {
+    await calcDao.updateSplit(split);
   }
 }

@@ -50,16 +50,16 @@ class CalcDao {
   }
 
   ///メンバー取得
-  Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>> getMembersByUserId(
-      String uid, String splitId) async {
+  Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>> getMembers(
+      String splitId) async {
     final query =
         await _db.collection("splits").doc(splitId).collection("members").get();
     return query.docs;
   }
 
   ///支払い情報取得
-  Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>> getPaymentsByUserId(
-      String uid, String splitId, String memberId) async {
+  Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>> getPayments(
+      String splitId, String memberId) async {
     final query = await _db
         .collection("splits")
         .doc(splitId)
@@ -107,5 +107,10 @@ class CalcDao {
 
     //一連のデータ削除処理をコミット
     await batch.commit();
+  }
+
+  ///割り勘精算
+  Future<void> updateSplit(Split split) async {
+    await _db.collection("splits").doc(split.id).update(split.toMap());
   }
 }

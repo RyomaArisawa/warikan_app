@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:uuid/uuid.dart';
+import 'package:warikan_app/data/consts/enum.dart';
 import 'package:warikan_app/data/consts/error_messages.dart';
 import 'package:warikan_app/data/models/member.dart';
 import 'package:warikan_app/data/models/payment.dart';
+import 'package:warikan_app/data/models/split.dart';
 import 'package:warikan_app/data/repositories/auth_repository.dart';
 import 'package:warikan_app/data/repositories/calc_repository.dart';
-import 'package:warikan_app/data/util/validator.dart';
+import 'package:warikan_app/data/util/dialog_helper.dart';
 
 import '../../data/consts/animations.dart';
-import '../../data/consts/texts.dart';
-import '../components/common/custom_dialog.dart';
 import '../components/common/custom_toast.dart';
-import '../views/screens/calc_overview_screen.dart';
 
 class CalcInputViewModel with ChangeNotifier {
   CalcInputViewModel({
@@ -21,6 +20,14 @@ class CalcInputViewModel with ChangeNotifier {
   });
   AuthRepository authRepository;
   CalcRepository calcRepository;
+
+  ///新規作成 OR 編集
+  InputMode _inputMode = InputMode.create;
+  InputMode get inputMode => _inputMode;
+
+  ///割り勘情報(編集モードのみ使用)
+  Split? _split;
+  Split? get split => _split;
 
   ///タイトル
   String _title = "";
@@ -31,7 +38,7 @@ class CalcInputViewModel with ChangeNotifier {
   String get memberName => _memberName;
 
   ///割り勘対象メンバー
-  final List<Member> _members = [];
+  List<Member> _members = [];
   List<Member> get members => _members;
 
   ///メンバー名入力
@@ -117,48 +124,44 @@ class CalcInputViewModel with ChangeNotifier {
 
   ///保存ダイアログ表示
   showSaveDialog(BuildContext context) {
-    final _globalKey = GlobalKey<FormState>();
-    showDialog(
+    DialogHelper.showCalcSaveDialog(
       context: context,
-      builder: (dialogContext) => CustomDialog(
-        title: DialogTexts.titleCompleteDialog,
-        content: Form(
-          key: _globalKey,
-          child: TextFormField(
-            decoration: const InputDecoration(
-              hintText: FormLabels.splitTitle,
-            ),
-            onChanged: inputTitle,
-            validator: Validator.titleValidator,
-          ),
-        ),
-        primaryText: ButtonLabels.save,
-        secondaryText: ButtonLabels.cancel,
-        onPressed: () async {
-          if (_globalKey.currentState!.validate()) {
-            //割り勘情報登録
-            await insertSplit();
-
-            //ダイアログを閉じる
-            Navigator.pop(dialogContext);
-
-            //一覧画面へ遷移
-            Navigator.pushAndRemoveUntil(
-              context,
-              CalcOverviewScreen.route(),
-              (_) => false,
-            );
-          }
-        },
-      ),
+      initialValue: _title,
+      formFunction: inputTitle,
+      saveFunction: saveSplit,
     );
   }
 
-  ///割り勘情報登録
-  Future<void> insertSplit() async {
-    await calcRepository.insertSplit(
-        title: title, members: members, uid: authRepository.currentUser!.id);
+  ///割り勘情報保存
+  Future<void> saveSplit() async {
+    if (_inputMode == InputMode.create) {
+      await calcRepository.insertSplit(
+          title: title, members: members, uid: authRepository.currentUser!.id);
+    } else {
+      //await calcRepository.updateSplit();
+    }
+    //State初期化
+    stateClear();
   }
 
-  ///
+  ///入力モード切り替え
+  void setInputMode(InputMode inputMode) {
+    _inputMode = inputMode;
+  }
+
+  ///編集対象割り勘情報設定
+  void setSplit(Split split) {
+    _split = split;
+    _members = split.members;
+    _title = split.title;
+  }
+
+  ///State初期化
+  void stateClear() {
+    _inputMode = InputMode.create;
+    _split = null;
+    _title = "";
+    _memberName = "";
+    _members = [];
+  }
 }
