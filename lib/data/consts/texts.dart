@@ -28,6 +28,8 @@ class ButtonLabels {
   static const String profile = "Profile";
   static const String toolbar = "Toolbar";
   static const String cancel = "Cancel";
+  static const String sortByDate = "Sort by date";
+  static const String sortBySettled = "Sort by settled";
 }
 
 ///リンクテキスト関連

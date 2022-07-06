@@ -24,6 +24,7 @@ class CalcDetailViewModel with ChangeNotifier {
     DialogHelper.showSettleDialog(context: context, onPressed: settleSplit);
   }
 
+  ///CalcInput画面へ遷移
   void pushCalcInput(BuildContext context) {
     final vm = context.read<CalcInputViewModel>();
     //編集状態に設定
@@ -33,8 +34,8 @@ class CalcDetailViewModel with ChangeNotifier {
     Navigator.push(context, CalcInputScreen.route());
   }
 
+  ///割り勘精算
   void settleSplit() {
-    final split = _split.copyWith(isSettled: true);
     calcRepository.settleSplit(split);
   }
 }

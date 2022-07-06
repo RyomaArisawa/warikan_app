@@ -9,7 +9,6 @@ import 'package:warikan_app/ui/viewmodels/calc_overview_viewmodel.dart';
 
 class CalcListCard extends StatelessWidget {
   ///CalcOverview画面のリストタイルコンポーネント
-  //暫定的コンストラクタ
   const CalcListCard({
     Key? key,
     required this.splitIndex,

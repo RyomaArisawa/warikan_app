@@ -31,10 +31,10 @@ class DialogHelper {
         ),
         primaryText: ButtonLabels.save,
         secondaryText: ButtonLabels.cancel,
-        onPressed: () {
+        onPressed: () async {
           if (_globalKey.currentState!.validate()) {
             //割り勘情報登録
-            saveFunction();
+            await saveFunction();
 
             //ダイアログを閉じる
             Navigator.pop(dialogContext);

@@ -109,8 +109,74 @@ class CalcDao {
     await batch.commit();
   }
 
-  ///割り勘精算
+  ///割り勘情報更新
   Future<void> updateSplit(Split split) async {
+    //Firestoreバッチ処理のインスタンス作成
+    var batch = _db.batch();
+    //splitへの参照
+    final splitRef = _db.collection("splits").doc(split.id);
+    batch.update(splitRef, split.toMap());
+
+    for (var member in split.members) {
+      //メンバーへの参照(splitsのサブコレクション)
+      final memberRef = _db
+          .collection("splits")
+          .doc(split.id)
+          .collection("members")
+          .doc(member.memberId);
+
+      final memberSnapshot = await _db
+          .collection("splits")
+          .doc(split.id)
+          .collection("members")
+          .doc(member.memberId)
+          .get();
+
+      //メンバーがすでに登録されているかチェック
+      if (memberSnapshot.exists) {
+        //メンバー情報更新
+        batch.update(memberRef, member.toMap());
+      } else {
+        //メンバー情報登録
+        batch.set(memberRef, member.toMap());
+      }
+
+      for (var payment in member.payments) {
+        //支払い情報への参照(membersのサブコレクション)
+        final paymentRef = _db
+            .collection("splits")
+            .doc(split.id)
+            .collection("members")
+            .doc(member.memberId)
+            .collection("payments")
+            .doc(payment.paymentId);
+
+        final paymentSnapshot = await _db
+            .collection("splits")
+            .doc(split.id)
+            .collection("members")
+            .doc(member.memberId)
+            .collection("payments")
+            .doc(payment.paymentId)
+            .get();
+
+        //支払い情報がすでに登録されているかチェック
+        if (paymentSnapshot.exists) {
+          //支払い情報更新
+          batch.update(paymentRef, payment.toMap());
+        } else {
+          //支払い情報新規登録
+          batch.set(paymentRef, payment.toMap());
+        }
+      }
+    }
+
+    //一連のデータ登録処理をコミット
+    await batch.commit();
+  }
+
+  ///割り勘情報更新（メンバー・支払い項目を除く）
+  Future<void> updateOnlySplit(Split split) async {
     await _db.collection("splits").doc(split.id).update(split.toMap());
   }
 }

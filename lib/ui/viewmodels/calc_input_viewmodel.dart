@@ -128,18 +128,22 @@ class CalcInputViewModel with ChangeNotifier {
       context: context,
       initialValue: _title,
       formFunction: inputTitle,
-      saveFunction: saveSplit,
+      saveFunction: () => saveSplit(context),
     );
   }
 
   ///割り勘情報保存
-  Future<void> saveSplit() async {
+  Future<void> saveSplit(BuildContext context) async {
     if (_inputMode == InputMode.create) {
+      //新規登録
       await calcRepository.insertSplit(
           title: title, members: members, uid: authRepository.currentUser!.id);
     } else {
-      //await calcRepository.updateSplit();
+      //更新
+      await calcRepository.updateSplit(
+          split: _split!, title: _title, members: _members);
     }
+
     //State初期化
     stateClear();
   }

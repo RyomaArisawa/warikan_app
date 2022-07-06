@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:warikan_app/data/consts/custom_colors.dart';
+import 'package:warikan_app/data/consts/enum.dart';
 import 'package:warikan_app/data/consts/texts.dart';
 import 'package:warikan_app/ui/components/calc_overview/calc_list_card.dart';
 import 'package:warikan_app/ui/components/common/custom_floating_action_button.dart';
@@ -26,8 +27,21 @@ class CalcOverviewScreen extends StatelessWidget {
     Future(() => vm.getSplitsByUserId());
 
     return Scaffold(
-      appBar: const CustomAppBar(
+      appBar: CustomAppBar(
         title: ScreenLabels.calc,
+        actions: [
+          PopupMenuButton(
+            onSelected: vm.sortSelected,
+            itemBuilder: (BuildContext context) => <PopupMenuEntry<SortOption>>[
+              const PopupMenuItem(
+                  child: Text(ButtonLabels.sortByDate), value: SortOption.date),
+              const PopupMenuItem(
+                child: Text(ButtonLabels.sortBySettled),
+                value: SortOption.isSettle,
+              ),
+            ],
+          ),
+        ],
       ),
       body: BodyBackground(
         child: Scrollbar(
