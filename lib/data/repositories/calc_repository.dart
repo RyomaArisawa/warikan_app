@@ -23,11 +23,19 @@ class CalcRepository {
       }
     }
 
+    //支払い項目名のないpaymentは登録しない
+    var filteredMembers = <Member>[];
+    for (var member in members) {
+      var filteredPayments =
+          member.payments.where((payment) => payment.item.isNotEmpty).toList();
+      filteredMembers.add(member.copyWith(payments: filteredPayments));
+    }
+
     final split = Split(
       id: Uuid().v4(),
       uid: uid,
       title: title,
-      members: members,
+      members: filteredMembers,
       createdAt: DateTime.now(),
       totalCost: totalCost,
       isSettled: false,
@@ -115,10 +123,13 @@ class CalcRepository {
         totalCost = totalCost + payment.cost;
       }
     }
+    //古い情報を削除
+    await calcDao.deleteSplit(split);
 
     final updatedSplit =
         split.copyWith(title: title, members: members, totalCost: totalCost);
-    await calcDao.updateSplit(updatedSplit);
+    //更新後割り勘情報を登録
+    await calcDao.insertSplit(updatedSplit);
   }
 
   ///割り勘精算

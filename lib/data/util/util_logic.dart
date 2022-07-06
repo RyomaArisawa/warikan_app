@@ -11,7 +11,7 @@ class UtilLogic {
 
   static sortDateDesc(List list) {
     return list
-        .sort((current, next) => current.createdAt.compareTo(next.createdAt));
+        .sort((current, next) => -current.createdAt.compareTo(next.createdAt));
   }
 
   static sortIsSettle(List<Split> list) {

@@ -156,7 +156,12 @@ class CalcInputViewModel with ChangeNotifier {
   ///編集対象割り勘情報設定
   void setSplit(Split split) {
     _split = split;
-    _members = split.members;
+
+    for (var member in split.members) {
+      var copiedMember = member.copyWith(payments: [...member.payments]);
+      _members.add(copiedMember);
+    }
+
     _title = split.title;
   }
 

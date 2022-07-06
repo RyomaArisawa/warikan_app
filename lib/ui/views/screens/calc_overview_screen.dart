@@ -55,7 +55,7 @@ class CalcOverviewScreen extends StatelessWidget {
                     splitIndex: index,
                     onTap: () => vm.pushCalcDetail(context, index),
                     backgroundColor: vm.splits[index].isSettled
-                        ? Colors.black45
+                        ? CustomColors.grey
                         : CustomColors.indigo,
                   ),
                 );
