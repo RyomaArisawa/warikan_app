@@ -81,7 +81,9 @@ List<SingleChildWidget> viewModels = [
     ),
   ),
   ChangeNotifierProvider(
-    create: (_) => CalcDetailViewModel(),
+    create: (context) => CalcDetailViewModel(
+      calcRepository: context.read<CalcRepository>(),
+    ),
   ),
   ChangeNotifierProvider(
     create: (_) => SettingsViewModel(),

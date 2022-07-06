@@ -9,17 +9,18 @@ import 'package:warikan_app/ui/viewmodels/calc_overview_viewmodel.dart';
 
 class CalcListCard extends StatelessWidget {
   ///CalcOverview画面のリストタイルコンポーネント
-  //暫定的コンストラクタ
-  const CalcListCard(
-      {Key? key,
-      required this.splitIndex,
-      this.color = Colors.white,
-      required this.onTap})
-      : super(key: key);
+  const CalcListCard({
+    Key? key,
+    required this.splitIndex,
+    this.color = Colors.white,
+    required this.onTap,
+    required this.backgroundColor,
+  }) : super(key: key);
 
   final int splitIndex;
   final Color color;
   final VoidCallback onTap;
+  final Color backgroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +43,7 @@ class CalcListCard extends StatelessWidget {
             CustomListCard(
               onTap: onTap,
               onLongPress: vm.setLongPressed,
+              color: backgroundColor,
               child: ListTile(
                 leading: Container(
                   margin: const EdgeInsets.symmetric(

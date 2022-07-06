@@ -17,42 +17,42 @@ class MemoInputViewModel with ChangeNotifier {
   AuthRepository authRepository;
   MemoRepository memoRepository;
 
-  //新規作成 OR 編集
+  ///新規作成 OR 編集
   InputMode _inputMode = InputMode.create;
   InputMode get inputMode => _inputMode;
 
-  //メモ情報
+  ///メモ情報
   Memo? _memo;
   Memo? get memo => _memo;
 
-  //タイトル
+  ///タイトル
   String _title = "";
   String get title => _title;
 
-  //toolbarが表示されているかを判別する
+  ///toolbarが表示されているかを判別する
   bool _isShowToolbar = false;
   bool get isShowToolbar => _isShowToolbar;
 
-  //toolbarを表示する矢印アイコンの向きを制御
+  ///toolbarを表示する矢印アイコンの向きを制御
   double _turns = 0.0;
   double get turns => _turns;
 
-  //タイトル入力
+  ///タイトル入力
   void inputTitle(String title) {
     _title = title;
   }
 
-  //編集画面の時に編集対象のメモ情報を設定
+  ///編集画面の時に編集対象のメモ情報を設定
   void setMemo(Memo memo) {
     _memo = memo;
   }
 
-  //画面遷移時に新規作成か編集かの状態を設定
+  ///画面遷移時に新規作成か編集かの状態を設定
   void setInputMode(InputMode inputMode) {
     _inputMode = inputMode;
   }
 
-  //toolbarの表示・非表示を切り替え
+  ///toolbarの表示・非表示を切り替え
   void showToolbar(AnimationController animationController) {
     _isShowToolbar = !_isShowToolbar;
 
@@ -70,7 +70,7 @@ class MemoInputViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  //メモを保存
+  ///メモを保存
   void saveMemo(BuildContext context, GlobalKey<FormState> globalKey,
       QuillController quillController) async {
     if (globalKey.currentState!.validate()) {
@@ -106,7 +106,7 @@ class MemoInputViewModel with ChangeNotifier {
     return Validator.titleValidator(title);
   }
 
-  //状態変数を初期化
+  ///状態変数を初期化
   void _stateClear() {
     _memo = null;
     _title = "";

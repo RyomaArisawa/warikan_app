@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:warikan_app/data/consts/custom_colors.dart';
 import 'package:warikan_app/data/consts/texts.dart';
 import 'package:warikan_app/ui/components/calc_detail/calc_detail_card.dart';
 import 'package:warikan_app/ui/components/calc_detail/display_total_card.dart';
-import 'package:warikan_app/ui/components/common/custom_button.dart';
+import 'package:warikan_app/ui/components/common/custom_floating_action_button.dart';
 import 'package:warikan_app/ui/components/common/cutom_app_bar.dart';
 import 'package:warikan_app/ui/components/common/style/body_background.dart';
 import 'package:warikan_app/ui/viewmodels/calc_detail_viewmodel.dart';
@@ -31,8 +30,18 @@ class _CalcDetailScreenState extends State<CalcDetailScreen> {
   Widget build(BuildContext context) {
     final vm = context.read<CalcDetailViewModel>();
     return Scaffold(
-      appBar: const CustomAppBar(
+      appBar: CustomAppBar(
         title: ScreenLabels.calc,
+        actions: [
+          Visibility(
+            visible: !vm.split.isSettled,
+            child: IconButton(
+              onPressed: () => vm.showSettleDialog(context),
+              icon: const Icon(Icons.done),
+              tooltip: ButtonLabels.settle,
+            ),
+          ),
+        ],
       ),
       body: BodyBackground(
         child: Column(
@@ -55,25 +64,15 @@ class _CalcDetailScreenState extends State<CalcDetailScreen> {
                 },
               ),
             ),
-            SmoothPageIndicator(
-              controller: controller,
-              count: vm.split.members.length,
-              effect: const ScrollingDotsEffect(
-                dotHeight: 12,
-                dotWidth: 12,
-                activeDotColor: CustomColors.darkBlue,
-                dotColor: Colors.grey,
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            CustomButton(
-              height: 40,
-              text: ButtonLabels.complete,
-              onPressed: () => vm.showCompleteDialog(context),
-            ),
           ],
+        ),
+      ),
+      floatingActionButton: Visibility(
+        visible: !vm.split.isSettled,
+        child: CustomFloatingActionButton(
+          onPressed: () => vm.pushCalcInput(context),
+          buttonLabel: ButtonLabels.edit.toUpperCase(),
+          iconData: IconlyLight.edit,
         ),
       ),
     );
