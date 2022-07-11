@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:warikan_app/ui/components/common/custom_button.dart';
-import 'package:warikan_app/ui/viewmodels/calc_input_viewmodel.dart';
+import 'package:warikan_app/ui/viewmodels/calc_detail_viewmodel.dart';
 
 class MemberNameButtons extends StatelessWidget {
   const MemberNameButtons({Key? key, required this.controller})
@@ -11,7 +11,7 @@ class MemberNameButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final vm = context.watch<CalcInputViewModel>();
+    final vm = context.watch<CalcDetailViewModel>();
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
@@ -23,14 +23,14 @@ class MemberNameButtons extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               child: ButtonBar(
                 buttonPadding: const EdgeInsets.only(left: 6),
-                children: vm.members
+                children: vm.split.members
                     .map(
                       (member) => CustomButton(
                         width: MediaQuery.of(context).size.width / 3.4,
                         height: 40,
                         text: member.name,
                         onPressed: () {
-                          vm.members.asMap().forEach((index, e) {
+                          vm.split.members.asMap().forEach((index, e) {
                             if (e.name == member.name) {
                               vm.scrollPage(index, controller);
                               return;

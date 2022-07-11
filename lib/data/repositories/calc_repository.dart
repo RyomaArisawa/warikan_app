@@ -15,14 +15,6 @@ class CalcRepository {
     required List<Member> members,
     required String uid,
   }) async {
-    //合計金額算出
-    var totalCost = 0;
-    for (var member in members) {
-      for (var payment in member.payments) {
-        totalCost = totalCost + payment.cost;
-      }
-    }
-
     //支払い項目名のないpaymentは登録しない
     var filteredMembers = <Member>[];
     for (var member in members) {
@@ -37,7 +29,7 @@ class CalcRepository {
       title: title,
       members: filteredMembers,
       createdAt: DateTime.now(),
-      totalCost: totalCost,
+      totalCost: UtilLogic.calcTotalCost(members),
       isSettled: false,
     );
 
@@ -116,18 +108,15 @@ class CalcRepository {
     required String title,
     required List<Member> members,
   }) async {
-    //合計金額算出
-    var totalCost = 0;
-    for (var member in members) {
-      for (var payment in member.payments) {
-        totalCost = totalCost + payment.cost;
-      }
-    }
     //古い情報を削除
     await calcDao.deleteSplit(split);
 
-    final updatedSplit =
-        split.copyWith(title: title, members: members, totalCost: totalCost);
+    final updatedSplit = split.copyWith(
+      title: title,
+      members: members,
+      totalCost: UtilLogic.calcTotalCost(members),
+    );
+
     //更新後割り勘情報を登録
     await calcDao.insertSplit(updatedSplit);
   }
