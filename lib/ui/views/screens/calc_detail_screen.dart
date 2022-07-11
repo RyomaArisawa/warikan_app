@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:warikan_app/data/consts/texts.dart';
 import 'package:warikan_app/ui/components/calc_detail/calc_detail_card.dart';
 import 'package:warikan_app/ui/components/calc_detail/display_total_card.dart';
+import 'package:warikan_app/ui/components/calc_detail/member_name_buttons.dart';
 import 'package:warikan_app/ui/components/common/custom_floating_action_button.dart';
 import 'package:warikan_app/ui/components/common/cutom_app_bar.dart';
 import 'package:warikan_app/ui/components/common/style/body_background.dart';
@@ -48,6 +49,10 @@ class _CalcDetailScreenState extends State<CalcDetailScreen> {
           children: [
             const DisplayTotalCard(),
             const SizedBox(
+              height: 5,
+            ),
+            MemberNameButtons(controller: controller),
+            const SizedBox(
               height: 10,
             ),
             Expanded(
@@ -64,6 +69,9 @@ class _CalcDetailScreenState extends State<CalcDetailScreen> {
                 },
               ),
             ),
+            const SizedBox(
+              height: 50,
+            )
           ],
         ),
       ),

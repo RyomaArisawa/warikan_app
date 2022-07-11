@@ -57,6 +57,7 @@ class DisplayTexts {
   static const String signInAppTitle = "Split";
   static const String signInDescription =
       "Please sign up or login to enjoy Split";
+  static const String noDebt = "No Debt";
 }
 
 ///ダイアログ表示テキスト

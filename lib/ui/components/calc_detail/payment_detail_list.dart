@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:warikan_app/data/util/formatter.dart';
+import 'package:warikan_app/ui/components/common/style/bottom_shader.dart';
 import 'package:warikan_app/ui/viewmodels/calc_detail_viewmodel.dart';
 
 class PaymentDetailList extends StatelessWidget {
@@ -18,13 +19,15 @@ class PaymentDetailList extends StatelessWidget {
     final member = vm.split.members[memberIndex];
 
     return SizedBox(
-      height: 200,
-      child: ListView.builder(
-        itemCount: member.payments.length,
-        itemBuilder: (context, index) => Card(
-          child: ListTile(
-            title: Text(Formatter.formatCost(member.payments[index].cost)),
-            subtitle: Text(member.payments[index].item),
+      height: 170,
+      child: BottomShader(
+        child: ListView.builder(
+          itemCount: member.payments.length,
+          itemBuilder: (context, index) => Card(
+            child: ListTile(
+              title: Text(member.payments[index].item),
+              subtitle: Text(Formatter.formatCost(member.payments[index].cost)),
+            ),
           ),
         ),
       ),
