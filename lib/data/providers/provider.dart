@@ -86,7 +86,9 @@ List<SingleChildWidget> viewModels = [
     ),
   ),
   ChangeNotifierProvider(
-    create: (_) => SettingsViewModel(),
+    create: (context) => SettingsViewModel(
+      authRepository: context.read<AuthRepository>(),
+    ),
   ),
   ChangeNotifierProvider(
     create: (_) => ProfileViewModel(),

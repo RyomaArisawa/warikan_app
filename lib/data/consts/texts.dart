@@ -30,6 +30,7 @@ class ButtonLabels {
   static const String cancel = "Cancel";
   static const String sortByDate = "Sort by date";
   static const String sortBySettled = "Sort by settled";
+  static const String signOut = "Sign Out";
 }
 
 ///リンクテキスト関連
@@ -38,7 +39,7 @@ class LinkTexts {
   static const String signInLink = "Sign In";
   static const String forgetPass = "Forgot password?";
   static const String resetPassLink = "Reset here";
-  static const String createAccount = "Do you want to create a new account?";
+  static const String createAccount = "Create a new account?";
   static const String signUpLink = "Sign Up";
 }
 

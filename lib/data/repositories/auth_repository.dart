@@ -7,10 +7,12 @@ class AuthRepository {
   AuthRepository({required this.userDao});
   final UserDao userDao;
   final _firebaseAuth = firebase.FirebaseAuth.instance;
-  //現在のユーザー
-  User? currentUser;
 
-  //サインイン
+  ///現在のユーザー
+  User? _currentUser;
+  User? get currentUser => _currentUser;
+
+  ///サインイン
   Future<void> signIn(String email, String password) async {
     try {
       //サインインを実行
@@ -22,14 +24,14 @@ class AuthRepository {
 
       //ログイン中ユーザーを設定
       if (userCredential.user?.uid != null) {
-        currentUser = await userDao.getUserById(userCredential.user!.uid);
+        _currentUser = await userDao.getUserById(userCredential.user!.uid);
       }
     } catch (error) {
       throw Messenger.authErrorMsg(error.toString());
     }
   }
 
-  //サインアップ
+  ///サインアップ
   Future<void> signUp(String name, String email, String password) async {
     try {
       //サインアップ実行
@@ -52,9 +54,15 @@ class AuthRepository {
       await userDao.registerUser(user);
 
       //ログイン中ユーザーを設定
-      currentUser = user;
+      _currentUser = user;
     } catch (error) {
       throw Messenger.authErrorMsg(error.toString());
     }
+  }
+
+  ///サインアウト
+  Future<void> signOut() async {
+    await _firebaseAuth.signOut();
+    _currentUser = null;
   }
 }
