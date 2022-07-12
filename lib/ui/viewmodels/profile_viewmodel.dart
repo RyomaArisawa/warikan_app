@@ -1,39 +1,23 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:warikan_app/data/consts/error_messages.dart';
-import 'package:warikan_app/data/consts/texts.dart';
-import 'package:warikan_app/ui/components/common/custom_dialog.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:warikan_app/data/consts/animations.dart';
+import 'package:warikan_app/data/repositories/auth_repository.dart';
+import 'package:warikan_app/data/util/validator.dart';
+import 'package:warikan_app/ui/components/common/custom_toast.dart';
+import 'package:warikan_app/ui/views/screens/sign_in_screen.dart';
 
 class ProfileViewModel with ChangeNotifier {
-  File? _image;
-  File? get image => _image;
+  ProfileViewModel({required this.authRepository});
+  AuthRepository authRepository;
 
   String _name = "";
   String get name => _name;
 
-  String _email = "";
-  String get email => _email;
-
   String _pass = "";
   String get pass => _pass;
 
-  void setImage() async {
-    final picker = ImagePicker();
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      _image = File(pickedFile.path);
-      notifyListeners();
-    }
-  }
-
   void inputName(String name) {
     _name = name;
-  }
-
-  void inputEmail(String email) {
-    _email = email;
   }
 
   void inputPass(String pass) {
@@ -42,31 +26,36 @@ class ProfileViewModel with ChangeNotifier {
 
   /// validator
   String? nameValidator(String? name) {
-    return name == null || name.isEmpty
-        ? "Name ${ValidationError.blank}"
-        : null;
-  }
-
-  String? emailValidator(String? email) {
-    return email == null || email.isEmpty
-        ? "Email Address ${ValidationError.blank}"
-        : null;
+    return Validator.nameValidator(name);
   }
 
   String? passValidator(String? pass) {
-    return pass == null || pass.isEmpty
-        ? "Password ${ValidationError.blank}"
-        : null;
+    return Validator.passValidator(pass);
   }
 
-  showSaveDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (_) => CustomDialog(
-        title: DialogTexts.titleProfileDialog,
-        content: const Text(DialogTexts.askProfileDialog),
-        onPressed: () {},
-      ),
-    );
+  ///ユーザー情報更新
+  Future<void> changeProfile(
+      BuildContext context, GlobalKey<FormState> globalKey) async {
+    try {
+      //バリデーションを実行
+      if (globalKey.currentState!.validate()) {
+        //サインアップを実行
+        await authRepository.changeProfile(_name, _pass);
+
+        //Home画面へ遷移
+        Navigator.of(context, rootNavigator: true)
+            .pushAndRemoveUntil(SignInScreen.route(), (route) => false);
+      }
+    } on String catch (errorMsg) {
+      //ユーザ情報の変更が失敗した場合Toastで通知
+      final fToast = FToast();
+      fToast.init(context);
+
+      fToast.showToast(
+        child: CustomToast(msg: errorMsg),
+        toastDuration: Durations.toastDuration,
+        gravity: ToastGravity.BOTTOM,
+      );
+    }
   }
 }

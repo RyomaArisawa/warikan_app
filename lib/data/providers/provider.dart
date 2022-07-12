@@ -91,7 +91,9 @@ List<SingleChildWidget> viewModels = [
     ),
   ),
   ChangeNotifierProvider(
-    create: (_) => ProfileViewModel(),
+    create: (context) => ProfileViewModel(
+      authRepository: context.read<AuthRepository>(),
+    ),
   ),
   ChangeNotifierProvider(
     create: (context) => MemoOverviewViewModel(

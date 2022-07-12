@@ -25,7 +25,7 @@ class ButtonLabels {
   static const String settle = "Settle";
   static const String yes = "YES";
   static const String no = "NO";
-  static const String profile = "Profile";
+  static const String changeProfile = "Change Profile";
   static const String toolbar = "Toolbar";
   static const String cancel = "Cancel";
   static const String sortByDate = "Sort by date";

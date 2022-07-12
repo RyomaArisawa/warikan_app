@@ -65,4 +65,14 @@ class AuthRepository {
     await _firebaseAuth.signOut();
     _currentUser = null;
   }
+
+  ///ユーザー情報変更
+  Future<void> changeProfile(String name, String newPass) async {
+    await _firebaseAuth.currentUser!.updatePassword(newPass);
+
+    User updatedUser = _currentUser!.copyWith(name: name, pass: newPass);
+    //DB登録
+    await userDao.updateUser(updatedUser);
+    _currentUser = updatedUser;
+  }
 }
