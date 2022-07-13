@@ -1,6 +1,6 @@
-import 'package:warikan_app/data/models/calc_result.dart';
-import 'package:warikan_app/data/models/member.dart';
-import 'package:warikan_app/data/models/split.dart';
+import 'package:split/data/models/calc_result.dart';
+import 'package:split/data/models/member.dart';
+import 'package:split/data/models/split.dart';
 
 class UtilLogic {
   ///支払額で降順ソート

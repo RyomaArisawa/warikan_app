@@ -1,9 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:warikan_app/data/providers/provider.dart';
-import 'package:warikan_app/firebase_options.dart';
-import 'package:warikan_app/ui/views/screens/sign_in_screen.dart';
+import 'package:split/data/providers/provider.dart';
+import 'package:split/firebase_options.dart';
+import 'package:split/ui/views/screens/sign_in_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

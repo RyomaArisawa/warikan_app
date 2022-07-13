@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:uuid/uuid.dart';
-import 'package:warikan_app/data/consts/enum.dart';
-import 'package:warikan_app/data/consts/error_messages.dart';
-import 'package:warikan_app/data/models/member.dart';
-import 'package:warikan_app/data/models/payment.dart';
-import 'package:warikan_app/data/models/split.dart';
-import 'package:warikan_app/data/repositories/auth_repository.dart';
-import 'package:warikan_app/data/repositories/calc_repository.dart';
-import 'package:warikan_app/data/util/dialog_helper.dart';
+import 'package:split/data/consts/enum.dart';
+import 'package:split/data/consts/error_messages.dart';
+import 'package:split/data/models/member.dart';
+import 'package:split/data/models/payment.dart';
+import 'package:split/data/models/split.dart';
+import 'package:split/data/repositories/auth_repository.dart';
+import 'package:split/data/repositories/calc_repository.dart';
+import 'package:split/data/util/dialog_helper.dart';
 
 import '../../data/consts/animations.dart';
 import '../components/common/custom_toast.dart';

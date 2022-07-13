@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:warikan_app/data/consts/texts.dart';
-import 'package:warikan_app/ui/components/common/cutom_app_bar.dart';
-import 'package:warikan_app/ui/components/common/style/body_background.dart';
-import 'package:warikan_app/ui/components/settings/setting_list_card.dart';
-import 'package:warikan_app/ui/viewmodels/settings_viewmodel.dart';
+import 'package:split/data/consts/texts.dart';
+import 'package:split/ui/components/common/cutom_app_bar.dart';
+import 'package:split/ui/components/common/style/body_background.dart';
+import 'package:split/ui/components/settings/setting_list_card.dart';
+import 'package:split/ui/viewmodels/settings_viewmodel.dart';
 
 class SettingsScreen extends StatelessWidget {
   ///Settings画面

@@ -1,7 +1,7 @@
 import 'package:uuid/uuid.dart';
-import 'package:warikan_app/data/db/memo_dao.dart';
-import 'package:warikan_app/data/models/memo.dart';
-import 'package:warikan_app/data/models/user.dart';
+import 'package:split/data/db/memo_dao.dart';
+import 'package:split/data/models/memo.dart';
+import 'package:split/data/models/user.dart';
 
 class MemoRepository {
   MemoRepository({required this.memoDao});

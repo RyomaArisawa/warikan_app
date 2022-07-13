@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:warikan_app/data/consts/custom_colors.dart';
-import 'package:warikan_app/data/consts/texts.dart';
+import 'package:split/data/consts/custom_colors.dart';
+import 'package:split/data/consts/texts.dart';
 
 class CustomFloatingActionButton extends StatelessWidget {
   ///共通FloatingActionButtonコンポーネント

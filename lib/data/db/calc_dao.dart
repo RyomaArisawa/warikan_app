@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:warikan_app/data/models/split.dart';
+import 'package:split/data/models/split.dart';
 
 class CalcDao {
   final FirebaseFirestore _db = FirebaseFirestore.instance;

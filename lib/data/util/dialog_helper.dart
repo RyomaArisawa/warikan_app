@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:warikan_app/data/consts/texts.dart';
-import 'package:warikan_app/data/util/validator.dart';
-import 'package:warikan_app/ui/components/common/custom_dialog.dart';
-import 'package:warikan_app/ui/views/screens/calc_overview_screen.dart';
+import 'package:split/data/consts/texts.dart';
+import 'package:split/data/util/validator.dart';
+import 'package:split/ui/components/common/custom_dialog.dart';
+import 'package:split/ui/views/screens/calc_overview_screen.dart';
 
 class DialogHelper {
   ///割り勘情報保存ダイアログ

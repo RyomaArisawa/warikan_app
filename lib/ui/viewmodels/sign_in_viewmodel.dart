@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:warikan_app/data/consts/animations.dart';
-import 'package:warikan_app/data/repositories/auth_repository.dart';
-import 'package:warikan_app/data/util/dialog_helper.dart';
-import 'package:warikan_app/data/util/validator.dart';
-import 'package:warikan_app/ui/components/common/custom_toast.dart';
-import 'package:warikan_app/ui/views/screens/home_screen.dart';
-import 'package:warikan_app/ui/views/screens/sign_up_screen.dart';
+import 'package:split/data/consts/animations.dart';
+import 'package:split/data/repositories/auth_repository.dart';
+import 'package:split/data/util/dialog_helper.dart';
+import 'package:split/data/util/validator.dart';
+import 'package:split/ui/components/common/custom_toast.dart';
+import 'package:split/ui/views/screens/home_screen.dart';
+import 'package:split/ui/views/screens/sign_up_screen.dart';
 
 class SignInViewModel with ChangeNotifier {
   SignInViewModel({required this.authRepository});

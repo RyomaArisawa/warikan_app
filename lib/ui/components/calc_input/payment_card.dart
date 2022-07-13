@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
-import 'package:warikan_app/data/consts/custom_colors.dart';
-import 'package:warikan_app/data/consts/texts.dart';
-import 'package:warikan_app/ui/components/common/icon_text.dart';
-import 'package:warikan_app/ui/components/common/input_field.dart';
-import 'package:warikan_app/ui/viewmodels/calc_input_viewmodel.dart';
+import 'package:split/data/consts/custom_colors.dart';
+import 'package:split/data/consts/texts.dart';
+import 'package:split/ui/components/common/icon_text.dart';
+import 'package:split/ui/components/common/input_field.dart';
+import 'package:split/ui/viewmodels/calc_input_viewmodel.dart';
 
 class PaymentCard extends StatelessWidget {
   /// 金額情報入力カードコンポーネント

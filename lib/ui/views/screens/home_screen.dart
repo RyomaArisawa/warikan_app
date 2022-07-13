@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
-import 'package:warikan_app/data/consts/custom_colors.dart';
-import 'package:warikan_app/data/consts/texts.dart';
-import 'package:warikan_app/ui/viewmodels/home_viewmodel.dart';
-import 'package:warikan_app/ui/views/screens/calc_overview_screen.dart';
-import 'package:warikan_app/ui/views/screens/memo_overview_screen.dart';
-import 'package:warikan_app/ui/views/screens/settings_screen.dart';
+import 'package:split/data/consts/custom_colors.dart';
+import 'package:split/data/consts/texts.dart';
+import 'package:split/ui/viewmodels/home_viewmodel.dart';
+import 'package:split/ui/views/screens/calc_overview_screen.dart';
+import 'package:split/ui/views/screens/memo_overview_screen.dart';
+import 'package:split/ui/views/screens/settings_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   ///ホーム画面（BottomNavigationBar固定画面）

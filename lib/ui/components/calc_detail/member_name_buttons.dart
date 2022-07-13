@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:warikan_app/ui/components/common/custom_button.dart';
-import 'package:warikan_app/ui/viewmodels/calc_detail_viewmodel.dart';
+import 'package:split/ui/components/common/custom_button.dart';
+import 'package:split/ui/viewmodels/calc_detail_viewmodel.dart';
 
 class MemberNameButtons extends StatelessWidget {
   const MemberNameButtons({Key? key, required this.controller})

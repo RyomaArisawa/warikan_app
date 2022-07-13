@@ -1,4 +1,4 @@
-# warikan_app
+# split
 
 A new Flutter project.
 
