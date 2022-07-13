@@ -31,6 +31,7 @@ class ButtonLabels {
   static const String sortByDate = "Sort by date";
   static const String sortBySettled = "Sort by settled";
   static const String signOut = "Sign Out";
+  static const String send = "Send";
 }
 
 ///リンクテキスト関連
@@ -70,4 +71,5 @@ class DialogTexts {
   static const String askProfileDialog =
       "Are you sure to save your new profile?";
   static const String titleCalcSaveDialog = "Save Split";
+  static const String titleResetPasswordDialog = "Reset Password";
 }

@@ -24,7 +24,12 @@ class AuthRepository {
 
       //ログイン中ユーザーを設定
       if (userCredential.user?.uid != null) {
-        _currentUser = await userDao.getUserById(userCredential.user!.uid);
+        //DBからユーザー情報を取得
+        User user = await userDao.getUserById(userCredential.user!.uid);
+        //リセットされた場合を考慮して、パスワードの更新を行う
+        User currentUser = user.copyWith(pass: password);
+        await userDao.updateUser(currentUser);
+        _currentUser = currentUser;
       }
     } catch (error) {
       throw Messenger.authErrorMsg(error.toString());
@@ -74,5 +79,10 @@ class AuthRepository {
     //DB登録
     await userDao.updateUser(updatedUser);
     _currentUser = updatedUser;
+  }
+
+  ///パスワードリセット
+  Future<void> resetPassword(String email) async {
+    await _firebaseAuth.sendPasswordResetEmail(email: email);
   }
 }
