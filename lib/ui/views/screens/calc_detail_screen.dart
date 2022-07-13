@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
-import 'package:warikan_app/data/consts/texts.dart';
-import 'package:warikan_app/ui/components/calc_detail/calc_detail_card.dart';
-import 'package:warikan_app/ui/components/calc_detail/display_total_card.dart';
-import 'package:warikan_app/ui/components/calc_detail/member_name_buttons.dart';
-import 'package:warikan_app/ui/components/common/custom_floating_action_button.dart';
-import 'package:warikan_app/ui/components/common/cutom_app_bar.dart';
-import 'package:warikan_app/ui/components/common/style/body_background.dart';
-import 'package:warikan_app/ui/viewmodels/calc_detail_viewmodel.dart';
+import 'package:split/data/consts/texts.dart';
+import 'package:split/ui/components/calc_detail/calc_detail_card.dart';
+import 'package:split/ui/components/calc_detail/display_total_card.dart';
+import 'package:split/ui/components/calc_detail/member_name_buttons.dart';
+import 'package:split/ui/components/common/custom_floating_action_button.dart';
+import 'package:split/ui/components/common/cutom_app_bar.dart';
+import 'package:split/ui/components/common/style/body_background.dart';
+import 'package:split/ui/viewmodels/calc_detail_viewmodel.dart';
 
 class CalcDetailScreen extends StatefulWidget {
   ///CalcDetail画面

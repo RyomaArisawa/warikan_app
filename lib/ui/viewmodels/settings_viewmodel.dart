@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:warikan_app/data/repositories/auth_repository.dart';
-import 'package:warikan_app/ui/views/screens/profile_screen.dart';
-import 'package:warikan_app/ui/views/screens/sign_in_screen.dart';
+import 'package:split/data/repositories/auth_repository.dart';
+import 'package:split/ui/views/screens/profile_screen.dart';
+import 'package:split/ui/views/screens/sign_in_screen.dart';
 
 class SettingsViewModel with ChangeNotifier {
   SettingsViewModel({required this.authRepository});

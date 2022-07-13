@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:warikan_app/data/consts/enum.dart';
-import 'package:warikan_app/data/models/calc_result.dart';
-import 'package:warikan_app/data/models/split.dart';
-import 'package:warikan_app/data/repositories/calc_repository.dart';
-import 'package:warikan_app/data/util/dialog_helper.dart';
-import 'package:warikan_app/data/util/util_logic.dart';
-import 'package:warikan_app/ui/viewmodels/calc_input_viewmodel.dart';
-import 'package:warikan_app/ui/views/screens/calc_input_screen.dart';
+import 'package:split/data/consts/enum.dart';
+import 'package:split/data/models/calc_result.dart';
+import 'package:split/data/models/split.dart';
+import 'package:split/data/repositories/calc_repository.dart';
+import 'package:split/data/util/dialog_helper.dart';
+import 'package:split/data/util/util_logic.dart';
+import 'package:split/ui/viewmodels/calc_input_viewmodel.dart';
+import 'package:split/ui/views/screens/calc_input_screen.dart';
 
 class CalcDetailViewModel with ChangeNotifier {
   CalcDetailViewModel({required this.calcRepository});

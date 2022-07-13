@@ -1,5 +1,5 @@
 import 'package:email_validator/email_validator.dart';
-import 'package:warikan_app/data/consts/error_messages.dart';
+import 'package:split/data/consts/error_messages.dart';
 
 class Validator {
   //名前のバリデーション

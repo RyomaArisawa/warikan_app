@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:warikan_app/data/models/user.dart';
+import 'package:split/data/models/user.dart';
 
 class UserDao {
   final FirebaseFirestore _db = FirebaseFirestore.instance;

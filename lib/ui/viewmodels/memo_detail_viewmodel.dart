@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:warikan_app/data/consts/enum.dart';
-import 'package:warikan_app/data/models/memo.dart';
-import 'package:warikan_app/ui/viewmodels/memo_input_viewmodel.dart';
-import 'package:warikan_app/ui/views/screens/memo_input_screen.dart';
+import 'package:split/data/consts/enum.dart';
+import 'package:split/data/models/memo.dart';
+import 'package:split/ui/viewmodels/memo_input_viewmodel.dart';
+import 'package:split/ui/views/screens/memo_input_screen.dart';
 
 class MemoDetailViewModel with ChangeNotifier {
   late Memo _memo;

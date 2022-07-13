@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:warikan_app/data/consts/texts.dart';
-import 'package:warikan_app/ui/components/common/custom_button.dart';
-import 'package:warikan_app/ui/components/common/input_field.dart';
-import 'package:warikan_app/ui/components/common/input_label.dart';
-import 'package:warikan_app/ui/viewmodels/profile_viewmodel.dart';
+import 'package:split/data/consts/texts.dart';
+import 'package:split/ui/components/common/custom_button.dart';
+import 'package:split/ui/components/common/input_field.dart';
+import 'package:split/ui/components/common/input_label.dart';
+import 'package:split/ui/viewmodels/profile_viewmodel.dart';
 
 class ProfileForm extends StatelessWidget {
   ///Profile画面のフォームコンポーネント
