@@ -33,7 +33,7 @@ class SignInScreen extends StatelessWidget {
                   children: [
                     Container(
                       margin: EdgeInsets.symmetric(
-                          vertical: MediaQuery.of(context).size.height / 10),
+                          vertical: MediaQuery.of(context).size.height / 20),
                       child: Column(
                         children: const [
                           Text(
