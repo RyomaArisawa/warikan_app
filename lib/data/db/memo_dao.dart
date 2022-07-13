@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:split/data/models/memo.dart';
+import 'package:warikan_app/data/models/memo.dart';
 
 class MemoDao {
   final FirebaseFirestore _db = FirebaseFirestore.instance;

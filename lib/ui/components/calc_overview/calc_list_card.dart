@@ -2,10 +2,10 @@ import 'package:animated_widgets/animated_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
-import 'package:split/data/consts/animations.dart';
-import 'package:split/data/util/formatter.dart';
-import 'package:split/ui/components/common/custom_list_card.dart';
-import 'package:split/ui/viewmodels/calc_overview_viewmodel.dart';
+import 'package:warikan_app/data/consts/animations.dart';
+import 'package:warikan_app/data/util/formatter.dart';
+import 'package:warikan_app/ui/components/common/custom_list_card.dart';
+import 'package:warikan_app/ui/viewmodels/calc_overview_viewmodel.dart';
 
 class CalcListCard extends StatelessWidget {
   ///CalcOverview画面のリストタイルコンポーネント

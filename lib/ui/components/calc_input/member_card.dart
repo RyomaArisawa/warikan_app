@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
-import 'package:split/data/consts/texts.dart';
-import 'package:split/ui/components/calc_input/payment_card.dart';
-import 'package:split/ui/components/common/custom_button.dart';
-import 'package:split/ui/components/common/icon_text.dart';
-import 'package:split/ui/components/common/style/bottom_shader.dart';
-import 'package:split/ui/components/common/style/dark_blue_card.dart';
-import 'package:split/ui/viewmodels/calc_input_viewmodel.dart';
+import 'package:warikan_app/data/consts/texts.dart';
+import 'package:warikan_app/ui/components/calc_input/payment_card.dart';
+import 'package:warikan_app/ui/components/common/custom_button.dart';
+import 'package:warikan_app/ui/components/common/icon_text.dart';
+import 'package:warikan_app/ui/components/common/style/bottom_shader.dart';
+import 'package:warikan_app/ui/components/common/style/dark_blue_card.dart';
+import 'package:warikan_app/ui/viewmodels/calc_input_viewmodel.dart';
 
 class MemberCard extends StatelessWidget {
   /// メンバー情報表示カードコンポーネント

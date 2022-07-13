@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:split/data/consts/texts.dart';
-import 'package:split/ui/components/common/custom_button.dart';
-import 'package:split/ui/components/common/input_field.dart';
-import 'package:split/ui/components/common/input_label.dart';
-import 'package:split/ui/viewmodels/sign_in_viewmodel.dart';
+import 'package:warikan_app/data/consts/texts.dart';
+import 'package:warikan_app/ui/components/common/custom_button.dart';
+import 'package:warikan_app/ui/components/common/input_field.dart';
+import 'package:warikan_app/ui/components/common/input_label.dart';
+import 'package:warikan_app/ui/viewmodels/sign_in_viewmodel.dart';
 
 class SignInForm extends StatelessWidget {
   const SignInForm({Key? key}) : super(key: key);

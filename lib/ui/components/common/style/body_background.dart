@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:split/data/consts/custom_colors.dart';
+import 'package:warikan_app/data/consts/custom_colors.dart';
 
 class BodyBackground extends StatelessWidget {
   ///背景コンポーネント

@@ -1,4 +1,4 @@
-import 'package:split/data/consts/error_messages.dart';
+import 'package:warikan_app/data/consts/error_messages.dart';
 
 class Messenger {
   static String authErrorMsg(String error) {

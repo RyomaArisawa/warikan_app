@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart' as firebase;
-import 'package:split/data/db/user_dao.dart';
-import 'package:split/data/models/user.dart';
-import 'package:split/data/util/messenger.dart';
+import 'package:warikan_app/data/db/user_dao.dart';
+import 'package:warikan_app/data/models/user.dart';
+import 'package:warikan_app/data/util/messenger.dart';
 
 class AuthRepository {
   AuthRepository({required this.userDao});

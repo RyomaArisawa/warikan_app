@@ -1,5 +1,5 @@
 import 'package:uuid/uuid.dart';
-import 'package:split/data/mixins/visible.dart';
+import 'package:warikan_app/data/mixins/visible.dart';
 
 import 'member.dart';
 

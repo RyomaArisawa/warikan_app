@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:split/data/consts/custom_colors.dart';
-import 'package:split/data/consts/texts.dart';
-import 'package:split/data/models/calc_result.dart';
-import 'package:split/data/util/formatter.dart';
-import 'package:split/ui/components/common/style/bottom_shader.dart';
+import 'package:warikan_app/data/consts/custom_colors.dart';
+import 'package:warikan_app/data/consts/texts.dart';
+import 'package:warikan_app/data/models/calc_result.dart';
+import 'package:warikan_app/data/util/formatter.dart';
+import 'package:warikan_app/ui/components/common/style/bottom_shader.dart';
 
 class CalcResultCard extends StatelessWidget {
   const CalcResultCard({Key? key, required this.calcResultsPerMember})

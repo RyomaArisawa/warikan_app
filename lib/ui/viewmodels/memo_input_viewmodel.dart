@@ -2,12 +2,12 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/src/widgets/controller.dart';
-import 'package:split/data/consts/enum.dart';
-import 'package:split/data/models/memo.dart';
-import 'package:split/data/repositories/auth_repository.dart';
-import 'package:split/data/repositories/memo_repository.dart';
-import 'package:split/data/util/validator.dart';
-import 'package:split/ui/views/screens/memo_overview_screen.dart';
+import 'package:warikan_app/data/consts/enum.dart';
+import 'package:warikan_app/data/models/memo.dart';
+import 'package:warikan_app/data/repositories/auth_repository.dart';
+import 'package:warikan_app/data/repositories/memo_repository.dart';
+import 'package:warikan_app/data/util/validator.dart';
+import 'package:warikan_app/ui/views/screens/memo_overview_screen.dart';
 
 class MemoInputViewModel with ChangeNotifier {
   MemoInputViewModel({

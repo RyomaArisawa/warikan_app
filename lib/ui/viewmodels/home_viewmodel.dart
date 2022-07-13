@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:split/ui/views/screens/calc_overview_screen.dart';
-import 'package:split/ui/views/screens/memo_overview_screen.dart';
+import 'package:warikan_app/ui/views/screens/calc_overview_screen.dart';
+import 'package:warikan_app/ui/views/screens/memo_overview_screen.dart';
 
 import '../../data/consts/texts.dart';
 import '../views/screens/settings_screen.dart';

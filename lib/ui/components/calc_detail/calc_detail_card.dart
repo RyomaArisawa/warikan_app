@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:split/data/models/calc_result.dart';
-import 'package:split/ui/components/calc_detail/calc_result_card.dart';
-import 'package:split/ui/components/calc_detail/payment_detail_list.dart';
-import 'package:split/ui/components/common/style/dark_blue_card.dart';
-import 'package:split/ui/viewmodels/calc_detail_viewmodel.dart';
+import 'package:warikan_app/data/models/calc_result.dart';
+import 'package:warikan_app/ui/components/calc_detail/calc_result_card.dart';
+import 'package:warikan_app/ui/components/calc_detail/payment_detail_list.dart';
+import 'package:warikan_app/ui/components/common/style/dark_blue_card.dart';
+import 'package:warikan_app/ui/viewmodels/calc_detail_viewmodel.dart';
 
 class CalcDetailCard extends StatelessWidget {
   ///メンバー毎の支払い情報を表示するコンポーネント

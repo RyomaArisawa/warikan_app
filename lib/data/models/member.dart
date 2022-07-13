@@ -1,5 +1,5 @@
 import 'package:uuid/uuid.dart';
-import 'package:split/data/models/payment.dart';
+import 'package:warikan_app/data/models/payment.dart';
 
 class Member {
   //メンバーID

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:split/data/consts/animations.dart';
-import 'package:split/data/consts/enum.dart';
-import 'package:split/data/models/split.dart';
-import 'package:split/data/repositories/auth_repository.dart';
-import 'package:split/data/repositories/calc_repository.dart';
-import 'package:split/data/util/util_logic.dart';
-import 'package:split/ui/viewmodels/calc_detail_viewmodel.dart';
-import 'package:split/ui/viewmodels/calc_input_viewmodel.dart';
-import 'package:split/ui/views/screens/calc_detail_screen.dart';
-import 'package:split/ui/views/screens/calc_input_screen.dart';
+import 'package:warikan_app/data/consts/animations.dart';
+import 'package:warikan_app/data/consts/enum.dart';
+import 'package:warikan_app/data/models/split.dart';
+import 'package:warikan_app/data/repositories/auth_repository.dart';
+import 'package:warikan_app/data/repositories/calc_repository.dart';
+import 'package:warikan_app/data/util/util_logic.dart';
+import 'package:warikan_app/ui/viewmodels/calc_detail_viewmodel.dart';
+import 'package:warikan_app/ui/viewmodels/calc_input_viewmodel.dart';
+import 'package:warikan_app/ui/views/screens/calc_detail_screen.dart';
+import 'package:warikan_app/ui/views/screens/calc_input_screen.dart';
 
 class CalcOverviewViewModel with ChangeNotifier {
   CalcOverviewViewModel(

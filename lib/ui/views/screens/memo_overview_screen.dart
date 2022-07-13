@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:split/data/consts/texts.dart';
-import 'package:split/ui/components/common/custom_floating_action_button.dart';
-import 'package:split/ui/components/common/cutom_app_bar.dart';
-import 'package:split/ui/components/common/style/body_background.dart';
-import 'package:split/ui/components/common/style/bottom_shader.dart';
-import 'package:split/ui/components/memo_overview/memo_list_card.dart';
-import 'package:split/ui/viewmodels/memo_overview_viewmodel.dart';
+import 'package:warikan_app/data/consts/texts.dart';
+import 'package:warikan_app/ui/components/common/custom_floating_action_button.dart';
+import 'package:warikan_app/ui/components/common/cutom_app_bar.dart';
+import 'package:warikan_app/ui/components/common/style/body_background.dart';
+import 'package:warikan_app/ui/components/common/style/bottom_shader.dart';
+import 'package:warikan_app/ui/components/memo_overview/memo_list_card.dart';
+import 'package:warikan_app/ui/viewmodels/memo_overview_viewmodel.dart';
 
 class MemoOverviewScreen extends StatelessWidget {
   const MemoOverviewScreen({Key? key}) : super(key: key);

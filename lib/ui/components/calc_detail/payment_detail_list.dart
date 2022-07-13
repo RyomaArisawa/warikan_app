@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:split/data/util/formatter.dart';
-import 'package:split/ui/components/common/style/bottom_shader.dart';
-import 'package:split/ui/viewmodels/calc_detail_viewmodel.dart';
+import 'package:warikan_app/data/util/formatter.dart';
+import 'package:warikan_app/ui/components/common/style/bottom_shader.dart';
+import 'package:warikan_app/ui/viewmodels/calc_detail_viewmodel.dart';
 
 class PaymentDetailList extends StatelessWidget {
   //メンバーに紐づく支払い情報を一覧リストにして表示するコンポーネント

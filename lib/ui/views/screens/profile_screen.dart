@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:split/data/consts/custom_colors.dart';
-import 'package:split/data/consts/texts.dart';
-import 'package:split/ui/components/profile/profile_form.dart';
+import 'package:warikan_app/data/consts/custom_colors.dart';
+import 'package:warikan_app/data/consts/texts.dart';
+import 'package:warikan_app/ui/components/profile/profile_form.dart';
 
 class ProfileScreen extends StatelessWidget {
   ///Profile画面

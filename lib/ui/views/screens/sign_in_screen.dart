@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:split/data/consts/custom_colors.dart';
-import 'package:split/data/consts/texts.dart';
-import 'package:split/ui/components/common/link_text.dart';
-import 'package:split/ui/components/sign_in/sign_in_form.dart';
-import 'package:split/ui/viewmodels/sign_in_viewmodel.dart';
+import 'package:warikan_app/data/consts/custom_colors.dart';
+import 'package:warikan_app/data/consts/texts.dart';
+import 'package:warikan_app/ui/components/common/link_text.dart';
+import 'package:warikan_app/ui/components/sign_in/sign_in_form.dart';
+import 'package:warikan_app/ui/viewmodels/sign_in_viewmodel.dart';
 
 class SignInScreen extends StatelessWidget {
   /// Sign In 画面
@@ -33,7 +33,7 @@ class SignInScreen extends StatelessWidget {
                   children: [
                     Container(
                       margin: EdgeInsets.symmetric(
-                          vertical: MediaQuery.of(context).size.height / 20),
+                          vertical: MediaQuery.of(context).size.height / 10),
                       child: Column(
                         children: const [
                           Text(

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:split/data/consts/custom_colors.dart';
-import 'package:split/data/consts/texts.dart';
-import 'package:split/ui/components/common/link_text.dart';
-import 'package:split/ui/components/sign_up/sign_up_form.dart';
-import 'package:split/ui/viewmodels/sign_up_viewmodel.dart';
+import 'package:warikan_app/data/consts/custom_colors.dart';
+import 'package:warikan_app/data/consts/texts.dart';
+import 'package:warikan_app/ui/components/common/link_text.dart';
+import 'package:warikan_app/ui/components/sign_up/sign_up_form.dart';
+import 'package:warikan_app/ui/viewmodels/sign_up_viewmodel.dart';
 
 class SignUpScreen extends StatelessWidget {
   /// Sign Up 画面

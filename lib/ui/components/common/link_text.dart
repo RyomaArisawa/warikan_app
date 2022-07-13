@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:split/data/consts/custom_colors.dart';
+import 'package:warikan_app/data/consts/custom_colors.dart';
 
 class LinkText extends StatelessWidget {
   /// リンクテキストのコンポーネント

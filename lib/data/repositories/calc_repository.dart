@@ -1,9 +1,9 @@
 import 'package:uuid/uuid.dart';
-import 'package:split/data/db/calc_dao.dart';
-import 'package:split/data/models/member.dart';
-import 'package:split/data/models/payment.dart';
-import 'package:split/data/models/split.dart';
-import 'package:split/data/util/util_logic.dart';
+import 'package:warikan_app/data/db/calc_dao.dart';
+import 'package:warikan_app/data/models/member.dart';
+import 'package:warikan_app/data/models/payment.dart';
+import 'package:warikan_app/data/models/split.dart';
+import 'package:warikan_app/data/util/util_logic.dart';
 
 class CalcRepository {
   CalcRepository({required this.calcDao});

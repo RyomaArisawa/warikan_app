@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:split/data/consts/custom_colors.dart';
-import 'package:split/data/util/formatter.dart';
-import 'package:split/ui/viewmodels/calc_detail_viewmodel.dart';
+import 'package:warikan_app/data/consts/custom_colors.dart';
+import 'package:warikan_app/data/util/formatter.dart';
+import 'package:warikan_app/ui/viewmodels/calc_detail_viewmodel.dart';
 
 class DisplayTotalCard extends StatelessWidget {
   //支払い合計金額を表示するコンポーネント
