@@ -76,4 +76,40 @@ class DialogHelper {
       ),
     );
   }
+
+  ///パスワード初期化ダイアログ
+  static showResetPasswordDialog({
+    required BuildContext context,
+    required ValueChanged<String> formFunction,
+    required AsyncCallback sendFunction,
+  }) {
+    final _globalKey = GlobalKey<FormState>();
+    showDialog(
+      context: context,
+      builder: (dialogContext) => CustomDialog(
+        title: DialogTexts.titleResetPasswordDialog,
+        content: Form(
+          key: _globalKey,
+          child: TextFormField(
+            decoration: const InputDecoration(
+              hintText: FormLabels.email,
+            ),
+            onChanged: formFunction,
+            validator: Validator.emailValidator,
+          ),
+        ),
+        primaryText: ButtonLabels.send,
+        secondaryText: ButtonLabels.cancel,
+        onPressed: () async {
+          if (_globalKey.currentState!.validate()) {
+            //パスワード初期化
+            await sendFunction();
+
+            //ダイアログを閉じる
+            Navigator.pop(dialogContext);
+          }
+        },
+      ),
+    );
+  }
 }

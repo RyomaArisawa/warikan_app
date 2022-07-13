@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:warikan_app/data/consts/animations.dart';
 import 'package:warikan_app/data/repositories/auth_repository.dart';
+import 'package:warikan_app/data/util/dialog_helper.dart';
 import 'package:warikan_app/data/util/validator.dart';
 import 'package:warikan_app/ui/components/common/custom_toast.dart';
 import 'package:warikan_app/ui/views/screens/home_screen.dart';
@@ -66,10 +67,17 @@ class SignInViewModel with ChangeNotifier {
     );
   }
 
-  void resetPassword(BuildContext context) {
-    // Navigator.push(
-    //   context,
-    //   SignUpScreen.route(),
-    // );
+  ///保存ダイアログ表示
+  showSaveDialog(BuildContext context) {
+    DialogHelper.showResetPasswordDialog(
+      context: context,
+      formFunction: inputEmail,
+      sendFunction: () => resetPassword(context),
+    );
+  }
+
+  ///パスワードリセット
+  Future<void> resetPassword(BuildContext context) async {
+    await authRepository.resetPassword(_email);
   }
 }

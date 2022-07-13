@@ -21,8 +21,12 @@ class SettingsScreen extends StatelessWidget {
         child: Column(
           children: [
             SettingListCard(
-              title: ButtonLabels.profile,
+              title: ButtonLabels.changeProfile,
               onTap: () => vm.pushProfile(context),
+            ),
+            SettingListCard(
+              title: ButtonLabels.signOut,
+              onTap: () => vm.signOut(context),
             ),
           ],
         ),

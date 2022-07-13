@@ -1,30 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:warikan_app/data/consts/texts.dart';
+import 'package:warikan_app/ui/components/common/custom_button.dart';
 import 'package:warikan_app/ui/components/common/input_field.dart';
 import 'package:warikan_app/ui/components/common/input_label.dart';
-import 'package:warikan_app/ui/components/common/style/dark_blue_card.dart';
 import 'package:warikan_app/ui/viewmodels/profile_viewmodel.dart';
 
 class ProfileForm extends StatelessWidget {
+  ///Profile画面のフォームコンポーネント
   const ProfileForm({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final _globalKey = GlobalKey<FormState>();
     final vm = context.read<ProfileViewModel>();
 
-    return DarkBlueCard(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const InputLabel(label: FormLabels.name),
-          InputField(initialValue: vm.name, onChanged: vm.inputName),
-          const InputLabel(label: FormLabels.email),
-          InputField(initialValue: vm.email, onChanged: vm.inputEmail),
-          const InputLabel(label: FormLabels.pass),
-          InputField(initialValue: vm.pass, onChanged: vm.inputPass),
-        ],
+    return ConstrainedBox(
+      constraints: const BoxConstraints(minHeight: 300),
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height / 3,
+        child: Form(
+          key: _globalKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const InputLabel(label: FormLabels.name),
+              InputField(
+                height: 80,
+                onChanged: vm.inputName,
+                validator: vm.nameValidator,
+              ),
+              const InputLabel(label: FormLabels.pass),
+              InputField(
+                height: 80,
+                onChanged: vm.inputPass,
+                validator: vm.passValidator,
+              ),
+              CustomButton(
+                text: ButtonLabels.changeProfile,
+                onPressed: () => vm.changeProfile(context, _globalKey),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

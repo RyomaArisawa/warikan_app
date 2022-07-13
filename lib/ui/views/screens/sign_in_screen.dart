@@ -21,11 +21,6 @@ class SignInScreen extends StatelessWidget {
     final vm = context.read<SignInViewModel>();
     return Scaffold(
       backgroundColor: CustomColors.darkBlue,
-      appBar: AppBar(
-        backgroundColor: CustomColors.darkBlue,
-        title: const Text(ScreenLabels.signIn),
-        centerTitle: true,
-      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(24),
@@ -35,17 +30,26 @@ class SignInScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(40),
                 child: Column(
-                  children: const [
-                    Text(
-                      DisplayTexts.signInAppTitle,
-                      style: TextStyle(fontSize: 48, color: Colors.white),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 10),
-                      child: Text(
-                        DisplayTexts.signInDescription,
-                        style: TextStyle(fontSize: 16, color: Colors.white),
-                        textAlign: TextAlign.center,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.symmetric(
+                          vertical: MediaQuery.of(context).size.height / 10),
+                      child: Column(
+                        children: const [
+                          Text(
+                            DisplayTexts.signInAppTitle,
+                            style: TextStyle(fontSize: 48, color: Colors.white),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 10),
+                            child: Text(
+                              DisplayTexts.signInDescription,
+                              style:
+                                  TextStyle(fontSize: 16, color: Colors.white),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
@@ -57,13 +61,18 @@ class SignInScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     LinkText(
-                        plainText: LinkTexts.forgetPass,
-                        linkText: LinkTexts.resetPassLink,
-                        onTap: () => vm.resetPassword(context)),
+                      plainText: LinkTexts.forgetPass,
+                      linkText: LinkTexts.resetPassLink,
+                      onTap: () => vm.showSaveDialog(context),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     LinkText(
-                        plainText: LinkTexts.createAccount,
-                        linkText: LinkTexts.signUpLink,
-                        onTap: () => vm.pushSignUp(context)),
+                      plainText: LinkTexts.createAccount,
+                      linkText: LinkTexts.signUpLink,
+                      onTap: () => vm.pushSignUp(context),
+                    ),
                   ],
                 ),
               )

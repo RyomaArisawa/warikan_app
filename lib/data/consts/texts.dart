@@ -25,11 +25,13 @@ class ButtonLabels {
   static const String settle = "Settle";
   static const String yes = "YES";
   static const String no = "NO";
-  static const String profile = "Profile";
+  static const String changeProfile = "Change Profile";
   static const String toolbar = "Toolbar";
   static const String cancel = "Cancel";
   static const String sortByDate = "Sort by date";
   static const String sortBySettled = "Sort by settled";
+  static const String signOut = "Sign Out";
+  static const String send = "Send";
 }
 
 ///リンクテキスト関連
@@ -38,7 +40,7 @@ class LinkTexts {
   static const String signInLink = "Sign In";
   static const String forgetPass = "Forgot password?";
   static const String resetPassLink = "Reset here";
-  static const String createAccount = "Do you want to create a new account?";
+  static const String createAccount = "Create a new account?";
   static const String signUpLink = "Sign Up";
 }
 
@@ -69,4 +71,5 @@ class DialogTexts {
   static const String askProfileDialog =
       "Are you sure to save your new profile?";
   static const String titleCalcSaveDialog = "Save Split";
+  static const String titleResetPasswordDialog = "Reset Password";
 }
